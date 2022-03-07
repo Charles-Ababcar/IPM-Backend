@@ -50,15 +50,19 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
     }
 
     @Override
-    public IPM_Enfant AjouterUnFichier(long id, MultipartFile file) throws IOException {
-        String uploadDir = "src/main/resources/static/images/";
-        File fileName = new File(uploadDir + "" + file.getOriginalFilename());
-        fileName.createNewFile();
-
-        IPM_Enfant ipm_enfant = ipm_enfantRepository.findById(id).get();
-        ipm_enfant.setIdenf(id);
-        ipm_enfant.setChemin(uploadDir + "" + file.getOriginalFilename());
-        ipm_enfantRepository.save(ipm_enfant);
+    public String AjouterUnFichier(MultipartFile file) throws IOException {
+        String uploadDir = "E:/Mes Dossiers/Images-IPM_Enfants/";
+        File fileName = new File(uploadDir+""+file.getOriginalFilename());
+        // Create File
+        boolean fileCreated = fileName.createNewFile();
+        // Validate that file actually got created
+        if (!fileCreated) {
+            throw new IOException("Unable to create file at specified path. It already exists");
+        }
+       // IPM_Enfant ipm_enfant = ipm_enfantRepository.findById().get();
+        //ipm_enfant.setIdenf(id);
+       // ipm_enfant.setChemin(uploadDir + "" + file.getOriginalFilename());
+       // ipm_enfantRepository.save(ipm_enfant);
 
         try (FileOutputStream fout = new FileOutputStream(fileName)) {
             fout.write(file.getBytes());
@@ -66,7 +70,7 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
             exe.printStackTrace();
         }
 
-        return ipm_enfant;
+        return "Succes";
     }
 
 

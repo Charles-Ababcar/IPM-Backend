@@ -24,7 +24,7 @@ public interface IPM_EnfantService {
 
     void delete(long id);
 
-    IPM_Enfant AjouterUnFichier(long id, MultipartFile file) throws IOException;
+    String AjouterUnFichier(MultipartFile file) throws IOException;
 
     IPM_Enfant AjouterLesAttributsDuFichier(IPM_Enfant ipm_enfant);
 

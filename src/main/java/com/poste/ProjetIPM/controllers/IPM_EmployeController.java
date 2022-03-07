@@ -14,10 +14,12 @@ import java.nio.file.Paths;
 
 import com.poste.ProjetIPM.entities.IPM_Enfant;
 import com.poste.ProjetIPM.services.IPM_EmployeService;
+import com.poste.ProjetIPM.util.ImageUtility;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletContext;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import com.poste.ProjetIPM.Domaine.Response;
 import com.poste.ProjetIPM.ResourcesNotFound.ResourceNotFound;
@@ -105,6 +108,7 @@ public ResponseEntity<Response> createEmploye (@RequestParam MultipartFile file,
         final byte[] bytes = Files.readAllBytes(Paths.get(context.getRealPath("/E:/Images/") + IPM_Employe.getPicByte()));
         return bytes;
     }
+
 
     @PostMapping("/employe")
     public String save(@RequestBody IPM_Employe ipm_employe) {

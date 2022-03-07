@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.List;
 
 import static java.nio.file.Files.readAllBytes;
+import static java.nio.file.Paths.get;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -44,11 +45,11 @@ public class IPM_EnfantController {
         return ipm_enfantRepo.getEnfantById(id);
 
     }
-
     @PostMapping("/enfant")
     public void save(@RequestBody IPM_Enfant ipm_enfant) {
+        String uploadDir = "E:/Mes Dossiers/Images-IPM_Enfants/";
+        ipm_enfant.setChemin(uploadDir+"/"+ipm_enfant.getChemin());
         ipm_enfantService.save(ipm_enfant);
-
     }
 
     @PutMapping("/enfant")
@@ -61,18 +62,20 @@ public class IPM_EnfantController {
         ipm_enfantService.delete(id);
     }
 
-    @RequestMapping(value = "/upload/{id}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public IPM_Enfant uploadFile(@PathVariable Long id, @RequestParam("image") MultipartFile file) throws IOException {
+    @RequestMapping(value = "/upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadFile(@ModelAttribute IPM_Enfant ipm_enfant, @RequestParam("image") MultipartFile file)
+            throws IOException {
         // IPM_Enfant e = ipm_enfantRepo.getEnfantById(id).get() ;
-        return ipm_enfantService.AjouterUnFichier(id, file);
+        ipm_enfantService.AjouterUnFichier( file);
+        return "succes";
     }
 
     @GetMapping(path = "/ImagesEmp/{id}")
     public byte[] getPhoto(@PathVariable Long id) throws Exception {
-        String uploadDir = "src/main/resources/static/images/";
-        IPM_Enfant IPM_Enfant = ipm_enfantService.getById(id);
+        String uploadDir = "E:/Mes Dossiers/Images-IPM_Enfants/";
+        IPM_Enfant ipm_enfant = ipm_enfantService.getById(id);
         System.out.println("message");
-        byte[] bytes = Files.readAllBytes(Paths.get(uploadDir + "" + IPM_Enfant.getChemin()));
+        byte[] bytes = Files.readAllBytes(get(uploadDir + "" + ipm_enfant.getChemin()));
         System.out.println(new String(bytes));
         return bytes;
 
