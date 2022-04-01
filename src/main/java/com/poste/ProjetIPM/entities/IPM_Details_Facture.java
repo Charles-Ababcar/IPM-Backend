@@ -5,18 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
-
+@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Entity
-public class IPM_Type_Prestataire {
+public class IPM_Details_Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_type_prestataire;
-    private String libelle;
-    private String nom_type_prestaire;
-    @OneToMany
-    private List<IPM_Prestataire> ipm_prestataires;
+    private Long idDedtailsFacture;
+    @ManyToOne
+    @JoinColumn( name="idfacture", nullable=false)
+    private IPM_Facture ipm_facture;
 }

@@ -1,14 +1,19 @@
 package com.poste.ProjetIPM.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
+@DynamicUpdate
 @AllArgsConstructor
 @NoArgsConstructor
 public class IPM_Enfant {
@@ -59,11 +64,13 @@ public class IPM_Enfant {
 
     private String nom_enfant;
     private String prenom_enfant;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date date_nais_enfant;
     private String lieu_nais_enfant;
     private String adresse;
     private String sexe_enfant;
     private String chemin;
+    private String extrait_naiss;
 
     public String getChemin() {
         return chemin;
@@ -99,6 +106,8 @@ public class IPM_Enfant {
 
     @ManyToOne
     private IPM_Employe ipm_employe;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "ipm_enfant")
+    private List<IPM_Bon> ipm_bons;
 }
 

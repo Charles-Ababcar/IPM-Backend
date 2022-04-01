@@ -1,5 +1,6 @@
 package com.poste.ProjetIPM.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@DiscriminatorValue("CUST")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class IPM_Bon implements Serializable {
     @Id
@@ -41,15 +43,19 @@ public class IPM_Bon implements Serializable {
 
     @ManyToOne
     private IPM_Facture ipm_facture;
-
+    @ManyToOne
+    private  IPM_Enfant ipm_enfant;
+    @ManyToOne
+    private IPM_Conjoint ipm_conjoint;
    /* @ManyToOne
     @JoinColumn(name = "ipm_bon")
     private IPM_Beneficiaire ipm_beneficiaire;*/
 
     @ManyToOne
     private IPM_Employe ipm_employe;
-
-    @ManyToOne
+    //@JsonIgnore
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(nullable =true)
     private IPM_Prestataire ipm_prestataire;
 
     @OneToMany(mappedBy = "ipm_bon")

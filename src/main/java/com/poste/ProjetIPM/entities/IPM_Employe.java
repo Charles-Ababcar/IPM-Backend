@@ -25,18 +25,20 @@ public class IPM_Employe implements Serializable {
     private String nom;
     private String prenom;
     private String sexe;
-    @Column(unique = true)
-    private String matricule;
-    @Column(name = "picByte", length = 100000)
-    private byte[] picByte;
-    private String photo;
 
-    public byte[] getPicByte() {
-        return picByte;
+    private String matricule;
+    private String picByte;
+    @Column(length = 1200)
+    private String photo;
+    @Column()
+   private  Boolean active;
+
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setPicByte(byte[] picByte) {
-        this.picByte = picByte;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public String getPhoto() {
@@ -282,7 +284,6 @@ public class IPM_Employe implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     // @Temporal(TemporalType.TIME)
     private Date date_fin_suspension;
-    @Column(unique = true)
     private String reference;
     private String cumul_charge;
     private String niveau_salarial;

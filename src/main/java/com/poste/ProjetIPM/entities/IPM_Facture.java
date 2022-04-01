@@ -15,6 +15,32 @@ import java.util.List;
 @NoArgsConstructor
 public class IPM_Facture {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idfacture;
+    private String matricule;
+    private String code_acte;
+    private Integer tarification;
+    private Integer part_patient;
+    private Integer part_ipm;
+    private Double taux_ipm;
+    private Date date_facture;
+    private Date date_saisie;
+    private String montant_facture;
+    private String fileName;
+
+    @OneToMany(mappedBy = "ipm_facture")
+    private List<IPM_Bon> ipm_bons;
+    @ManyToOne
+    @JoinColumn(name = "code_prestataire")
+    private IPM_Prestataire ipm_prestataire;
+    @ManyToOne
+    private IPM_Prestation ipm_prestation;
+   /* private Long ipm_prestataire;*/
+
+    @OneToMany(mappedBy = "ipm_facture")
+    private List<IPM_Statut_Facture> ipm_statut_factures;
+
     public Long getIdfacture() {
         return idfacture;
     }
@@ -103,6 +129,22 @@ public class IPM_Facture {
         this.ipm_bons = ipm_bons;
     }
 
+   /* public IPM_Prestataire getIpm_prestataire() {
+        return ipm_prestataire;
+    }
+
+    public void setIpm_prestataire(IPM_Prestataire ipm_prestataire) {
+        this.ipm_prestataire = ipm_prestataire;
+    }*/
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     public IPM_Prestataire getIpm_prestataire() {
         return ipm_prestataire;
     }
@@ -110,6 +152,22 @@ public class IPM_Facture {
     public void setIpm_prestataire(IPM_Prestataire ipm_prestataire) {
         this.ipm_prestataire = ipm_prestataire;
     }
+
+    public IPM_Prestation getIpm_prestation() {
+        return ipm_prestation;
+    }
+
+    public void setIpm_prestation(IPM_Prestation ipm_prestation) {
+        this.ipm_prestation = ipm_prestation;
+    }
+
+  /*  public Long getIpm_prestataire() {
+        return ipm_prestataire;
+    }
+
+    public void setIpm_prestataire(Long ipm_prestataire) {
+        this.ipm_prestataire = ipm_prestataire;
+    }*/
 
     public List<IPM_Statut_Facture> getIpm_statut_factures() {
         return ipm_statut_factures;
@@ -119,27 +177,15 @@ public class IPM_Facture {
         this.ipm_statut_factures = ipm_statut_factures;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idfacture;
-    private String matricule;
-    private String code_acte;
-    private Integer tarification;
-    private Integer part_patient;
-    private Integer part_ipm;
-    private Double taux_ipm;
-    private Date date_facture;
-    private Date date_saisie;
-    private String montant_facture;
 
-    @OneToMany(mappedBy = "ipm_facture")
-    private List<IPM_Bon> ipm_bons;
 
-    @ManyToOne
-    @JoinColumn(name = "code_prestataire")
-    private IPM_Prestataire ipm_prestataire;
+    /*public IPM_Facture(Long idfacture, String matricule , Long ipm_prestataire, Date date_facture, String montant_facture, String fileName) {
+        this.idfacture = idfacture;
+        this.matricule = matricule;
+        this.ipm_prestataire = ipm_prestataire;
+        this.date_facture = date_facture;
+        this.montant_facture = montant_facture;
+        this.fileName = fileName;
 
-    @OneToMany(mappedBy = "ipm_facture")
-    private List<IPM_Statut_Facture> ipm_statut_factures;
-
+    }*/
 }

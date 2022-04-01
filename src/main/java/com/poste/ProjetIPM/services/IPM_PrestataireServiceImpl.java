@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 @Transactional
@@ -36,7 +37,17 @@ public class IPM_PrestataireServiceImpl implements IPM_PrestataireService {
     }
 
     @Override
+    public List<IPM_Prestataire> getPrestataireBy(String nom) {
+        return ipm_prestataireRepository.getIPM_PrestataireByIdL(nom);
+    }
+
+    @Override
     public void delete(Long id) {
         ipm_prestataireRepository.deleteById(id);
     }
+
+//    @Override
+//    public IPM_Prestataire getNomType(String nom_prestataire) {
+//        return ipm_prestataireRepository.findByNomprestataire(nom_prestataire);
+//    }
 }

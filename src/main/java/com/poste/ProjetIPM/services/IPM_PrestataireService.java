@@ -1,8 +1,10 @@
 package com.poste.ProjetIPM.services;
 
+import com.poste.ProjetIPM.entities.IPM_Enfant;
 import com.poste.ProjetIPM.entities.IPM_Prestataire;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface IPM_PrestataireService {
 
@@ -13,6 +15,8 @@ public interface IPM_PrestataireService {
     void save(IPM_Prestataire ipm_prestataire);
 
     void update(IPM_Prestataire ipm_prestataire);
+    List<IPM_Prestataire> getPrestataireBy(String nom);
 
     void delete(Long id);
+
 }

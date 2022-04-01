@@ -15,9 +15,8 @@ public class IPM_Bon_PharmaceutiqueController {
     @Autowired
     IPM_Bon_PharmaceutiqueService ipm_bon_pharmaceutiqueService;
 
-    @PostMapping("/bonpharma")
+    @PostMapping(value="/bonpharma")
     public void save(@RequestBody IPM_Bon_Pharmaceutique ipm_bon_pharmaceutique) {
-        IPM_Employe ipm_employe = new IPM_Employe();
         ipm_bon_pharmaceutiqueService.save(ipm_bon_pharmaceutique);
     }
 

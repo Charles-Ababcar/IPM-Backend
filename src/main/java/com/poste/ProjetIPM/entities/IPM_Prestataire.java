@@ -1,7 +1,6 @@
 package com.poste.ProjetIPM.entities;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 /*@Inheritance(strategy = InheritanceType.JOINED)*/
-public /*abstract*/ class IPM_Prestataire implements Serializable {
+public class IPM_Prestataire implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code_prestataire;
@@ -128,13 +127,6 @@ public /*abstract*/ class IPM_Prestataire implements Serializable {
         this.adresse_prestataire = adresse_prestataire;
     }
 
-    public List<IPM_Type_Prestataire> getIpm_type_prestataire() {
-        return ipm_type_prestataire;
-    }
-
-    public void setIpm_type_prestataire(List<IPM_Type_Prestataire> ipm_type_prestataire) {
-        this.ipm_type_prestataire = ipm_type_prestataire;
-    }
 
     private String telephone;
     private String fax;
@@ -146,9 +138,9 @@ public /*abstract*/ class IPM_Prestataire implements Serializable {
 
     @OneToMany(mappedBy = "ipm_prestataire")
     private List<IPM_Prestation> ipm_prestations;
-
-    @OneToMany(mappedBy = "ipm_prestataire")
+    @JsonIgnore
+    @OneToMany(mappedBy = "ipm_prestataire", cascade = CascadeType.ALL)
     private List<IPM_Bon> ipm_bons;
-    @OneToMany(mappedBy = "ipm_prestataire")
-    private List<IPM_Type_Prestataire> ipm_type_prestataire;
+    @ManyToOne
+    private IPM_Type_Prestataire ipm_type_prestataire;
 }

@@ -4,6 +4,7 @@ import com.poste.ProjetIPM.Repository.IPM_EnfantRepository;
 import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.entities.IPM_Enfant;
 import com.poste.ProjetIPM.services.IPM_EnfantService;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,20 +38,28 @@ public class IPM_EnfantController {
         return ipm_enfantService.getAll();
     }
 
-    @GetMapping("/enfant/{id}")
+    @GetMapping(value = "/enfant/{id}")
     public IPM_Enfant getById(@PathVariable Long id) {
-        return ipm_enfantService.getById(id);
+        IPM_Enfant ipmEnfant=ipm_enfantService.getEnfantt(id);
+      ipmEnfant.setChemin(convertStringToBase64(ipmEnfant.getChemin()));
+        return ipmEnfant;
     }
 
     @GetMapping(value = "/getenfantByid/{id}")
     public List<IPM_Enfant> getEnfantById(@PathVariable Long id) {
-        return ipm_enfantRepo.getEnfantById(id);
-
+        List<IPM_Enfant> ipm_enfantList =ipm_enfantRepo.getEnfantById(id);
+        for(int i=0 ;i<ipm_enfantList.size();i++){
+            ipm_enfantList.get(i).setChemin(
+                    convertStringToBase64(ipm_enfantList.get(i).getChemin())
+            );
+        }
+        return ipm_enfantList;
     }
     @PostMapping("/enfant")
     public void save(@RequestBody IPM_Enfant ipm_enfant) {
         String uploadDir = "E:/Mes Dossiers/Images-IPM_Enfants/";
         ipm_enfant.setChemin(uploadDir+"/"+ipm_enfant.getChemin());
+        ipm_enfant.setExtrait_naiss(uploadDir+"/"+ipm_enfant.getExtrait_naiss());
         ipm_enfantService.save(ipm_enfant);
     }
 
@@ -62,23 +73,44 @@ public class IPM_EnfantController {
         ipm_enfantService.delete(id);
     }
 
-    @RequestMapping(value = "/upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String uploadFile(@ModelAttribute IPM_Enfant ipm_enfant, @RequestParam("image") MultipartFile file)
+    @RequestMapping(path= "/upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadFile(@RequestParam("image") MultipartFile file)
             throws IOException {
-        // IPM_Enfant e = ipm_enfantRepo.getEnfantById(id).get() ;
-        ipm_enfantService.AjouterUnFichier( file);
+        ipm_enfantService.AjouterUnFichier(file);
         return "succes";
     }
-
+    @RequestMapping(path= "/ext", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadFileExtrait(@RequestParam("image") MultipartFile file_extrait)
+            throws IOException {
+        ipm_enfantService.AjouterUnFichier_extrait(file_extrait);
+        return "succes";
+    }
+    ////fonction qui Converti l'image en base 64
+    public String convertStringToBase64(String fileName) {
+        byte[] fileContent;
+        if (fileName!=null) {
+            try {
+                File file = new File(fileName);
+                if (file.exists()) {
+                    fileContent = FileUtils.readFileToByteArray(file);
+                    return "data:image/jpg;base64,"+ Base64.getEncoder().encodeToString(fileContent);
+                } else
+                    return "";
+            } catch (IOException e) {
+                return "Erreur de conversio";
+            }
+        }else{
+            return "";
+        }
+    }
     @GetMapping(path = "/ImagesEmp/{id}")
-    public byte[] getPhoto(@PathVariable Long id) throws Exception {
+    public byte[] getPhoto(@PathVariable Long id,@RequestBody IPM_Enfant ipm_enfant) throws Exception {
         String uploadDir = "E:/Mes Dossiers/Images-IPM_Enfants/";
-        IPM_Enfant ipm_enfant = ipm_enfantService.getById(id);
+        ipm_enfantRepo.getEnfantById(id);
         System.out.println("message");
-        byte[] bytes = Files.readAllBytes(get(uploadDir + "" + ipm_enfant.getChemin()));
+        byte[] bytes = Files.readAllBytes(Paths.get(uploadDir + "" + ipm_enfant.getChemin()));
         System.out.println(new String(bytes));
         return bytes;
-
 
     }
    /*@RequestMapping(value = "/Image/{id:.+}", method = RequestMethod.GET)

@@ -15,7 +15,7 @@ public class IPM_Type_PrestataireController {
     @Autowired
     IPM_Type_PrestataireService ipm_type_prestataireService;
 
-    @GetMapping("/typeprestataire")
+    @GetMapping("/alltypeprestataire")
     public Collection<IPM_Type_Prestataire> getAll() {
         return ipm_type_prestataireService.getAll();
     }

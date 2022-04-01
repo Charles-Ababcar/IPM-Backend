@@ -30,7 +30,6 @@ public class IPM_BonController {
 
     @GetMapping("/bon/{id}")
     public IPM_Bon getById(@PathVariable Long id) {
-        IPM_Employe ipm_employe = new IPM_Employe();
         return ipm_bonService.getById(id);
     }
 
@@ -46,7 +45,7 @@ public class IPM_BonController {
 
     @PostMapping("/bon")
     public void save(@RequestBody IPM_Bon ipm_bon) {
-        IPM_Employe ipm_employe = new IPM_Employe();
+
         ipm_bonService.save(ipm_bon);
     }
 

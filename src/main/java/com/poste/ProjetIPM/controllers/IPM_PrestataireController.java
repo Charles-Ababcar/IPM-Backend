@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -17,7 +18,7 @@ public class IPM_PrestataireController {
     @Autowired
     IPM_PrestataireService ipm_prestataireService;
 
-    @GetMapping("/prestataire")
+    @GetMapping("/allprestataire")
     public Collection<IPM_Prestataire> getAll() {
         return ipm_prestataireService.getAll();
     }
@@ -26,13 +27,19 @@ public class IPM_PrestataireController {
     public IPM_Prestataire getById(@PathVariable Long id) {
         return ipm_prestataireService.getById(id);
     }
+    @GetMapping("/listprestataire/{nom}")
+    public List<IPM_Prestataire> listPrest(@PathVariable String nom)
+    {
+        return ipm_prestataireService.getPrestataireBy(nom);
+    }
+
 
     @PostMapping("/prestataire")
     public void save(@RequestBody IPM_Prestataire ipm_prestataire) {
         ipm_prestataireService.save(ipm_prestataire);
     }
 
-    @PutMapping("/prestataire")
+    @PutMapping("/prestataireUpdate")
     public void update(@RequestBody IPM_Prestataire ipm_prestataire) {
         ipm_prestataireService.update(ipm_prestataire);
     }
@@ -41,4 +48,8 @@ public class IPM_PrestataireController {
     public void delete(@PathVariable Long id) {
         ipm_prestataireService.delete(id);
     }
+//    @GetMapping("/nomType/{nom_prestataire}")
+//    public IPM_Prestataire getNomType(@PathVariable String nom_prestataire){
+//        return ipm_prestataireService.getNomType(nom_prestataire);
+//    }
 }

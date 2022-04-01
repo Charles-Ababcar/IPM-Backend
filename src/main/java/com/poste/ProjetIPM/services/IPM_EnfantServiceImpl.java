@@ -26,7 +26,7 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
 
     @Override
     public IPM_Enfant getById(long id) {
-        return ipm_enfantRepository.findById(id).get();
+            return ipm_enfantRepository.findById(id).get();
     }
 
     @Override
@@ -34,6 +34,14 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
         return ipm_enfantRepository.getEnfantById(id);
     }
 
+    @Override
+    public IPM_Enfant getEnfant(Long id) {
+        return ipm_enfantRepository.getEnfant(id);
+    }
+    @Override
+    public IPM_Enfant getEnfantt(Long id) {
+        return ipm_enfantRepository.findById(id).get();
+    }
     @Override
     public IPM_Enfant save(IPM_Enfant ipm_enfant) {
         return ipm_enfantRepository.save(ipm_enfant);
@@ -59,13 +67,31 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
         if (!fileCreated) {
             throw new IOException("Unable to create file at specified path. It already exists");
         }
-       // IPM_Enfant ipm_enfant = ipm_enfantRepository.findById().get();
-        //ipm_enfant.setIdenf(id);
-       // ipm_enfant.setChemin(uploadDir + "" + file.getOriginalFilename());
-       // ipm_enfantRepository.save(ipm_enfant);
+
 
         try (FileOutputStream fout = new FileOutputStream(fileName)) {
             fout.write(file.getBytes());
+        } catch (Exception exe) {
+            exe.printStackTrace();
+        }
+
+        return "Succes";
+    }
+
+    @Override
+    public String AjouterUnFichier_extrait(MultipartFile file_extrait) throws IOException {
+        String uploadDir = "E:/Mes Dossiers/Images-IPM_Enfants/";
+        File fileName = new File(uploadDir+""+file_extrait.getOriginalFilename());
+        // Create File
+        boolean fileCreated = fileName.createNewFile();
+        // Validate that file actually got created
+        if (!fileCreated) {
+            throw new IOException("Unable to create file at specified path. It already exists");
+        }
+
+
+        try (FileOutputStream fout = new FileOutputStream(fileName)) {
+            fout.write(file_extrait.getBytes());
         } catch (Exception exe) {
             exe.printStackTrace();
         }

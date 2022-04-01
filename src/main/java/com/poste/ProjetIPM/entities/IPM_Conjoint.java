@@ -1,12 +1,14 @@
 package com.poste.ProjetIPM.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,16 +25,27 @@ public class IPM_Conjoint {
     private Date date_naiss_conj;
     private String lieu_naiss_conj;
     public String telephone;
-    @Column(nullable = true, length = 64)
-    private String photos;
-
-    @Transient
-    public String getPhotosImagePath() {
-        if (photos == null || idconj == null) return null;
-
-        return "/src/main/resources/static/images/" + idconj + "/" + photos;
+    @JsonIgnore
+    @OneToMany(mappedBy = "ipm_conjoint")
+    private List<IPM_Bon> ipm_bons;
+    public String getPhotos() {
+        return photos;
     }
 
+    public void setPhotos(String photos) {
+        this.photos = photos;
+    }
+
+    public String getSexe_conjoint() {
+        return sexe_conjoint;
+    }
+
+    public void setSexe_conjoint(String sexe_conjoint) {
+        this.sexe_conjoint = sexe_conjoint;
+    }
+
+    private String photos;
+    private String sexe_conjoint;
     public Date getDate_naiss_conj() {
         return date_naiss_conj;
     }

@@ -1,36 +1,24 @@
 package com.poste.ProjetIPM.controllers;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poste.ProjetIPM.Repository.IPM_EmployeRepository;
+import com.poste.ProjetIPM.Repository.IPM_EnfantRepository;
 import com.poste.ProjetIPM.entities.IPM_Employe;
 
-import java.io.DataInput;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import com.poste.ProjetIPM.entities.IPM_Enfant;
 import com.poste.ProjetIPM.services.IPM_EmployeService;
-import com.poste.ProjetIPM.util.ImageUtility;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletContext;
+import java.util.Base64;
 import java.util.Collection;
-import java.util.List;
+import java.util.Date;
 import java.util.Optional;
-
-import com.poste.ProjetIPM.Domaine.Response;
-import com.poste.ProjetIPM.ResourcesNotFound.ResourceNotFound;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -41,8 +29,6 @@ public class IPM_EmployeController {
     @Autowired
     IPM_EmployeService ipm_employeService;
     @Autowired
-    private ServletContext context;
-    @Autowired
     IPM_EmployeRepository ipm_employeRepository;
 
     @GetMapping("/employe")
@@ -50,73 +36,49 @@ public class IPM_EmployeController {
         return ipm_employeService.getAll();
     }
 
-    @GetMapping("/employe/{id}")
+    @GetMapping("/employes/{id}")
     public IPM_Employe getById(@PathVariable Long id) {
-        return ipm_employeService.getById(id);
+        IPM_Employe ipm_employe=ipm_employeService.getById(id);
+        ipm_employe.setPhoto(convertStringToBase64(ipm_employe.getPhoto()));
+
+        return ipm_employe;
 
     }
 
     ///ajouter photo
-    @PostMapping("/upload")
-    public void uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
-        this.bytes = file.getBytes();
+    @RequestMapping(path= "/uploads", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadFile(@RequestParam("image") MultipartFile file)
+            throws IOException {
+        ipm_employeService.AjouterUnFichierE(file);
+        return "succes";
     }
-
-    /* @PostMapping("/employe")
-     public void createEmploye(@RequestBody IPM_Employe ipm_employe)
-     {
-         ipm_employe.setPicByte(this.bytes);
-         ipm_employeService.save(ipm_employe);
-         this.bytes=null;
-     }*/
-/*@PostMapping("/employe/")
-public ResponseEntity<Response> createEmploye (@RequestParam MultipartFile file,
-                                             @RequestBody String ipm_employe)
-        throws JsonParseException, JsonMappingException,Exception{
-    System.out.println("ok ..............");
-    IPM_Employe ipm_emp = new ObjectMapper().readValue(ipm_employe, IPM_Employe.class);
-    boolean isExist = new File(context.getRealPath("/E:/Images/")).exists();
-    if (!isExist) {
-        new File(context.getRealPath("/E:/Images/")).mkdir();
-        System.out.println("mk dir ......................");
-    }
-    String image = file.getOriginalFilename();
-    String newFileName = FilenameUtils.getBaseName(image) + "." + FilenameUtils.getExtension(image);
-    File serverFile = new File(context.getRealPath("/E:/Images/" + File.separator + newFileName));
-    try {
-        System.out.println("/E:/Images/");
-        FileUtils.writeByteArrayToFile(serverFile, file.getBytes());
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-    ipm_emp.setImage(newFileName);
-    IPM_Employe ipm =ipm_employeService.save(ipm_emp);
-    if(ipm !=null)
-    {
-        return  new ResponseEntity<Response>(new Response (""),HttpStatus.OK);
-    }
-    else
-    {
-        return  new ResponseEntity<Response>(new Response("Employe not saved"),HttpStatus.BAD_REQUEST);
-    }
-
-}*/
-    @GetMapping(path = "/ImagesEmployes/{id}")
-    public byte[] getPhoto(@PathVariable Long id) throws Exception {
-        IPM_Employe IPM_Employe = ipm_employeService.getById(id);
-        System.out.println("message");
-        final byte[] bytes = Files.readAllBytes(Paths.get(context.getRealPath("/E:/Images/") + IPM_Employe.getPicByte()));
-        return bytes;
-    }
-
 
     @PostMapping("/employe")
-    public String save(@RequestBody IPM_Employe ipm_employe) {
-        ipm_employe.setPicByte(this.bytes);
+    public void save(@RequestBody IPM_Employe ipm_employe) {
+        String uploadDir = "E:/Mes Dossiers/Images-IPM_Employes/";
+        ipm_employe.setPhoto(uploadDir+"/"+ipm_employe.getPhoto());
         ipm_employeService.save(ipm_employe);
-        this.bytes = null;
-        return "Slt " + ipm_employe.getNom() + "enregistrement reussi avec success";
+    }
 
+    //function qui calcul de l'age a partir de la date de naissance
+
+    ////fonction qui Conversion l'image en base 64
+    public String convertStringToBase64(String fileName) {
+        byte[] fileContent;
+        if (fileName!=null) {
+            try {
+                File file = new File(fileName);
+                if (file.exists()) {
+                    fileContent = FileUtils.readFileToByteArray(file);
+                    return "data:image/jpg;base64,"+ Base64.getEncoder().encodeToString(fileContent);
+                } else
+                    return "";
+            } catch (IOException e) {
+                return "Erreur de conversio";
+            }
+        }else{
+            return "";
+        }
     }
 
     @PutMapping("/employe")
@@ -138,5 +100,27 @@ public ResponseEntity<Response> createEmploye (@RequestParam MultipartFile file,
     public IPM_Employe recherche_reference(@PathVariable String reference) {
         return ipm_employeService.getByReference(reference);
     }
+  @GetMapping("/getemploye/{matricule}")
+   public IPM_Enfant getEmpl(@PathVariable  String matricule) {
+      return ipm_employeRepository.getByMatricules(matricule);
+ }
+/////////////////Méthode de Calcul d'age///////////////////////////////
+    public int getAge(int year, int month, int day) {
+        Date now = new Date();
+        int nowMonth = now.getMonth()+1;
+        int nowYear = now.getYear()+1900;
+        int result = nowYear - year;
 
+        if (month > nowMonth) {
+            result--;
+        }
+        else if (month == nowMonth) {
+            int nowDay = now.getDate();
+
+            if (day > nowDay) {
+                result--;
+            }
+        }
+        return result;
+    }
 }
