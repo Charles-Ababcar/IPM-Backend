@@ -73,4 +73,6 @@ public class IPM_Prestation {
 
     @OneToMany(mappedBy = "idBareme")
     private List<IPM_Bareme> ipm_baremes;
+    @OneToMany(mappedBy = "ipm_facture")
+    private List<IPM_Details_Facture> ipm_details_factures;
 }

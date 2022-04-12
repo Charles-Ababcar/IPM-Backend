@@ -132,7 +132,7 @@ public class IPM_Prestataire implements Serializable {
     private String fax;
     private String code_categorie_pretataire;
     private Boolean nature;
-
+   @JsonIgnore
     @OneToMany(mappedBy = "ipm_prestataire")
     private List<IPM_Facture> ipm_factures;
 

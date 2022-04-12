@@ -30,16 +30,16 @@ public class IPM_Employe implements Serializable {
     private String picByte;
     @Column(length = 1200)
     private String photo;
-    @Column()
-   private  Boolean active;
+//    @Column()
+//   private  Boolean active;
 
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
+//    public Boolean getActive() {
+//        return active;
+//    }
+//
+//    public void setActive(Boolean active) {
+//        this.active = active;
+//    }
 
     public String getPhoto() {
         return photo;
@@ -333,5 +333,7 @@ public class IPM_Employe implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "ipm_employe")
     private List<IPM_Enfant> ipm_enfants;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "ipm_employe")
+    private List<IPM_Facture> ipm_factures;
 }

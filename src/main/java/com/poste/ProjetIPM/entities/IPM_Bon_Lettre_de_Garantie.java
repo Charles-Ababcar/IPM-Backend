@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "idbon")
-public class IPM_Bon_Analyse_Laboratoire extends IPM_Bon {
+public class IPM_Bon_Lettre_de_Garantie extends IPM_Bon {
 
     private String categorie_hospitalisation;
     private String motif;

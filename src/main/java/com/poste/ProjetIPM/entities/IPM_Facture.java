@@ -36,11 +36,14 @@ public class IPM_Facture {
     private IPM_Prestataire ipm_prestataire;
     @ManyToOne
     private IPM_Prestation ipm_prestation;
-   /* private Long ipm_prestataire;*/
-
+   private Integer numerofacture;
+   @ManyToOne
+   @JoinColumn(name = "id_employe")
+     private IPM_Employe ipm_employe;
     @OneToMany(mappedBy = "ipm_facture")
     private List<IPM_Statut_Facture> ipm_statut_factures;
-
+    @OneToMany(mappedBy = "ipm_facture")
+    private List<IPM_Details_Facture> ipm_details_factures;
     public Long getIdfacture() {
         return idfacture;
     }

@@ -6,10 +6,11 @@ import com.poste.ProjetIPM.entities.IPM_Enfant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public interface IPM_EmployeRepository extends JpaRepository<IPM_Employe, Long> {
     public IPM_Employe findByMatricule(String matricule);
 

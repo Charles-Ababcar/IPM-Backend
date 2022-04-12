@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @DiscriminatorValue("CUST")
 @Inheritance(strategy = InheritanceType.JOINED)
+@DynamicUpdate
 public class IPM_Bon implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,15 +33,8 @@ public class IPM_Bon implements Serializable {
     //private String prix_unitaire;
     private String total;
     private Date date_etablissement;
-    private Long nombre_article;
+    //private Long nombre_article;
 
-    public Long getNombre_article() {
-        return nombre_article;
-    }
-
-    public void setNombre_article(Long nombre_article) {
-        this.nombre_article = nombre_article;
-    }
 
     @ManyToOne
     private IPM_Facture ipm_facture;

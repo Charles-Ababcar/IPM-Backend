@@ -14,12 +14,13 @@ public class IPM_FactrureController {
     @Autowired
     IPM_FactureService ipm_factureService;
 
-    @GetMapping("/facture")
-    public Collection<IPM_Facture> getAll() {
+    @GetMapping("/allfacture")
+    public Collection<IPM_Facture> getAll()
+    {
         return ipm_factureService.getAll();
     }
 
-    @GetMapping("/facture/{id}")
+    @GetMapping("/getfacture/{id}")
     public IPM_Facture getById(@PathVariable Long id) {
         return ipm_factureService.getById(id);
     }
@@ -29,7 +30,7 @@ public class IPM_FactrureController {
         ipm_factureService.save(ipm_facture);
     }
 
-    @PutMapping("/facture")
+    @PutMapping("/updatefacture")
     public void update(@RequestBody IPM_Facture ipm_facture) {
         ipm_factureService.update(ipm_facture);
     }

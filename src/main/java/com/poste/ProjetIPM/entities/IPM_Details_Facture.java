@@ -16,4 +16,7 @@ public class IPM_Details_Facture {
     @ManyToOne
     @JoinColumn( name="idfacture", nullable=false)
     private IPM_Facture ipm_facture;
+    @ManyToOne
+    @JoinColumn( name="code_prestation", nullable=false)
+    private IPM_Prestation ipm_prestation;
 }

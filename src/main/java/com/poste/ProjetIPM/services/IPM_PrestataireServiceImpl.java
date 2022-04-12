@@ -2,6 +2,7 @@ package com.poste.ProjetIPM.services;
 
 import com.poste.ProjetIPM.Repository.IPM_PrestataireRepository;
 import com.poste.ProjetIPM.entities.IPM_Prestataire;
+import com.poste.ProjetIPM.entities.IPM_Type_Prestataire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
