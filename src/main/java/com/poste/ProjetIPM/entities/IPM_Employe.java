@@ -336,4 +336,7 @@ public class IPM_Employe implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "ipm_employe")
     private List<IPM_Facture> ipm_factures;
+    @JsonIgnore
+    @OneToMany(mappedBy = "ipm_employe")
+    private List<IPM_Details_Facture> ipm_details_factures;
 }
