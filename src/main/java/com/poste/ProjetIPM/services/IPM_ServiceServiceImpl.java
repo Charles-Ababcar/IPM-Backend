@@ -20,6 +20,7 @@ public class IPM_ServiceServiceImpl implements IPM_ServiceService {
     @Autowired
     IPM_EntityRepository ipm_entityRepository;
 
+
     @Override
     public Collection<IPM_Service> getAll() {
         return ipm_serviceRepository.findAll();
@@ -38,6 +39,16 @@ public class IPM_ServiceServiceImpl implements IPM_ServiceService {
     @Override
     public void update(IPM_Service ipm_service) {
         ipm_serviceRepository.save(ipm_service);
+    }
+    @Override
+    public Collection<IPM_Service> getList(IPM_Entity ipmEntity){
+        return  ipm_serviceRepository.findByIpmEntity(ipmEntity);
+
+        
+    }
+
+    private Collection<IPM_Service> getIpmEntity(Collection<IPM_Service> ipmEntity) {
+        return ipmEntity;
     }
 
     @Override

@@ -64,7 +64,7 @@ public class IPM_Enfant {
 
     private String nom_enfant;
     private String prenom_enfant;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+   // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date date_nais_enfant;
     private String lieu_nais_enfant;
     private String adresse;

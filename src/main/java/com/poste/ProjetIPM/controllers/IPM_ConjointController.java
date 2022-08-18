@@ -66,6 +66,13 @@ public class IPM_ConjointController {
         ipm_conjointService.AjouterUnFichierConjoint(file);
         return "succes";
     }
+    //
+    @RequestMapping(path= "/uploadeCertif", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadCertif(@RequestParam("file") MultipartFile file)
+            throws IOException {
+        ipm_conjointService.AjouterCertifConjoint(file);
+        return "succes";
+    }
     ////fonction qui Converti l'image en base 64
     public String convertStringToBase64(String fileName) {
         byte[] fileContent;
@@ -86,16 +93,22 @@ public class IPM_ConjointController {
     }
 
     @PostMapping("/conjoint")
-    public String save(@RequestBody IPM_Conjoint ipm_conjoint) {
-        String uploadDir = "E:/Mes Dossiers/Images-IPM_Conjoints/";
+    public void save(@RequestBody IPM_Conjoint ipm_conjoint) {
+        String uploadDir = "C:/MesDossiers/Images-IPM_conjoint";
         ipm_conjoint.setPhotos(uploadDir+"/"+ipm_conjoint.getPhotos());
+        String chemin="C:/MesDossiers/Images-IPM_conjoint";
+        ipm_conjoint.setCertificat(chemin+"/"+ipm_conjoint.getCertificat());
         ipm_conjointService.save(ipm_conjoint);
-        return "Slt " + ipm_conjoint.getNom_conjoint() + "enregistrement reussi avec success";
+       // return "Slt " + ipm_conjoint.getNom_conjoint() + "enregistrement reussi avec success";
 
     }
 
-    @PutMapping("/conjoint")
+    @PutMapping("/putconjoint")
     public void update(@RequestBody IPM_Conjoint ipm_conjoint) {
+        String modifChemin = "C:/MesDossiers/Images-IPM_conjoint";
+        ipm_conjoint.setPhotos(modifChemin+"/"+ipm_conjoint.getPhotos());
+        String cheminCertif="C:/MesDossiers/Images-IPM_conjoint";
+        ipm_conjoint.setCertificat(cheminCertif+"/"+ipm_conjoint.getCertificat());
 
         ipm_conjointService.update(ipm_conjoint);
 

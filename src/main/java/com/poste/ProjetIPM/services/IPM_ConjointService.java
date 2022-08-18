@@ -20,6 +20,7 @@ public interface IPM_ConjointService {
 
     void delete(Long id);
     String AjouterUnFichierConjoint(MultipartFile file) throws IOException;
+    String AjouterCertifConjoint(MultipartFile file) throws IOException;
 
     IPM_Conjoint AjouterLesAttributsDuFichier(IPM_Conjoint ipm_conjoint);
     IPM_Conjoint getById(long id);

@@ -102,14 +102,6 @@ public class IPM_Prestataire implements Serializable {
     }
 
 
-    public List<IPM_Prestation> getIpm_prestations() {
-        return ipm_prestations;
-    }
-
-    public void setIpm_prestations(List<IPM_Prestation> ipm_prestations) {
-        this.ipm_prestations = ipm_prestations;
-    }
-
     public List<IPM_Bon> getIpm_bons() {
         return ipm_bons;
     }
@@ -132,12 +124,11 @@ public class IPM_Prestataire implements Serializable {
     private String fax;
     private String code_categorie_pretataire;
     private Boolean nature;
-   @JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "ipm_prestataire")
     private List<IPM_Facture> ipm_factures;
-
-    @OneToMany(mappedBy = "ipm_prestataire")
-    private List<IPM_Prestation> ipm_prestations;
+//    @OneToMany(mappedBy = "ipm_prestataire")
+//    private List<IPM_Prestation> ipm_prestations;
     @JsonIgnore
     @OneToMany(mappedBy = "ipm_prestataire", cascade = CascadeType.ALL)
     private List<IPM_Bon> ipm_bons;

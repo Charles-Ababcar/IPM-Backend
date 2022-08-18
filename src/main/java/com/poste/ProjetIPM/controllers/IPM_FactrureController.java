@@ -1,12 +1,21 @@
 package com.poste.ProjetIPM.controllers;
 
+import com.poste.ProjetIPM.Repository.IPM_FactureRepository;
 import com.poste.ProjetIPM.entities.IPM_Facture;
 import com.poste.ProjetIPM.services.IPM_FactureService;
+import com.poste.ProjetIPM.services.UploadService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
 
+@Slf4j
 @RestController
 @CrossOrigin(origins = "*")
 //@RequestMapping("/api")
@@ -14,9 +23,13 @@ public class IPM_FactrureController {
     @Autowired
     IPM_FactureService ipm_factureService;
 
+    @Autowired
+    IPM_FactureRepository ipm_factureRepository;
+
     @GetMapping("/allfacture")
     public Collection<IPM_Facture> getAll()
     {
+
         return ipm_factureService.getAll();
     }
 
@@ -24,10 +37,21 @@ public class IPM_FactrureController {
     public IPM_Facture getById(@PathVariable Long id) {
         return ipm_factureService.getById(id);
     }
+    @GetMapping("/getfactures/{datef}")
+    public Collection<IPM_Facture> getBydatefacture(@PathVariable String datef) throws ParseException {
+        Date d1= new SimpleDateFormat("dd-MM-yyyy").parse(datef);
+        return ipm_factureService.getByDatefacture(d1);
+    }
+
+    @GetMapping("/getbyboolean")
+    public Collection<IPM_Facture> get(){return  ipm_factureService.getBycertifier(true);
+    //System.out.println(ipm_factureService.getBycertifier(true));
+    }
 
     @PostMapping("/facture")
-    public void save(@RequestBody IPM_Facture ipm_facture) {
-        ipm_factureService.save(ipm_facture);
+    public Long save(@RequestBody IPM_Facture ipm_facture) {
+       //ipm_factureService.save(ipm_facture);
+       return ipm_factureService.save(ipm_facture);
     }
 
     @PutMapping("/updatefacture")
@@ -39,4 +63,11 @@ public class IPM_FactrureController {
     public void delete(@PathVariable Long id) {
         ipm_factureService.delete(id);
     }
+///////////////Calcul montant
+//    @GetMapping("/calculMontant")
+//    public void calcul(IPM_Facture ipm_facture){
+//        ipm_factureRepository.getMontantTotal(ipm_facture);
+//        System.out.println(  ipm_factureRepository.getMontantTotal(ipm_facture) );
+//    }
+
 }

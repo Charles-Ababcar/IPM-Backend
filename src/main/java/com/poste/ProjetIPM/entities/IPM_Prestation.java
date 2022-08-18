@@ -1,5 +1,6 @@
 package com.poste.ProjetIPM.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,31 +49,27 @@ public class IPM_Prestation {
         this.taux_non_agrees = taux_non_agrees;
     }
 
-    public IPM_Prestataire getIpm_prestataire() {
-        return ipm_prestataire;
-    }
-
-    public void setIpm_prestataire(IPM_Prestataire ipm_prestataire) {
-        this.ipm_prestataire = ipm_prestataire;
-    }
-
-    public List<IPM_Bareme> getIpm_baremes() {
-        return ipm_baremes;
-    }
-
-    public void setIpm_baremes(List<IPM_Bareme> ipm_baremes) {
-        this.ipm_baremes = ipm_baremes;
-    }
+//    public List<IPM_Bareme> getIpm_baremes() {
+//        return ipm_baremes;
+//    }
+//
+//    public void setIpm_baremes(List<IPM_Bareme> ipm_baremes) {
+//        this.ipm_baremes = ipm_baremes;
+//    }
 
     private String libelle;
     private Double taux_agrees;
     private Double taux_non_agrees;
 
-    @ManyToOne
-    private IPM_Prestataire ipm_prestataire;
+//    @ManyToOne
+//    private IPM_Prestataire ipm_prestataire;
 
-    @OneToMany(mappedBy = "idBareme")
-    private List<IPM_Bareme> ipm_baremes;
-    @OneToMany(mappedBy = "ipm_facture")
+    /*@OneToMany(mappedBy = "ipm_prestation")
+    private List<IPM_Bareme> ipm_baremes;*/
+    @JsonIgnore
+    @OneToMany(mappedBy = "ipmFacture")
     private List<IPM_Details_Facture> ipm_details_factures;
+    @JsonIgnore
+    @OneToMany(mappedBy = "ipm_prestation", cascade = CascadeType.ALL)
+    private List<IPM_Bon> ipm_bons;
 }

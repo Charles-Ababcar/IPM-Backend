@@ -50,8 +50,31 @@ public class IPM_ConjointServiceImpl implements IPM_ConjointService {
 
     @Override
     public String AjouterUnFichierConjoint(MultipartFile file) throws IOException {
-        String uploadDir = "E:/Mes Dossiers/Images-IPM_Conjoints/";
+        String uploadDir = "C:/MesDossiers/Images-IPM_conjoint/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
+        // Create File
+        boolean fileCreated = fileName.createNewFile();
+        // Validate that file actually got created
+        if (!fileCreated) {
+            throw new IOException("Unable to create file at specified path. It already exists");
+        }
+        // IPM_Enfant ipm_enfant = ipm_enfantRepository.findById().get();
+        //ipm_enfant.setIdenf(id);
+        // ipm_enfant.setChemin(uploadDir + "" + file.getOriginalFilename());
+        // ipm_enfantRepository.save(ipm_enfant);
+
+        try (FileOutputStream fout = new FileOutputStream(fileName)) {
+            fout.write(file.getBytes());
+        } catch (Exception exe) {
+            exe.printStackTrace();
+        }
+
+        return "Succes";
+    }
+        @Override
+    public String AjouterCertifConjoint(MultipartFile file) throws IOException {
+        String chemin = "C:/MesDossiers/Images-IPM_conjoint/";
+        File fileName = new File(chemin+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
         // Validate that file actually got created

@@ -52,12 +52,12 @@ public class IPM_Service {
         this.ipm_employes = ipm_employes;
     }
 
-    public IPM_Entity getIpm_entity() {
-        return ipm_entity;
+    public IPM_Entity getIpmEntity() {
+        return ipmEntity;
     }
 
-    public void setIpm_entity(IPM_Entity ipm_entity) {
-        this.ipm_entity = ipm_entity;
+    public void setIpmEntity(IPM_Entity ipmEntity) {
+        this.ipmEntity = ipmEntity;
     }
 
     public List<IPM_Utilisateur> getIpm_utilisateurs() {
@@ -69,13 +69,13 @@ public class IPM_Service {
     }
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ipm_service")
+    @OneToMany(mappedBy = "ipmService")
     private List<IPM_Employe> ipm_employes;
 
     @ManyToOne
-    private IPM_Entity ipm_entity;
+    private IPM_Entity ipmEntity;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ipm_service")
+    @OneToMany(mappedBy = "ipmService")
     private List<IPM_Utilisateur> ipm_utilisateurs;
 }

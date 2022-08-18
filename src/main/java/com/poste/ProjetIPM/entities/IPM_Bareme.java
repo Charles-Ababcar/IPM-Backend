@@ -14,6 +14,9 @@ public class IPM_Bareme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBareme;
+    private Long min;
+    private Long max;
+    private Long montant;
 
     public Long getIdBareme() {
         return idBareme;
@@ -23,14 +26,14 @@ public class IPM_Bareme {
         this.idBareme = idBareme;
     }
 
-    public IPM_Prestation getIpm_prestation() {
+    /*public IPM_Prestation getIpm_prestation() {
         return ipm_prestation;
     }
 
     public void setIpm_prestation(IPM_Prestation ipm_prestation) {
         this.ipm_prestation = ipm_prestation;
     }
-
-    @ManyToOne
-    private IPM_Prestation ipm_prestation;
+*/
+    /*@ManyToOne
+    private IPM_Prestation ipm_prestation;*/
 }

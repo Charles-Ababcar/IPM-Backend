@@ -1,11 +1,8 @@
 package com.poste.ProjetIPM.services;
 
-import com.poste.ProjetIPM.entities.IPM_Bon;
+import com.poste.ProjetIPM.entities.IPM_Details_Facture;
 import com.poste.ProjetIPM.entities.IPM_Employe;
-import com.poste.ProjetIPM.entities.IPM_Enfant;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.poste.ProjetIPM.entities.IPM_Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,10 +15,17 @@ public interface IPM_EmployeService {
 
     IPM_Employe getById(long id);
 
+
+
+    Collection<IPM_Employe>getListbyservice(IPM_Service ipmService);
+
     IPM_Employe save(IPM_Employe ipm_employe);
 
 
     void update(IPM_Employe ipm_employe);
+
+
+    List<IPM_Employe> updateListe(List<IPM_Employe> ipm_employe);
 
     IPM_Employe getByMatricule(String matricule);
 
@@ -32,6 +36,11 @@ public interface IPM_EmployeService {
     void delete(Long id);
      void createEmploye(MultipartFile file, IPM_Employe ipm_employe);
     String AjouterUnFichierE(MultipartFile file) throws IOException;
+
+
+
+    String AjouterFichierJust(MultipartFile file) throws IOException;
+
     IPM_Employe AjouterLesAttributsDuFichier(IPM_Employe ipm_employe);
 
 }

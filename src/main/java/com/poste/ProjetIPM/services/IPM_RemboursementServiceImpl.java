@@ -26,8 +26,9 @@ public class IPM_RemboursementServiceImpl implements IPM_RemboursementService {
     }
 
     @Override
-    public void save(IPM_Remboursement ipm_remboursement) {
-        ipm_remboursementRepository.save(ipm_remboursement);
+    public Long save(IPM_Remboursement ipm_remboursement) {
+        IPM_Remboursement fact= ipm_remboursementRepository.save(ipm_remboursement);
+        return fact.getIdRemboursement();
     }
 
     @Override

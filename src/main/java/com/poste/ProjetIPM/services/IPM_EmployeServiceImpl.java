@@ -1,11 +1,12 @@
 package com.poste.ProjetIPM.services;
 
 import com.poste.ProjetIPM.Repository.IPM_EmployeRepository;
-import com.poste.ProjetIPM.entities.IPM_Bon;
+import com.poste.ProjetIPM.entities.IPM_Details_Facture;
 import com.poste.ProjetIPM.entities.IPM_Employe;
-import com.poste.ProjetIPM.entities.IPM_Enfant;
+import com.poste.ProjetIPM.entities.IPM_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
@@ -14,7 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @Service
 @Transactional
 public class IPM_EmployeServiceImpl implements IPM_EmployeService {
@@ -31,7 +32,10 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
     public IPM_Employe getById(long id) {
         return ipm_employeRepository.findById(id).get();
     }
-
+    @Override
+    public Collection<IPM_Employe>getListbyservice(IPM_Service ipmService){
+        return ipm_employeRepository.findByIpmService(ipmService);
+    }
     @Override
     public IPM_Employe save(IPM_Employe ipm_employe) {
         // Long id= ipm_employe.getIpm_categorie().getCode_categorie();
@@ -45,9 +49,19 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
     }
 
     @Override
-    public IPM_Employe getByMatricule(String matricule) {
-        return ipm_employeRepository.findByMatricule(matricule);
+    public  List<IPM_Employe> updateListe(List<IPM_Employe> ipm_employe) {
+        for (int i = 0; i < ipm_employe.size(); i++) {
+            ipm_employeRepository.save(ipm_employe.get(i));
+            //ipm_employeRepository.update(ipm_employe.get(i));
+        }
+        return ipm_employe;
     }
+
+        @Override
+        public IPM_Employe getByMatricule (String matricule){
+            return ipm_employeRepository.findByMatricule(matricule);
+        }
+
 
     @Override
     public IPM_Employe getByReference(String reference) {
@@ -76,7 +90,7 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
 
     @Override
     public String AjouterUnFichierE(MultipartFile file) throws IOException {
-        String uploadDir = "E:/Mes Dossiers/Images-IPM_Employes/";
+        String uploadDir = "C:/MesDossiers/Images-IPM_Employe";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
@@ -94,6 +108,15 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
         } catch (Exception exe) {
             exe.printStackTrace();
         }
+
+        return "Succes";
+    }
+    @Override
+    public String AjouterFichierJust(MultipartFile file) throws IOException {
+        String uploadDir = "C:/MesDossiers/justificatif-employe/";
+        File fileName = new File(uploadDir+""+file.getOriginalFilename());
+        // Create File
+        boolean fileCreated = fileName.createNewFile();
 
         return "Succes";
     }

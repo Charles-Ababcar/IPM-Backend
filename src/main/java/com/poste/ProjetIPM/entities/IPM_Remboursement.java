@@ -1,11 +1,13 @@
 package com.poste.ProjetIPM.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,9 +19,13 @@ public class IPM_Remboursement {
     private Long idRemboursement;
     private String montantRemboursement;
     private Date dateRemboursement;
-
-    @ManyToOne
-    private IPM_Employe ipm_employe;
+    private  boolean certifier;
+    @JsonIgnore
+    @OneToMany(mappedBy = "ipmRemboursement")
+    private List<IPM_Details_remboursement> ipmDetailsRemboursements;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "idRemboursement",referencedColumnName = "idRemboursement")
+//    private List<IPM_Details_remboursement> ipmDetailsRemboursements;
 
     public Long getIdRemboursement() {
         return idRemboursement;
@@ -45,11 +51,11 @@ public class IPM_Remboursement {
         this.dateRemboursement = dateRemboursement;
     }
 
-    public IPM_Employe getIpm_employe() {
+    /*public IPM_Employe getIpm_employe() {
         return ipm_employe;
     }
 
     public void setIpm_employe(IPM_Employe ipm_employe) {
         this.ipm_employe = ipm_employe;
-    }
+    }*/
 }

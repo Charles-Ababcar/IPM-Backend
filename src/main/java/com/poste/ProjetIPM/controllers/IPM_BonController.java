@@ -7,10 +7,14 @@ import com.poste.ProjetIPM.entities.IPM_Bon;
 import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.entities.IPM_Enfant;
 import com.poste.ProjetIPM.services.IPM_BonService;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -45,6 +49,10 @@ public class IPM_BonController {
 
     @PostMapping("/bon")
     public void save(@RequestBody IPM_Bon ipm_bon) {
+//        Date date = new Date();
+//        ZoneId timeZone = ZoneId.systemDefault();
+//        LocalDate getLocalDate = date.toInstant().atZone(timeZone).toLocalDate();
+//        ipm_bon.setNumeroBon(getLocalDate.getMonthValue()+"" +getLocalDate.getYear()+ RandomString.make(3));
 
         ipm_bonService.save(ipm_bon);
     }

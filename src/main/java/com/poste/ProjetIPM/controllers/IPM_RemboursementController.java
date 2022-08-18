@@ -19,17 +19,18 @@ public class IPM_RemboursementController {
         return ipm_remboursementService.getAll();
     }
 
+
     @GetMapping("/remboursement/{id}")
     public IPM_Remboursement getById(@PathVariable Long id) {
         return ipm_remboursementService.getById(id);
     }
 
     @PostMapping("/remboursement")
-    public void save(@RequestBody IPM_Remboursement ipm_remboursement) {
-        ipm_remboursementService.save(ipm_remboursement);
+    public Long save(@RequestBody IPM_Remboursement ipm_remboursement) {
+        return ipm_remboursementService.save(ipm_remboursement);
     }
 
-    @PutMapping("/remboursement")
+    @PutMapping("/upremboursement")
     public void update(@RequestBody IPM_Remboursement ipm_remboursement) {
         ipm_remboursementService.update(ipm_remboursement);
     }

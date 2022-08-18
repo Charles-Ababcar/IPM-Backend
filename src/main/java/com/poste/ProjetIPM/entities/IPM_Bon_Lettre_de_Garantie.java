@@ -17,4 +17,6 @@ public class IPM_Bon_Lettre_de_Garantie extends IPM_Bon {
 
     private String categorie_hospitalisation;
     private String motif;
+    private String ordonnance;
+    private String numeroBon;
 }

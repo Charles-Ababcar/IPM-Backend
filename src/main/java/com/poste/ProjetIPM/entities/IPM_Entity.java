@@ -21,11 +21,11 @@ public class IPM_Entity implements Serializable {
     private String code_entity;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ipm_entity")
+    @OneToMany(mappedBy = "ipmEntity")
     private List<IPM_Service> ipm_services;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ipm_entity")
+    @OneToMany(mappedBy = "ipmEntity")
     private List<IPM_Employe> ipm_employes;
 
     public Long getIdEntity() {

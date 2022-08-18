@@ -59,8 +59,29 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
 
     @Override
     public String AjouterUnFichier(MultipartFile file) throws IOException {
-        String uploadDir = "E:/Mes Dossiers/Images-IPM_Enfants/";
+        String uploadDir = "C:/MesDossiers/Images-IPM_Enfants/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
+        // Create File
+        boolean fileCreated = fileName.createNewFile();
+        // Validate that file actually got created
+        if (!fileCreated) {
+            throw new IOException("Unable to create file at specified path. It already exists");
+        }
+
+
+        try (FileOutputStream fout = new FileOutputStream(fileName)) {
+            fout.write(file.getBytes());
+        } catch (Exception exe) {
+            exe.printStackTrace();
+        }
+
+        return "Succes";
+    }
+    //
+    @Override
+    public String AjouterUnFichierExtrait(MultipartFile file) throws IOException {
+        String uploadCertif = "C:/MesDossiers/Images-IPM_Enfants/";
+        File fileName = new File(uploadCertif+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
         // Validate that file actually got created
@@ -80,7 +101,7 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
 
     @Override
     public String AjouterUnFichier_extrait(MultipartFile file_extrait) throws IOException {
-        String uploadDir = "E:/Mes Dossiers/Images-IPM_Enfants/";
+        String uploadDir = "C:/MesDossiers/Images-IPM_Enfants/";
         File fileName = new File(uploadDir+""+file_extrait.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();

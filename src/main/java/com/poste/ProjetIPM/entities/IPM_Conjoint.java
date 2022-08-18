@@ -21,7 +21,7 @@ public class IPM_Conjoint {
     private Long idconj;
     private String nom_conjoint;
     private String prenom_conjoint;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date date_naiss_conj;
     private String lieu_naiss_conj;
     public String telephone;
@@ -45,6 +45,7 @@ public class IPM_Conjoint {
     }
 
     private String photos;
+    private String certificat;
     private String sexe_conjoint;
     public Date getDate_naiss_conj() {
         return date_naiss_conj;

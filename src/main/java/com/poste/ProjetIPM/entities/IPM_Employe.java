@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.Session;
+import org.omg.CORBA.Any;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -29,17 +30,11 @@ public class IPM_Employe implements Serializable {
     private String matricule;
     private String picByte;
     @Column(length = 1200)
+    @JoinColumn(nullable = true)
     private String photo;
-//    @Column()
-//   private  Boolean active;
+    private boolean statut;
+    private String justificatif;
 
-//    public Boolean getActive() {
-//        return active;
-//    }
-//
-//    public void setActive(Boolean active) {
-//        this.active = active;
-//    }
 
     public String getPhoto() {
         return photo;
@@ -49,12 +44,12 @@ public class IPM_Employe implements Serializable {
         this.photo = photo;
     }
 
-    public IPM_Entity getIpm_entity() {
-        return ipm_entity;
+    public IPM_Entity getIpmEntity() {
+        return ipmEntity;
     }
 
-    public void setIpm_entity(IPM_Entity ipm_entity) {
-        this.ipm_entity = ipm_entity;
+    public void setIpmEntity(IPM_Entity ipmEntity) {
+        this.ipmEntity = ipmEntity;
     }
 
     public Long getIdemp() {
@@ -153,11 +148,11 @@ public class IPM_Employe implements Serializable {
         this.situation_familial = situation_familial;
     }
 
-    public String getSolde() {
+    public Long getSolde() {
         return solde;
     }
 
-    public void setSolde(String solde) {
+    public void setSolde(Long solde) {
         this.solde = solde;
     }
 
@@ -185,11 +180,11 @@ public class IPM_Employe implements Serializable {
         this.reference = reference;
     }
 
-    public String getCumul_charge() {
+    public Long getCumul_charge() {
         return cumul_charge;
     }
 
-    public void setCumul_charge(String cumul_charge) {
+    public void setCumul_charge(Long cumul_charge) {
         this.cumul_charge = cumul_charge;
     }
 
@@ -217,21 +212,21 @@ public class IPM_Employe implements Serializable {
         this.ipm_bons = ipm_bons;
     }
 
-    public IPM_Service getIpm_service() {
-        return ipm_service;
+    public IPM_Service getIpmService() {
+        return ipmService;
     }
 
-    public void setIpm_service(IPM_Service ipm_service) {
-        this.ipm_service = ipm_service;
+    public void setIpmService(IPM_Service ipmService) {
+        this.ipmService = ipmService;
     }
 
-    public List<IPM_Remboursement> getIpm_remboursements() {
+    /*public List<IPM_Remboursement> getIpm_remboursements() {
         return ipm_remboursements;
     }
 
     public void setIpm_remboursements(List<IPM_Remboursement> ipm_remboursements) {
         this.ipm_remboursements = ipm_remboursements;
-    }
+    }*/
 
     public List<IPM_Precompte> getIpm_precompte() {
         return ipm_precompte;
@@ -276,7 +271,7 @@ public class IPM_Employe implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date date_recrutement;
     private String situation_familial;
-    private String solde;
+    private Long solde;
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     //  @Temporal(TemporalType.TIME)
 
@@ -285,7 +280,7 @@ public class IPM_Employe implements Serializable {
     // @Temporal(TemporalType.TIME)
     private Date date_fin_suspension;
     private String reference;
-    private String cumul_charge;
+    private Long cumul_charge;
     private String niveau_salarial;
      /*private Session session;
      private Long lastId = ((BigInteger) session.createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult()).longValue();
@@ -307,12 +302,13 @@ public class IPM_Employe implements Serializable {
     //@JsonIgnore
     // @ManyToOne
     @ManyToOne
-    private IPM_Service ipm_service;
+    @JoinColumn(nullable = true)
+    private IPM_Service ipmService;
 
-    @JsonIgnore
+    /*@JsonIgnore
     @OneToMany(mappedBy = "ipm_employe")
     private List<IPM_Remboursement> ipm_remboursements;
-
+*/
     @JsonIgnore
     @OneToMany(mappedBy = "ipm_employe")
     private List<IPM_Precompte> ipm_precompte;
@@ -320,10 +316,12 @@ public class IPM_Employe implements Serializable {
     //@JsonIgnore
     //  @ManyToOne
     @ManyToOne
+    @JoinColumn(nullable = true)
     private IPM_Categorie ipm_categorie;
 
     @ManyToOne
-    private IPM_Entity ipm_entity;
+    @JoinColumn(nullable = true)
+    private IPM_Entity ipmEntity;
 
 
     @JsonIgnore
@@ -333,10 +331,13 @@ public class IPM_Employe implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "ipm_employe")
     private List<IPM_Enfant> ipm_enfants;
-    @JsonIgnore
-    @OneToMany(mappedBy = "ipm_employe")
-    private List<IPM_Facture> ipm_factures;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "ipm_employe")
+//    private List<IPM_Facture> ipm_factures;
     @JsonIgnore
     @OneToMany(mappedBy = "ipm_employe")
     private List<IPM_Details_Facture> ipm_details_factures;
+    @JsonIgnore
+    @OneToMany(mappedBy = "ipm_employe")
+    private List<IPM_Details_remboursement> ipmDetailsRemboursements;
 }

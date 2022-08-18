@@ -42,12 +42,15 @@ public class IPM_Bon implements Serializable {
     private  IPM_Enfant ipm_enfant;
     @ManyToOne
     private IPM_Conjoint ipm_conjoint;
+
    /* @ManyToOne
     @JoinColumn(name = "ipm_bon")
     private IPM_Beneficiaire ipm_beneficiaire;*/
 
     @ManyToOne
     private IPM_Employe ipm_employe;
+    @ManyToOne
+    private IPM_Prestation ipm_prestation;
     //@JsonIgnore
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(nullable =true)

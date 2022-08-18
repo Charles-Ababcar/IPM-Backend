@@ -2,23 +2,25 @@ package com.poste.ProjetIPM.controllers;
 
 import com.poste.ProjetIPM.Repository.IPM_EmployeRepository;
 import com.poste.ProjetIPM.Repository.IPM_EnfantRepository;
+import com.poste.ProjetIPM.Repository.IPM_ServiceRepository;
 import com.poste.ProjetIPM.entities.IPM_Employe;
 
 import java.io.File;
 import java.io.IOException;
 
 import com.poste.ProjetIPM.entities.IPM_Enfant;
+import com.poste.ProjetIPM.entities.IPM_Service;
 import com.poste.ProjetIPM.services.IPM_EmployeService;
+import com.poste.ProjetIPM.services.IPM_ServiceService;
+import com.sun.xml.messaging.saaj.packaging.mime.internet.ContentType;
 import org.apache.commons.io.FileUtils;
+import org.omg.CORBA.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Base64;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -30,6 +32,8 @@ public class IPM_EmployeController {
     IPM_EmployeService ipm_employeService;
     @Autowired
     IPM_EmployeRepository ipm_employeRepository;
+    @Autowired
+    IPM_ServiceService ipm_serviceService;
 
     @GetMapping("/employe")
     public Collection<IPM_Employe> getAll() {
@@ -44,7 +48,13 @@ public class IPM_EmployeController {
         return ipm_employe;
 
     }
+    @GetMapping("/listemployes/{id}")
+    public Collection<IPM_Employe> getListEmployeBysrvice(@PathVariable Long id){
+        IPM_Service service=new IPM_Service();
+        service=ipm_serviceService.getById(id);
+        return ipm_employeService.getListbyservice(service);
 
+    }
     ///ajouter photo
     @RequestMapping(path= "/uploads", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadFile(@RequestParam("image") MultipartFile file)
@@ -52,12 +62,38 @@ public class IPM_EmployeController {
         ipm_employeService.AjouterUnFichierE(file);
         return "succes";
     }
+    /*
+    @PostMapping("/adddetailsfacture")
+    public void updateLemploye(@RequestBody List<IPM_Employe> ipm_employe) {
+//        IPM_Facture ipm_employe=ipm_factureService.getById(ipm_employe.getIpm_facture().getIdfacture());
+//        ipm_details_facture.setIpm_facture(ipm_facture);
+         ipm_employeService.save(ipm_employe);
+        // return  ipm_details_facture;
+    }
+     */
+    @PutMapping("/updateLEmploye")
+    public void updateLemploye(@RequestBody List<IPM_Employe> ipm_employe) {
+//        IPM_Facture ipm_employe=ipm_factureService.getById(ipm_employe.getIpm_facture().getIdfacture());
+//        ipm_details_facture.setIpm_facture(ipm_facture);
+        ipm_employeService.updateListe(ipm_employe);
+        // return  ipm_details_facture;
+    }
 
     @PostMapping("/employe")
     public void save(@RequestBody IPM_Employe ipm_employe) {
-        String uploadDir = "E:/Mes Dossiers/Images-IPM_Employes/";
+        String uploadDir = "C:/MesDossiers/Images-IPM_Employe/";
         ipm_employe.setPhoto(uploadDir+"/"+ipm_employe.getPhoto());
+        Random random =new Random();
+        ipm_employe.setNumero_carnet((long) (100+random.nextInt(100000)));
+
         ipm_employeService.save(ipm_employe);
+
+    }
+    @RequestMapping(path= "/uploadeJustif", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadJustif(@RequestParam("file") MultipartFile file)
+            throws IOException {
+        ipm_employeService.AjouterFichierJust(file);
+        return "succes";
     }
 
     //function qui calcul de l'age a partir de la date de naissance
@@ -91,9 +127,10 @@ public class IPM_EmployeController {
         ipm_employeService.delete(id);
     }
 
-    @GetMapping("/rechercheM/{matricule}")
-    public IPM_Employe recherche_matricule(@PathVariable String matricule) {
-        return ipm_employeService.getByMatricule(matricule);
+    @GetMapping("/rechercheM/{A}/{B}")
+    //String matricule="A"+"/"+"B";
+    public IPM_Employe recherche_matricule(@PathVariable String A,@PathVariable String B) {
+        return ipm_employeService.getByMatricule(A+"/"+B);
     }
 
     @GetMapping("/rechercheR/{reference}")
@@ -101,6 +138,7 @@ public class IPM_EmployeController {
         return ipm_employeService.getByReference(reference);
     }
   @GetMapping("/getemploye/{matricule}")
+
    public IPM_Enfant getEmpl(@PathVariable  String matricule) {
       return ipm_employeRepository.getByMatricules(matricule);
  }

@@ -43,16 +43,16 @@ public class IPM_Utilisateur {
         this.mot_passe = mot_passe;
     }
 
-    public IPM_Service getIpm_service() {
-        return ipm_service;
+    public IPM_Service getIpmService() {
+        return ipmService;
     }
 
-    public void setIpm_service(IPM_Service ipm_service) {
-        this.ipm_service = ipm_service;
+    public void setIpmService(IPM_Service ipmService) {
+        this.ipmService = ipmService;
     }
 
     @ManyToOne
-    private IPM_Service ipm_service;
+    private IPM_Service ipmService;
 
 
 }

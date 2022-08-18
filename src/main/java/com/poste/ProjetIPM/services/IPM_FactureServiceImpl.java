@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -22,12 +24,25 @@ public class IPM_FactureServiceImpl implements IPM_FactureService {
 
     @Override
     public IPM_Facture getById(long id) {
-        return ipm_factureRepository.findById(id).get();
+        return ipm_factureRepository.findByIdfacture(id);
+    }
+    @Override
+    public Collection<IPM_Facture>  getBycertifier(boolean certifier){
+        return  ipm_factureRepository.findByCertifier(certifier);
+    }
+    @Override
+    public Collection<IPM_Facture>  getByDatefacture(Date date){
+        return  ipm_factureRepository.findByDateFacture(date);
     }
 
     @Override
-    public void save(IPM_Facture ipm_facture) {
-        ipm_factureRepository.save(ipm_facture);
+    public Long save(IPM_Facture ipm_facture) {
+
+       IPM_Facture fact= ipm_factureRepository.save(ipm_facture);
+
+       return fact.getIdfacture();
+
+
     }
 
     @Override

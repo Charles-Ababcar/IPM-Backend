@@ -17,7 +17,8 @@ public class IPM_Bon_Pharmaceutique extends IPM_Bon {
 
     private Long nombre_article;
     private String designation;
-
+    private String ordonnance;
+    private String numeroBon;
 
 
     public String getDesignation() {

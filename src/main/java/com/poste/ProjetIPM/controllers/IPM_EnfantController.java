@@ -57,14 +57,20 @@ public class IPM_EnfantController {
     }
     @PostMapping("/enfant")
     public void save(@RequestBody IPM_Enfant ipm_enfant) {
-        String uploadDir = "E:/Mes Dossiers/Images-IPM_Enfants/";
+        String uploadDir = "C:/MesDossiers/Images-IPM_Enfants";
         ipm_enfant.setChemin(uploadDir+"/"+ipm_enfant.getChemin());
-        ipm_enfant.setExtrait_naiss(uploadDir+"/"+ipm_enfant.getExtrait_naiss());
+        String uploadCertif="C:/MesDossiers/Images-IPM_Enfants";
+        ipm_enfant.setExtrait_naiss(uploadCertif+"/"+ipm_enfant.getExtrait_naiss());
+        //ipm_enfant.setExtrait_naiss(uploadDir+"/"+ipm_enfant.getExtrait_naiss());
         ipm_enfantService.save(ipm_enfant);
     }
 
-    @PutMapping("/enfant")
+    @PutMapping("/putenfant")
     public void update(@RequestBody IPM_Enfant ipm_enfant) {
+        String cheminupdate = "C:/MesDossiers/Images-IPM_Enfants";
+        ipm_enfant.setChemin(cheminupdate+"/"+ipm_enfant.getChemin());
+        String uploadExtrait="C:/MesDossiers/Images-IPM_Enfants";
+        ipm_enfant.setExtrait_naiss(uploadExtrait+"/"+ipm_enfant.getExtrait_naiss());
         ipm_enfantService.update(ipm_enfant);
     }
 
@@ -79,6 +85,14 @@ public class IPM_EnfantController {
         ipm_enfantService.AjouterUnFichier(file);
         return "succes";
     }
+    //
+    @RequestMapping(path= "/uploadExtrait", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadFileExtrai(@RequestParam("file") MultipartFile file)
+            throws IOException {
+        ipm_enfantService.AjouterUnFichier(file);
+        return "succes";
+    }
+
     @RequestMapping(path= "/ext", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadFileExtrait(@RequestParam("image") MultipartFile file_extrait)
             throws IOException {
@@ -105,7 +119,7 @@ public class IPM_EnfantController {
     }
     @GetMapping(path = "/ImagesEmp/{id}")
     public byte[] getPhoto(@PathVariable Long id,@RequestBody IPM_Enfant ipm_enfant) throws Exception {
-        String uploadDir = "E:/Mes Dossiers/Images-IPM_Enfants/";
+        String uploadDir = "C:/Mes Dossiers/Images-IPM_Enfants/";
         ipm_enfantRepo.getEnfantById(id);
         System.out.println("message");
         byte[] bytes = Files.readAllBytes(Paths.get(uploadDir + "" + ipm_enfant.getChemin()));
