@@ -79,6 +79,7 @@ public class IPM_ConjointController {
         if (fileName!=null) {
             try {
                 File file = new File(fileName);
+
                 if (file.exists()) {
                     fileContent = FileUtils.readFileToByteArray(file);
                     return "data:image/jpg;base64,"+ Base64.getEncoder().encodeToString(fileContent);
@@ -94,7 +95,9 @@ public class IPM_ConjointController {
 
     @PostMapping("/conjoint")
     public void save(@RequestBody IPM_Conjoint ipm_conjoint) {
+
         String uploadDir = "C:/MesDossiers/Images-IPM_conjoint";
+
         ipm_conjoint.setPhotos(uploadDir+"/"+ipm_conjoint.getPhotos());
         String chemin="C:/MesDossiers/Images-IPM_conjoint";
         ipm_conjoint.setCertificat(chemin+"/"+ipm_conjoint.getCertificat());
@@ -104,9 +107,10 @@ public class IPM_ConjointController {
     }
 
     @PutMapping("/putconjoint")
-    public void update(@RequestBody IPM_Conjoint ipm_conjoint) {
+    public void update(@RequestBody IPM_Conjoint ipm_conjoint,@RequestParam("file") MultipartFile file) {
+        String filename = file.getOriginalFilename();
         String modifChemin = "C:/MesDossiers/Images-IPM_conjoint";
-        ipm_conjoint.setPhotos(modifChemin+"/"+ipm_conjoint.getPhotos());
+        ipm_conjoint.setPhotos(modifChemin+"/"+filename);
         String cheminCertif="C:/MesDossiers/Images-IPM_conjoint";
         ipm_conjoint.setCertificat(cheminCertif+"/"+ipm_conjoint.getCertificat());
 

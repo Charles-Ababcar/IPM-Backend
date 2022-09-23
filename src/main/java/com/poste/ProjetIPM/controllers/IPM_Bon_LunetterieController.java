@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -21,10 +22,23 @@ public class IPM_Bon_LunetterieController {
     public void save(@RequestBody IPM_Bon_Lunetterie ipm_bon_lunetterie) {
         ipm_bon_lunetterieService.save(ipm_bon_lunetterie);
     }
+    @GetMapping(value="/lunette")
+    public Collection<IPM_Bon_Lunetterie> getlunett(){
+
+        return ipm_bon_lunetterieService.getAll();
+    }
+
+
     @RequestMapping(path= "/uploadeOrdonnanceLu", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadOrdonn(@RequestParam("file") MultipartFile file)
             throws IOException {
         ipm_bon_lunetterieService.AjouterUnFichier(file);
+        return "succes";
+    }
+    @RequestMapping(path= "/uploadeDebitLu", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadDebit(@RequestParam("file") MultipartFile file)
+            throws IOException {
+        ipm_bon_lunetterieService.AjouterUnDebit(file);
         return "succes";
     }
     @GetMapping(value = "/getbonLunetterieByid/{id}")

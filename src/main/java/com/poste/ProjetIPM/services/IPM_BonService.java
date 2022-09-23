@@ -1,13 +1,13 @@
 package com.poste.ProjetIPM.services;
 
 import com.poste.ProjetIPM.entities.IPM_Bon;
-import com.poste.ProjetIPM.entities.IPM_Employe;
-import com.poste.ProjetIPM.entities.IPM_Enfant;
 
 import java.util.Collection;
 import java.util.List;
 
 public interface IPM_BonService {
+
+   // Collection<IPM_Bon> getAll();
 
     Collection<IPM_Bon> getAll();
 

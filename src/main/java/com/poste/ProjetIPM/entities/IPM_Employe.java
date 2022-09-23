@@ -263,12 +263,12 @@ public class IPM_Employe implements Serializable {
     private Long numero_carnet;
     private String adresse_domicile;
     // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date_nais;
     private String lieu_nais;
     private String telephone;
     //  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date_recrutement;
     private String situation_familial;
     private Long solde;
@@ -318,7 +318,7 @@ public class IPM_Employe implements Serializable {
     @ManyToOne
     @JoinColumn(nullable = true)
     private IPM_Categorie ipm_categorie;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(nullable = true)
     private IPM_Entity ipmEntity;

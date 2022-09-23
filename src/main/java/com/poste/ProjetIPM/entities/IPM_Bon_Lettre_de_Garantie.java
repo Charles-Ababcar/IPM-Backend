@@ -1,5 +1,6 @@
 package com.poste.ProjetIPM.entities;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class IPM_Bon_Lettre_de_Garantie extends IPM_Bon {
 
     private String categorie_hospitalisation;
     private String motif;
+    @NotNull
     private String ordonnance;
     private String numeroBon;
 }

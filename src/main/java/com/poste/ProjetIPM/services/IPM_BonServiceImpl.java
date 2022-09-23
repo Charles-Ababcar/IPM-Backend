@@ -2,7 +2,6 @@ package com.poste.ProjetIPM.services;
 
 import com.poste.ProjetIPM.Repository.IPM_BonRepository;
 import com.poste.ProjetIPM.entities.IPM_Bon;
-import com.poste.ProjetIPM.entities.IPM_Employe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
