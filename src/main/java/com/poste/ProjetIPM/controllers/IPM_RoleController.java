@@ -1,42 +1,67 @@
 package com.poste.ProjetIPM.controllers;
 
+import com.poste.ProjetIPM.keycloack.KeyCloakService;
 import com.poste.ProjetIPM.entities.IPM_Remboursement;
 import com.poste.ProjetIPM.entities.IPM_Role;
+import com.poste.ProjetIPM.entities.IPM_UserRole;
 import com.poste.ProjetIPM.services.IPM_RoleService;
+import com.poste.ProjetIPM.services.IPM_UserRoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 public class IPM_RoleController {
 
     @Autowired
-    IPM_RoleService ipm_roleService;
-
-    @GetMapping("/role")
-    public Collection<IPM_Role> getAll() {
-        return ipm_roleService.getAll();
+    IPM_UserRoleServiceImpl ipm_userRoleService;
+    @Autowired
+    KeyCloakService keyCloakService;
+    @GetMapping("/AllRole")
+    public Collection<IPM_UserRole> getAllRole() {
+        return ipm_userRoleService.getAllUserRole();
     }
 
-    @GetMapping("/role/{id}")
-    public IPM_Role getById(@PathVariable Long id) {
-        return ipm_roleService.getById(id);
+    /**
+     * Affectation d'un role
+     * @param userRole
+     */
+    @PostMapping(value = "/roleaddUser")
+    public void affectRoleToUser(@RequestBody IPM_UserRole ipm_userRole){
+        String username = ipm_userRole.getIpm_utilisateur().getEmail();
+        String roleName = ipm_userRole.getIpm_role().getTypeRole();
+        try{
+            keyCloakService.addRealmRoleToUser(username, roleName);
+            ipm_userRoleService.saveUserRole(ipm_userRole);
+        } catch (Exception e){
+            e.getCause();
+            e.getMessage();
+        }
     }
 
-    @PostMapping("/role")
-    public void save(@RequestBody IPM_Role ipm_role) {
-        ipm_roleService.save(ipm_role);
+    @PostMapping(value = "/affectGroupRoleToUser")
+    public void affectGroupRoleToUser(@RequestBody List<IPM_UserRole> userRoles){
+        ipm_userRoleService.affectGroupRoleToUser(userRoles);
     }
 
-    @PutMapping("/role")
-    public void update(@RequestBody IPM_Role ipm_role) {
-        ipm_roleService.update(ipm_role);
+    @DeleteMapping(value ="/deleteUser")
+    public void deleteRoleFromUser(@RequestBody IPM_UserRole userRole){
+        String username = userRole.getIpm_utilisateur().getEmail();
+        String roleName = userRole.getIpm_role().getTypeRole();
+        try{
+            keyCloakService.removeRealmRoleToUser(username, roleName);
+            ipm_userRoleService.deleteUserRole(userRole);
+        }  catch(Exception e){
+            e.getCause();
+            e.getMessage();
+        }
     }
 
-    @DeleteMapping("/role/{id}")
-    public void delete(@PathVariable Long id) {
-        ipm_roleService.delete(id);
+    @PatchMapping(value ="deleteGroupRoleToUser")
+    public void  deleteGroupRoleToUser(@RequestBody List<IPM_UserRole> userRoles){
+        ipm_userRoleService.deleteGroupRoleToUser(userRoles);
     }
 }

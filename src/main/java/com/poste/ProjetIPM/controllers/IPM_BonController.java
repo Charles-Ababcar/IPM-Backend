@@ -28,8 +28,8 @@ public class IPM_BonController {
     private IPM_BonRepository ipm_bonRepository;
 
     @GetMapping("/bon")
-    public Collection<IPM_Bon> getAll() {
-        return ipm_bonService.getAll();
+    public Collection<IPM_Bon> getAllBon() {
+        return  ipm_bonService.getAll();
     }
 
     @GetMapping("/bon/{id}")

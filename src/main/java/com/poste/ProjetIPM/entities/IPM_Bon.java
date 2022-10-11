@@ -33,13 +33,18 @@ public class IPM_Bon implements Serializable {
     //private String prix_unitaire;
     private String total;
     private Date date_etablissement;
-    //private Long nombre_article;
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @SequenceGenerator(name = "nombreArticle", sequenceName = "yourSeqName", allocationSize = 1)
+//    @Column(name="nombreArticle", unique=true, nullable=false, precision=10, scale=0)
+//    private Long nombreArticle;
 
 
     @ManyToOne
     private IPM_Facture ipm_facture;
+
     @ManyToOne
     private  IPM_Enfant ipm_enfant;
+
     @ManyToOne
     private IPM_Conjoint ipm_conjoint;
 
@@ -49,15 +54,16 @@ public class IPM_Bon implements Serializable {
 
     @ManyToOne
     private IPM_Employe ipm_employe;
+
     @ManyToOne
     private IPM_Prestation ipm_prestation;
-    //@JsonIgnore
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(nullable =true)
+
+    @ManyToOne
+    //@JoinColumn(nullable =true)
     private IPM_Prestataire ipm_prestataire;
 
-    @OneToMany(mappedBy = "ipm_bon")
-    private List<IPM_Statut_Bon> ipm_statut_bons;
+//    @OneToMany(mappedBy = "ipm_bon")
+//    private List<IPM_Statut_Bon> ipm_statut_bons;
 
     public Long getIdbon() {
         return idbon;
@@ -123,11 +129,11 @@ public class IPM_Bon implements Serializable {
         this.ipm_prestataire = ipm_prestataire;
     }
 
-    public List<IPM_Statut_Bon> getIpm_statut_bons() {
-        return ipm_statut_bons;
-    }
-
-    public void setIpm_statut_bons(List<IPM_Statut_Bon> ipm_statut_bons) {
-        this.ipm_statut_bons = ipm_statut_bons;
-    }
+//    public List<IPM_Statut_Bon> getIpm_statut_bons() {
+//        return ipm_statut_bons;
+//    }
+//
+//    public void setIpm_statut_bons(List<IPM_Statut_Bon> ipm_statut_bons) {
+//        this.ipm_statut_bons = ipm_statut_bons;
+//    }
 }

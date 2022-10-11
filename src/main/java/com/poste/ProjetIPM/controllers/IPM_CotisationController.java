@@ -5,6 +5,7 @@ import com.poste.ProjetIPM.entities.IPM_Cotisation;
 import com.poste.ProjetIPM.services.IPM_CotisationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collection;
 
@@ -38,5 +39,18 @@ public class IPM_CotisationController {
     @DeleteMapping("/cotisation/{id}")
     public void delete(@PathVariable Long id) {
         ipm_cotisationService.delete(id);
+    }
+
+    /////////////////TODO:Implementation upload file excel
+    @PostMapping(value = "/uploadCotisation")
+    public void uploadFile(@ModelAttribute IPM_Cotisation ipm_cotisation, RedirectAttributes redirectAttributes){
+        boolean isFlag = ipm_cotisationService.saveDataFromUploadFile(ipm_cotisation.getFile());
+        System.out.println(ipm_cotisation);
+        if (isFlag){
+
+            redirectAttributes.addFlashAttribute("successmessage", "File Upload successfull !");
+        } else {
+            redirectAttributes.addFlashAttribute("errormessage", "File Upload not done, Please try again !");
+        }
     }
 }

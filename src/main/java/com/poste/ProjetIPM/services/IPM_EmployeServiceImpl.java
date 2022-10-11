@@ -90,7 +90,7 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
 
     @Override
     public String AjouterUnFichierE(MultipartFile file) throws IOException {
-        String uploadDir = "C:/MesDossiers/Images-IPM_Employe";
+        String uploadDir = "E:/MesDossiers/Images-IPM_Employes/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
@@ -113,7 +113,7 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
     }
     @Override
     public String AjouterFichierJust(MultipartFile file) throws IOException {
-        String uploadDir = "C:/MesDossiers/justificatif-employe/";
+        String uploadDir = "E:/MesDossiers/justificatif-employe/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();

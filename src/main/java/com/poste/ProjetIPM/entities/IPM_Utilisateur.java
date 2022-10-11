@@ -1,3 +1,4 @@
+
 package com.poste.ProjetIPM.entities;
 
 import lombok.AllArgsConstructor;
@@ -5,54 +6,36 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
-@Data
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class IPM_Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long iduser;
+    private int id;
     private String login;
-    private String mot_passe;
-    //private String fonction;
+    private String password;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String fonction;
+    private boolean isEnable;
 
-    public Long getIduser() {
-        return iduser;
-    }
 
-    public void setIduser(Long iduser) {
-        this.iduser = iduser;
-    }
+    //@JsonIgnoreProperties("users")
+    @ManyToMany
+    @JoinTable( name = "Users_Roles_Associations",
+            joinColumns = @JoinColumn( name = "id_user" ),
+            inverseJoinColumns = @JoinColumn( name = "id_role" ) )
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getMot_passe() {
-        return mot_passe;
-    }
-
-    public void setMot_passe(String mot_passe) {
-        this.mot_passe = mot_passe;
-    }
-
-    public IPM_Service getIpmService() {
-        return ipmService;
-    }
-
-    public void setIpmService(IPM_Service ipmService) {
-        this.ipmService = ipmService;
-    }
-
-    @ManyToOne
-    private IPM_Service ipmService;
+    private Collection<IPM_Role> roles =new ArrayList<>();
+   /* @ManyToOne
+    private IPM_Service ipmService;*/
 
 
 }
+

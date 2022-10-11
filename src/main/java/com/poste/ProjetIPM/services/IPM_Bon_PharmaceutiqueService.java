@@ -16,7 +16,7 @@ public interface IPM_Bon_PharmaceutiqueService {
 
     void getById(long id);
 
-    void save(IPM_Bon_Pharmaceutique ipm_bon_pharmaceutique);
+    Long save(IPM_Bon_Pharmaceutique ipm_bon_pharmaceutique);
 
     List<IPM_Bon> getBonConjPharmacie(Long id);
 

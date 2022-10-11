@@ -1,62 +1,83 @@
 package com.poste.ProjetIPM.controllers;
 
+import com.poste.ProjetIPM.keycloack.KeyCloakService;
 import com.poste.ProjetIPM.Repository.IPM_RoleRepository;
+import com.poste.ProjetIPM.Repository.IPM_UtilisateurRepository;
 import com.poste.ProjetIPM.entities.IPM_Prestataire;
 import com.poste.ProjetIPM.entities.IPM_Utilisateur;
 import com.poste.ProjetIPM.services.IPM_PrestataireService;
 import com.poste.ProjetIPM.services.IPM_UtilisateurService;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.PersistenceException;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 //@RequestMapping("/api")
 public class IPM_UtilisateurController {
-    /*  @Autowired
-      UtilisateurRepository userRep;
-
-      @RequestMapping(value = "/",method = RequestMethod.GET)
-      public Utilisateur getUserByLogin(@PathVariable String login)
-      {
-          return userRep.findByLogin(login);
-      }*/
-/*  @Autowired
-    AuthenticationManager authenticationManager;
-  @Autowired
-    IPM_RoleRepository ipm_roleRepository;
-  @Autowired
-    PasswordEncoder encoder;
-  @Autowired
-  JwtUtils jwtUtils;*/
     @Autowired
-    IPM_UtilisateurService ipm_utilisateurService;
+    KeyCloakService keyCloakService;
+    @Autowired
+    private IPM_UtilisateurService ipm_utilisateurService;
+    @Autowired
+    private IPM_UtilisateurRepository ipm_utilisateurRepository;
 
-    @GetMapping("/utilisateur")
-    public Collection<IPM_Utilisateur> getAll() {
-        return ipm_utilisateurService.getAll();
+    @GetMapping(value = "/allUser")
+    public List<IPM_Utilisateur> getAllUser() {
+        return ipm_utilisateurRepository.findAll();
     }
 
-    @GetMapping("/utilisateur/{id}")
-    public IPM_Utilisateur getById(@PathVariable Long id) {
-        return ipm_utilisateurService.getById(id);
+    @GetMapping(value="/{id}")
+    public  IPM_Utilisateur getUserById(@PathVariable int id){
+        return ipm_utilisateurRepository.findById( id).get();
     }
 
-    @PostMapping("/utilisateur")
-    public void save(@RequestBody IPM_Utilisateur ipm_utilisateur) {
-        ipm_utilisateurService.save(ipm_utilisateur);
+    @GetMapping(value = "email/{email}")
+    public ResponseEntity<IPM_Utilisateur> findUserByEmail(@PathVariable String email){
+        return new ResponseEntity<>(ipm_utilisateurService.findUserByEmail(email), HttpStatus.OK);
     }
 
-    @PutMapping("/utilisateur")
-    public void update(@RequestBody IPM_Utilisateur ipm_utilisateur) {
-        ipm_utilisateurService.update(ipm_utilisateur);
+    @PostMapping(value = "/saveUser")
+    public IPM_Utilisateur saveuser(@RequestBody IPM_Utilisateur ipm_utilisateur) {
+        try {
+            ipm_utilisateurRepository.save(ipm_utilisateur);
+            keyCloakService.addUser(ipm_utilisateur);
+        } catch (PersistenceException e){
+            e.getMessage();
+        }
+        return ipm_utilisateur;
     }
 
-    @DeleteMapping("/utilisateur/{id}")
-    public void delete(@PathVariable Long id) {
-        ipm_utilisateurService.delete(id);
+    @PatchMapping(value = "/{id}")
+    public IPM_Utilisateur update(@PathVariable("id")int id , @RequestBody IPM_Utilisateur ipm_utilisateur){
+        try{
+            String UserId = keyCloakService.getUserIdKeycloak(ipm_utilisateur.getEmail());
+            keyCloakService.updateUser(UserId, ipm_utilisateur);
+            ipm_utilisateur.setId(id);
+            ipm_utilisateurRepository.save(ipm_utilisateur);
+        }catch (PersistenceException e){
+            e.getMessage();
+        }
+        return ipm_utilisateur;
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteUser(@PathVariable int id, @RequestBody IPM_Utilisateur ipm_utilisateurr){
+        try{
+            List<UserRepresentation> user = keyCloakService.getUser(ipm_utilisateurr.getEmail());
+            keyCloakService.deleteUser(user.get(0).getId());
+            ipm_utilisateurRepository.deleteById(id);
+        } catch(Exception e){
+            e.getMessage();
+            e.getCause();
+        }
     }
 }

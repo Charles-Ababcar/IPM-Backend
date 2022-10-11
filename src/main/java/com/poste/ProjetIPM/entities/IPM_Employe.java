@@ -263,12 +263,12 @@ public class IPM_Employe implements Serializable {
     private Long numero_carnet;
     private String adresse_domicile;
     // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date_nais;
     private String lieu_nais;
     private String telephone;
     //  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date_recrutement;
     private String situation_familial;
     private Long solde;
@@ -282,6 +282,8 @@ public class IPM_Employe implements Serializable {
     private String reference;
     private Long cumul_charge;
     private String niveau_salarial;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date dateStatutEmploye=new Date();
      /*private Session session;
      private Long lastId = ((BigInteger) session.createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult()).longValue();
 
@@ -318,12 +320,14 @@ public class IPM_Employe implements Serializable {
     @ManyToOne
     @JoinColumn(nullable = true)
     private IPM_Categorie ipm_categorie;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(nullable = true)
     private IPM_Entity ipmEntity;
 
-
+    @ManyToOne
+    @JoinColumn(nullable = true)
+    private IPM_StatutEmploye ipmStatutEmploye;
     @JsonIgnore
     @OneToMany(mappedBy = "ipm_employe")
     private List<IPM_Conjoint> ipm_conjoints;

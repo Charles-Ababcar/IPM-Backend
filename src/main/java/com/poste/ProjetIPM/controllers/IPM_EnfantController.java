@@ -57,9 +57,9 @@ public class IPM_EnfantController {
     }
     @PostMapping("/enfant")
     public void save(@RequestBody IPM_Enfant ipm_enfant) {
-        String uploadDir = "C:/MesDossiers/Images-IPM_Enfants";
+        String uploadDir = "E:/MesDossiers/Images-IPM_Enfants";
         ipm_enfant.setChemin(uploadDir+"/"+ipm_enfant.getChemin());
-        String uploadCertif="C:/MesDossiers/Images-IPM_Enfants";
+        String uploadCertif="E:/MesDossiers/Images-IPM_Enfants";
         ipm_enfant.setExtrait_naiss(uploadCertif+"/"+ipm_enfant.getExtrait_naiss());
         //ipm_enfant.setExtrait_naiss(uploadDir+"/"+ipm_enfant.getExtrait_naiss());
         ipm_enfantService.save(ipm_enfant);
@@ -67,9 +67,9 @@ public class IPM_EnfantController {
 
     @PutMapping("/putenfant")
     public void update(@RequestBody IPM_Enfant ipm_enfant) {
-        String cheminupdate = "C:/MesDossiers/Images-IPM_Enfants";
+        String cheminupdate = "E:/MesDossiers/Images-IPM_Enfants";
         ipm_enfant.setChemin(cheminupdate+"/"+ipm_enfant.getChemin());
-        String uploadExtrait="C:/MesDossiers/Images-IPM_Enfants";
+        String uploadExtrait="E:/MesDossiers/Images-IPM_Enfants";
         ipm_enfant.setExtrait_naiss(uploadExtrait+"/"+ipm_enfant.getExtrait_naiss());
         ipm_enfantService.update(ipm_enfant);
     }

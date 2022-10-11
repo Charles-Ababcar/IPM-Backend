@@ -22,7 +22,7 @@ public class IPM_Bon_Lettre_de_GarantieServiceImpl implements IPM_Bon_Lettre_de_
     }
     @Override
     public String AjouterUnFichier(MultipartFile file) throws IOException {
-        String uploadDir = "C:/MesDossiers/ordonnance_garantie/";
+        String uploadDir = "E:/MesDossiers/ordonnance_pharmacie/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();

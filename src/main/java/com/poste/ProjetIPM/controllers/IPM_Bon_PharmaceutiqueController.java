@@ -21,8 +21,8 @@ public class IPM_Bon_PharmaceutiqueController {
     IPM_Bon_PharmaceutiqueService ipm_bon_pharmaceutiqueService;
 
     @PostMapping(value="/bonpharma")
-    public void save(@RequestBody IPM_Bon_Pharmaceutique ipm_bon_pharmaceutique) {
-        ipm_bon_pharmaceutiqueService.save(ipm_bon_pharmaceutique);
+    public Long save(@RequestBody IPM_Bon_Pharmaceutique ipm_bon_pharmaceutique) {
+        return ipm_bon_pharmaceutiqueService.save(ipm_bon_pharmaceutique);
     }
     @RequestMapping(path= "/uploadeOrdonnance", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadOrdonn(@RequestParam("file") MultipartFile file)

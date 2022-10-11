@@ -2,41 +2,47 @@ package com.poste.ProjetIPM.services;
 
 import com.poste.ProjetIPM.Repository.IPM_UtilisateurRepository;
 import com.poste.ProjetIPM.entities.IPM_Utilisateur;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
+import java.util.List;
 
 @Service
 @Transactional
+@Slf4j
+@RequiredArgsConstructor
 public class IPM_UtilisateurServiceImpl implements IPM_UtilisateurService {
-
-    @Autowired
-    IPM_UtilisateurRepository ipm_utilisateurRepository;
-
+   @Autowired
+   private IPM_UtilisateurRepository ipm_utilisateurRepository;
     @Override
-    public Collection<IPM_Utilisateur> getAll() {
-        return ipm_utilisateurRepository.findAll();
+    public IPM_Utilisateur findUserByEmail(String email) {
+        return findUserByEmail(email);
+    }
+    /**
+     * Vérifie si un utilisateur existe
+     * @param userId
+     * @return True or False
+     */
+    @Override
+    public boolean userExist(int userId) {
+        return ipm_utilisateurRepository.findById(userId).isPresent();
     }
 
     @Override
-    public IPM_Utilisateur getById(long id) {
-        return ipm_utilisateurRepository.findById(id).get();
+    public IPM_Utilisateur findUserById(int userId) {
+        return ipm_utilisateurRepository.findById(userId).get();
     }
 
     @Override
-    public void save(IPM_Utilisateur ipm_utilisateur) {
-        ipm_utilisateurRepository.save(ipm_utilisateur);
+    public IPM_Utilisateur updateUser(IPM_Utilisateur user) {
+        return ipm_utilisateurRepository.save(user);
     }
 
     @Override
-    public void update(IPM_Utilisateur ipm_utilisateur) {
-        ipm_utilisateurRepository.save(ipm_utilisateur);
-    }
-
-    @Override
-    public void delete(Long id) {
-        ipm_utilisateurRepository.deleteById(id);
+    public List<IPM_Utilisateur> getUserByStructureId(int structureId) {
+        return null;
     }
 }

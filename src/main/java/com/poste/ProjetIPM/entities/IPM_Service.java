@@ -60,13 +60,8 @@ public class IPM_Service {
         this.ipmEntity = ipmEntity;
     }
 
-    public List<IPM_Utilisateur> getIpm_utilisateurs() {
-        return ipm_utilisateurs;
-    }
 
-    public void setIpm_utilisateurs(List<IPM_Utilisateur> ipm_utilisateurs) {
-        this.ipm_utilisateurs = ipm_utilisateurs;
-    }
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "ipmService")
@@ -75,7 +70,4 @@ public class IPM_Service {
     @ManyToOne
     private IPM_Entity ipmEntity;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "ipmService")
-    private List<IPM_Utilisateur> ipm_utilisateurs;
 }

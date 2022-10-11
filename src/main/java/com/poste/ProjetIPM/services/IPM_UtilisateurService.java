@@ -1,18 +1,20 @@
 package com.poste.ProjetIPM.services;
 
+
+
 import com.poste.ProjetIPM.entities.IPM_Utilisateur;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface IPM_UtilisateurService {
+    public IPM_Utilisateur findUserByEmail(String email);
 
-    Collection<IPM_Utilisateur> getAll();
+    boolean userExist(int userId);
 
-    IPM_Utilisateur getById(long id);
+    IPM_Utilisateur findUserById(int userId);
 
-    void save(IPM_Utilisateur ipm_utilisateur);
+    IPM_Utilisateur updateUser(IPM_Utilisateur user);
 
-    void update(IPM_Utilisateur ipm_utilisateur);
+    List<IPM_Utilisateur> getUserByStructureId(int structureId);
 
-    void delete(Long id);
 }

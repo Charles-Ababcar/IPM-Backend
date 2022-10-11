@@ -1,14 +1,17 @@
 package com.poste.ProjetIPM.keycloack;
 
+import lombok.RequiredArgsConstructor;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
-
+@EnableWebSecurity
+@RequiredArgsConstructor
 @KeycloakConfiguration
 public class keycloackSecurityConfig extends KeycloakWebSecurityConfigurerAdapter{
     // Stratégie de gestion de la sessions
@@ -29,6 +32,9 @@ public class keycloackSecurityConfig extends KeycloakWebSecurityConfigurerAdapte
        http.cors();
        // http.authorizeRequests().antMatchers("**").authenticated();
        http.authorizeRequests().antMatchers("**").permitAll(); //Ne necessite aucune authentification
+        //http.authorizeRequests().antMatchers("**").authenticated();
+        http.authorizeRequests().antMatchers("**").permitAll(); //Ne necessite aucune authentification
+
         //http.authorizeRequests().antMatchers("**").authenticated(); // necessite une authentification
         //http.authorizeRequests().antMatchers("/dg_TypeStructure/**").authenticated(); // necessite une authentification
         //http.authorizeRequests().antMatchers("**").hasAuthority("agent"); // necessite le role MANAGER

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -24,7 +25,16 @@ public class IPM_Bon_LunetterieServiceImpl implements IPM_Bon_LunetterieService 
     }
     @Override
     public String AjouterUnFichier(MultipartFile file) throws IOException {
-        String uploadDir = "C:/MesDossiers/ordonnance_pharmacie/";
+        String uploadDir = "E:/MesDossiers/ordonnance_pharmacie/";
+        File fileName = new File(uploadDir+""+file.getOriginalFilename());
+        // Create File
+        boolean fileCreated = fileName.createNewFile();
+
+        return "Succes";
+    }
+    @Override
+    public String AjouterUnDebit(MultipartFile file) throws IOException {
+        String uploadDir = "E:/MesDossiers/ordonnance_pharmacie/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
@@ -42,5 +52,9 @@ public class IPM_Bon_LunetterieServiceImpl implements IPM_Bon_LunetterieService 
     @Override
     public List<IPM_Bon> getBonLunetterie(Long id) {
         return ipm_bon_lunetterieRepository.getEmpLunetterieById(id);
+    }
+    @Override
+    public Collection<IPM_Bon_Lunetterie> getAll(){
+        return  ipm_bon_lunetterieRepository.findAll();
     }
 }

@@ -59,7 +59,7 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
 
     @Override
     public String AjouterUnFichier(MultipartFile file) throws IOException {
-        String uploadDir = "C:/MesDossiers/Images-IPM_Enfants/";
+        String uploadDir = "E:/MesDossiers/Images-IPM_Enfants/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
@@ -101,7 +101,7 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
 
     @Override
     public String AjouterUnFichier_extrait(MultipartFile file_extrait) throws IOException {
-        String uploadDir = "C:/MesDossiers/Images-IPM_Enfants/";
+        String uploadDir = "E:/MesDossiers/Images-IPM_Enfants/";
         File fileName = new File(uploadDir+""+file_extrait.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();

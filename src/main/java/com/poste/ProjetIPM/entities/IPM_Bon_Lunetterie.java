@@ -1,5 +1,6 @@
 package com.poste.ProjetIPM.entities;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,6 +21,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 //@PrimaryKeyJoinColumn(name = "idbon")
 public class IPM_Bon_Lunetterie extends IPM_Bon {
     private String motif;
+    @NotNull
     private String ordonnance;
+    @NotNull
+    private String debit;
     private String numeroBon;
 }

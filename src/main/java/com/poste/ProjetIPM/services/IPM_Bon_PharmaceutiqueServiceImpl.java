@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class IPM_Bon_PharmaceutiqueServiceImpl implements IPM_Bon_Pharmaceutique
     }
     @Override
     public String AjouterUnFichier(MultipartFile file) throws IOException {
-        String uploadDir = "C:/MesDossiers/ordonnance_pharmacie/";
+        String uploadDir = "E:/MesDossiers/ordonnance_pharmacie/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
@@ -39,8 +38,9 @@ public class IPM_Bon_PharmaceutiqueServiceImpl implements IPM_Bon_Pharmaceutique
     }
 
     @Override
-    public void save(IPM_Bon_Pharmaceutique ipm_bon_pharmaceutique) {
-        ipm_bon_pharmaceutiqueRepository.save(ipm_bon_pharmaceutique);
+    public Long save(IPM_Bon_Pharmaceutique ipm_bon_pharmaceutique) {
+        IPM_Bon_Pharmaceutique bonPh=ipm_bon_pharmaceutiqueRepository.save(ipm_bon_pharmaceutique);
+        return bonPh.getIdbon();
     }
 
     //List<IPM_Bon> getBonPharmacie(Long id);

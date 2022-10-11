@@ -1,5 +1,6 @@
 package com.poste.ProjetIPM.entities;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class IPM_Bon_Pharmaceutique extends IPM_Bon {
 
     private Long nombre_article;
     private String designation;
+    @NotNull
     private String ordonnance;
     private String numeroBon;
 
