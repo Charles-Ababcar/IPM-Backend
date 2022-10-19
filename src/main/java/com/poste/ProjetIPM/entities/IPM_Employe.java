@@ -324,7 +324,6 @@ public class IPM_Employe implements Serializable {
     @ManyToOne
     @JoinColumn(nullable = true)
     private IPM_Entity ipmEntity;
-
     @ManyToOne
     @JoinColumn(nullable = true)
     private IPM_StatutEmploye ipmStatutEmploye;

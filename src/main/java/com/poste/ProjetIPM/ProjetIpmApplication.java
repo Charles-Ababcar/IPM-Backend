@@ -22,7 +22,7 @@ public class ProjetIpmApplication extends SpringBootServletInitializer {
         return builder.sources(ProjetIpmApplication.class);
     }
 
-  public CorsFilter corsFilter() {
+  /*public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setAllowedOrigins(Arrays.asList("http://10.10..3.93:4200"));
@@ -35,5 +35,5 @@ public class ProjetIpmApplication extends SpringBootServletInitializer {
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
-    }
+    }*/
 }
