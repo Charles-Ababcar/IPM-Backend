@@ -50,7 +50,7 @@ public class IPM_ConjointServiceImpl implements IPM_ConjointService {
 
     @Override
     public String AjouterUnFichierConjoint(MultipartFile file) throws IOException {
-        String uploadDir = "E:/MesDossiers/Images-IPM_Conjoints/";
+        String uploadDir = "/var/www/html/ipmfiles/images/conjoints/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
@@ -73,7 +73,7 @@ public class IPM_ConjointServiceImpl implements IPM_ConjointService {
     }
         @Override
     public String AjouterCertifConjoint(MultipartFile file) throws IOException {
-        String chemin = "E:/MesDossiers/Images-IPM_Conjoints/";
+        String chemin = "/var/www/html/ipmfiles/images/conjoints/";
         File fileName = new File(chemin+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();

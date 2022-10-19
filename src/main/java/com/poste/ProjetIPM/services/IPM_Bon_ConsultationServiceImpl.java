@@ -23,7 +23,7 @@ public class IPM_Bon_ConsultationServiceImpl implements IPM_Bon_ConsultationServ
     }
     @Override
     public String AjouterUnFichier(MultipartFile file) throws IOException {
-        String uploadDir = "E:/MesDossiers/ordonnance_pharmacie/";
+        String uploadDir = "/var/www/html/ipmfiles/files/ordonnances/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();

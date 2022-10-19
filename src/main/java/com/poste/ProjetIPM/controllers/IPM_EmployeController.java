@@ -81,7 +81,7 @@ public class IPM_EmployeController {
 
     @PostMapping("/employe")
     public void save(@RequestBody IPM_Employe ipm_employe) {
-        String uploadDir = "E:/MesDossiers/Images-IPM_Employe";
+        String uploadDir = "/var/www/html/ipmfiles/images/employes/";
         ipm_employe.setPhoto(uploadDir+"/"+ipm_employe.getPhoto());
         Random random =new Random();
         ipm_employe.setNumero_carnet((long) (100+random.nextInt(100000)));
