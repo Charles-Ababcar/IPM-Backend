@@ -1,3 +1,5 @@
+
+
 package com.poste.ProjetIPM.keycloack;
 
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
@@ -18,3 +20,4 @@ public class KeycloakAdapterConfig  {
         return  new KeycloakRestTemplate(keycloakClientRequestFactory);
     }
 }
+

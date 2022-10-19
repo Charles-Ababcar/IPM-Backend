@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -12,13 +14,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class IPM_Role {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String typeRole;
     public Long getIdRole() {
-        return idRole;
+        return id;
     }
 
     public void setIdRole(Long idRole) {
-        this.idRole = idRole;
+        this.id = idRole;
     }
 
     public String getTypeRole() {
@@ -29,7 +34,7 @@ public class IPM_Role {
         this.typeRole = typeRole;
     }
 
-    public List<IPM_Utilisateur> getIpm_utilisateurs() {
+    public Collection<IPM_Utilisateur> getIpm_utilisateurs() {
         return ipm_utilisateurs;
     }
 
@@ -37,16 +42,12 @@ public class IPM_Role {
         this.ipm_utilisateurs = ipm_utilisateurs;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idRole;
-    private String typeRole;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "ipm_user_role",
-            joinColumns = @JoinColumn(name = "iduser"),
-            inverseJoinColumns = @JoinColumn(name = "idRole")
+            name = "Users_Roles_Associations",
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id_role")
     )
-    private List<IPM_Utilisateur> ipm_utilisateurs;
+    private Collection<IPM_Utilisateur> ipm_utilisateurs;
 }

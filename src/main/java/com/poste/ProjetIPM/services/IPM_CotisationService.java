@@ -11,12 +11,12 @@ public interface IPM_CotisationService {
 
     IPM_Cotisation getById(long id);
 
-    void save(IPM_Cotisation ipm_cotisation);
+    Long save(IPM_Cotisation ipm_cotisation);
 
     void update(IPM_Cotisation ipm_cotisation);
 
     void delete(Long id);
-    boolean saveDataFromUploadFile(MultipartFile file);
-     boolean readDataFromCsv(MultipartFile file);
+/*    boolean saveDataFromUploadFile(MultipartFile file);
+     boolean readDataFromCsv(MultipartFile file);*/
 }
 

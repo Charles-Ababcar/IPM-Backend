@@ -57,7 +57,7 @@ public class IPM_UtilisateurController {
     }
 
     @PatchMapping(value = "/{id}")
-    public IPM_Utilisateur update(@PathVariable("id")int id , @RequestBody IPM_Utilisateur ipm_utilisateur){
+    public IPM_Utilisateur update(@PathVariable("id")long id , @RequestBody IPM_Utilisateur ipm_utilisateur){
         try{
             String UserId = keyCloakService.getUserIdKeycloak(ipm_utilisateur.getEmail());
             keyCloakService.updateUser(UserId, ipm_utilisateur);

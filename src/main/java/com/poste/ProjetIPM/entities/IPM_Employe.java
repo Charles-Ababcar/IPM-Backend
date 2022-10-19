@@ -196,13 +196,13 @@ public class IPM_Employe implements Serializable {
         this.niveau_salarial = niveau_salarial;
     }
 
-    public List<IPM_Cotisation> getIpm_cotisations() {
-        return ipm_cotisations;
-    }
-
-    public void setIpm_cotisations(List<IPM_Cotisation> ipm_cotisations) {
-        this.ipm_cotisations = ipm_cotisations;
-    }
+//    public List<IPM_Cotisation> getIpm_cotisations() {
+//        return ipm_cotisations;
+//    }
+//
+//    public void setIpm_cotisations(List<IPM_Cotisation> ipm_cotisations) {
+//        this.ipm_cotisations = ipm_cotisations;
+//    }
 
     public List<IPM_Bon> getIpm_bons() {
         return ipm_bons;
@@ -294,8 +294,8 @@ public class IPM_Employe implements Serializable {
     // private List<IPM_Beneficiaire> ipm_beneficiaires;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "idCotisation")
-    private List<IPM_Cotisation> ipm_cotisations;
+    @OneToMany(mappedBy = "ipm_cotisation")
+    private List<IPM_Details_Cotisations> ipm_details_cotisations;
 
     @JsonIgnore
     @OneToMany(mappedBy = "ipm_employe")

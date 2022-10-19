@@ -16,7 +16,7 @@ import java.util.Collection;
 public class IPM_Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String login;
     private String password;
     private String nom;
@@ -32,7 +32,7 @@ public class IPM_Utilisateur {
             joinColumns = @JoinColumn( name = "id_user" ),
             inverseJoinColumns = @JoinColumn( name = "id_role" ) )
 
-    private Collection<IPM_Role> roles =new ArrayList<>();
+    private Collection<IPM_Role> roles ;
    /* @ManyToOne
     private IPM_Service ipmService;*/
 

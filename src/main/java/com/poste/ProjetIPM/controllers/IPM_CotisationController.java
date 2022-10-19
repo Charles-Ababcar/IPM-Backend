@@ -27,8 +27,9 @@ public class IPM_CotisationController {
     }
 
     @PostMapping("/cotisation")
-    public void save(@RequestBody IPM_Cotisation ipm_cotisation) {
-        ipm_cotisationService.save(ipm_cotisation);
+    public Long save(@RequestBody IPM_Cotisation ipm_cotisation) {
+
+        return ipm_cotisationService.save(ipm_cotisation);
     }
 
     @PutMapping("/cotisation")
@@ -41,16 +42,16 @@ public class IPM_CotisationController {
         ipm_cotisationService.delete(id);
     }
 
-    /////////////////TODO:Implementation upload file excel
-    @PostMapping(value = "/uploadCotisation")
-    public void uploadFile(@ModelAttribute IPM_Cotisation ipm_cotisation, RedirectAttributes redirectAttributes){
-        boolean isFlag = ipm_cotisationService.saveDataFromUploadFile(ipm_cotisation.getFile());
-        System.out.println(ipm_cotisation);
-        if (isFlag){
-
-            redirectAttributes.addFlashAttribute("successmessage", "File Upload successfull !");
-        } else {
-            redirectAttributes.addFlashAttribute("errormessage", "File Upload not done, Please try again !");
-        }
-    }
+//    /////////////////TODO:Implementation upload file excel
+//    @PostMapping(value = "/uploadCotisation")
+//    public void uploadFile(@ModelAttribute IPM_Cotisation ipm_cotisation, RedirectAttributes redirectAttributes){
+//        boolean isFlag = ipm_cotisationService.saveDataFromUploadFile(ipm_cotisation.getFile());
+//        System.out.println(ipm_cotisation);
+//        if (isFlag){
+//
+//            redirectAttributes.addFlashAttribute("successmessage", "File Upload successfull !");
+//        } else {
+//            redirectAttributes.addFlashAttribute("errormessage", "File Upload not done, Please try again !");
+//        }
+//    }
 }
