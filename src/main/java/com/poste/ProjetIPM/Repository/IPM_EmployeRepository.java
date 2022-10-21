@@ -1,18 +1,14 @@
 package com.poste.ProjetIPM.Repository;
 
-import com.poste.ProjetIPM.entities.IPM_Bon;
 import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.entities.IPM_Enfant;
 import com.poste.ProjetIPM.entities.IPM_Service;
-import org.omg.CORBA.Any;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
 @Repository
 public interface IPM_EmployeRepository extends JpaRepository<IPM_Employe, Long> {
     public IPM_Employe findByMatricule(String matricule);

@@ -1,25 +1,19 @@
 package com.poste.ProjetIPM.controllers;
 
 import com.poste.ProjetIPM.Repository.IPM_EmployeRepository;
-import com.poste.ProjetIPM.Repository.IPM_EnfantRepository;
-import com.poste.ProjetIPM.Repository.IPM_ServiceRepository;
 import com.poste.ProjetIPM.entities.IPM_Employe;
-
-import java.io.File;
-import java.io.IOException;
-
 import com.poste.ProjetIPM.entities.IPM_Enfant;
 import com.poste.ProjetIPM.entities.IPM_Service;
 import com.poste.ProjetIPM.services.IPM_EmployeService;
 import com.poste.ProjetIPM.services.IPM_ServiceService;
-import com.sun.xml.messaging.saaj.packaging.mime.internet.ContentType;
 import org.apache.commons.io.FileUtils;
-import org.omg.CORBA.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -44,6 +38,15 @@ public class IPM_EmployeController {
     public IPM_Employe getById(@PathVariable Long id) {
         IPM_Employe ipm_employe=ipm_employeService.getById(id);
         ipm_employe.setPhoto(convertStringToBase64(ipm_employe.getPhoto()));
+
+        return ipm_employe;
+
+    }
+    //modif employe sans photo
+    @GetMapping("/employesanstof/{id}")
+    public IPM_Employe getEmployById(@PathVariable Long id) {
+        IPM_Employe ipm_employe=ipm_employeService.getById(id);
+        //ipm_employe.setPhoto(convertStringToBase64(ipm_employe.getPhoto()));
 
         return ipm_employe;
 
@@ -81,8 +84,10 @@ public class IPM_EmployeController {
 
     @PostMapping("/employe")
     public void save(@RequestBody IPM_Employe ipm_employe) {
-        String uploadDir = "/var/www/html/ipmfiles/images/employes/";
+        String uploadDir = "http://10.14.14.232/ipmfiles/images/employes";
         ipm_employe.setPhoto(uploadDir+"/"+ipm_employe.getPhoto());
+        String uploadDiir = "http://10.14.14.232/ipmfiles/files/jusificatifs";
+        ipm_employe.setJustificatif(uploadDiir+"/"+ipm_employe.getJustificatif());
         Random random =new Random();
         ipm_employe.setNumero_carnet((long) (100+random.nextInt(100000)));
 

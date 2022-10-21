@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.Session;
-import org.omg.CORBA.Any;
+//import org.omg.CORBA.Any;
 
 import javax.persistence.*;
 import java.io.Serializable;
