@@ -115,7 +115,7 @@ public class IPM_EmployeController {
                 } else
                     return "";
             } catch (IOException e) {
-                return "Erreur de conversio";
+                return "Erreur de conversion";
             }
         }else{
             return "";
@@ -124,6 +124,10 @@ public class IPM_EmployeController {
 
     @PutMapping("/employe")
     public void update(@RequestBody IPM_Employe ipm_employe) {
+        /*String uploadChemin = "http://10.14.14.232/ipmfiles/images/employes";
+        ipm_employe.setPhoto(uploadChemin+"/"+ipm_employe.getPhoto());*/
+        String uploadChemin ="E:/MesDossiers/Images-IPM_Employes";
+        ipm_employe.setPhoto(uploadChemin+"/"+ipm_employe.getPhoto());
         ipm_employeService.update(ipm_employe);
     }
 
