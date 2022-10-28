@@ -5,6 +5,7 @@ import com.poste.ProjetIPM.Repository.IPM_EmployeRepository;
 import com.poste.ProjetIPM.entities.IPM_Conjoint;
 import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.services.IPM_ConjointService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.dom4j.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
+@Slf4j
 //@RequestMapping("/api")
 public class IPM_ConjointController {
 
@@ -48,6 +50,12 @@ public class IPM_ConjointController {
         ipm_conjoint.setPhotos(convertStringToBase64(ipm_conjoint.getPhotos()));
         return ipm_conjoint;
     }
+    @GetMapping("/conjointsansphoto/{id}")
+    public IPM_Conjoint getByIdConjointsansphoto(@PathVariable Long id){
+        IPM_Conjoint ipm_conjoint =ipm_conjointService.getById(id);
+
+        return ipm_conjoint;
+    }
     @GetMapping(value = "/getconjointByid/{id}")
     public List<IPM_Conjoint> getConjointById(@PathVariable Long id) {
         List<IPM_Conjoint> ipmConjointList=ipm_conjointRepo.getConjointById(id);
@@ -56,6 +64,7 @@ public class IPM_ConjointController {
                     convertStringToBase64(ipmConjointList.get(i).getPhotos())
             );
         }
+        log.info("liste conjoint");
         return ipmConjointList;
 
     }
@@ -96,10 +105,10 @@ public class IPM_ConjointController {
     @PostMapping("/conjoint")
     public void save(@RequestBody IPM_Conjoint ipm_conjoint) {
 
-        String uploadDir = "C:/MesDossiers/Images-IPM_conjoint";
+        String uploadDir = "E:/MesDossiers/Images-IPM_Conjoints";
 
         ipm_conjoint.setPhotos(uploadDir+"/"+ipm_conjoint.getPhotos());
-        String chemin="C:/MesDossiers/Images-IPM_conjoint";
+        String chemin="E:/MesDossiers/Images-IPM_Conjoints";
         ipm_conjoint.setCertificat(chemin+"/"+ipm_conjoint.getCertificat());
         ipm_conjointService.save(ipm_conjoint);
        // return "Slt " + ipm_conjoint.getNom_conjoint() + "enregistrement reussi avec success";
@@ -107,12 +116,23 @@ public class IPM_ConjointController {
     }
 
     @PutMapping("/putconjoint")
-    public void update(@RequestBody IPM_Conjoint ipm_conjoint,@RequestParam("file") MultipartFile file) {
-        String filename = file.getOriginalFilename();
-        String modifChemin = "C:/MesDossiers/Images-IPM_conjoint";
-        ipm_conjoint.setPhotos(modifChemin+"/"+filename);
-        String cheminCertif="C:/MesDossiers/Images-IPM_conjoint";
-        ipm_conjoint.setCertificat(cheminCertif+"/"+ipm_conjoint.getCertificat());
+    public void update(@RequestBody IPM_Conjoint ipm_conjoint) {
+      //  String filename = file.getOriginalFilename();
+        String modifChemin = "  E:/MesDossiers/Images-IPM_Conjoints";
+        ipm_conjoint.setPhotos(modifChemin+"/"+ipm_conjoint.getPhotos());
+//        String cheminCertif="C:/MesDossiers/Images-IPM_conjoint";
+//        ipm_conjoint.setCertificat(cheminCertif+"/"+ipm_conjoint.getCertificat());
+
+        ipm_conjointService.update(ipm_conjoint);
+
+    }
+    @PutMapping("/putconjointsansphoto")
+    public void updatesanstof(@RequestBody IPM_Conjoint ipm_conjoint) {
+//        String filename = file.getOriginalFilename();
+//        String modifChemin = "C:/MesDossiers/Images-IPM_conjoint";
+//        ipm_conjoint.setPhotos(modifChemin+"/"+filename);
+//        String cheminCertif="C:/MesDossiers/Images-IPM_conjoint";
+//        ipm_conjoint.setCertificat(cheminCertif+"/"+ipm_conjoint.getCertificat());
 
         ipm_conjointService.update(ipm_conjoint);
 

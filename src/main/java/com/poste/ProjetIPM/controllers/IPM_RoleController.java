@@ -5,6 +5,7 @@ import com.poste.ProjetIPM.entities.IPM_Remboursement;
 import com.poste.ProjetIPM.entities.IPM_Role;
 import com.poste.ProjetIPM.entities.IPM_UserRole;
 import com.poste.ProjetIPM.services.IPM_RoleService;
+import com.poste.ProjetIPM.services.IPM_RoleServiceImpl;
 import com.poste.ProjetIPM.services.IPM_UserRoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,15 +20,21 @@ public class IPM_RoleController {
     @Autowired
     IPM_UserRoleServiceImpl ipm_userRoleService;
     @Autowired
+    IPM_RoleServiceImpl ipm_roleService;
+
+    @Autowired
     KeyCloakService keyCloakService;
     @GetMapping("/AllRole")
     public Collection<IPM_UserRole> getAllRole() {
         return ipm_userRoleService.getAllUserRole();
     }
-
+    @GetMapping("/AllRoles")
+    public Collection<IPM_Role> getRole() {
+        return ipm_roleService.getAll();
+    }
     /**
      * Affectation d'un role
-     * @param userRole
+     * userRole
      */
     @PostMapping(value = "/roleaddUser")
     public void affectRoleToUser(@RequestBody IPM_UserRole ipm_userRole){

@@ -22,7 +22,7 @@ public class ProjetIpmApplication extends SpringBootServletInitializer {
         return builder.sources(ProjetIpmApplication.class);
     }
 
-  public CorsFilter corsFilter() {
+ public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
