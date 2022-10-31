@@ -21,7 +21,6 @@ public interface IPM_PrecompteService {
     String AjouterLettreAgr(MultipartFile file) throws IOException;
 
     Collection<IPM_Precompte>  getByDatePrecompte(Date date);
-
     List<IPM_Precompte> save(List<IPM_Precompte> ipm_precompte);
 
     void update(IPM_Precompte ipm_precompte);

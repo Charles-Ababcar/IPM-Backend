@@ -42,10 +42,6 @@ public class IPM_PrecompteController {
         Date date =new SimpleDateFormat("yyyy-MM-dd").parse(datePrecompte);
         return ipm_precompteService.getByDatePrecompte(date);
     }
-    /*@PostMapping("/precompte")
-    public void save(@RequestBody IPM_Precompte ipm_precompte) {
-        ipm_precompteService.save(ipm_precompte);
-    }*/
 
     @PutMapping("/precompte")
     public void update(@RequestBody IPM_Precompte ipm_precompte) {

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Service
+@Transactional
 public class IPM_EnfantServiceImpl implements IPM_EnfantService {
     @Autowired
     IPM_EnfantRepository ipm_enfantRepository;
@@ -59,7 +61,8 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
 
     @Override
     public String AjouterUnFichier(MultipartFile file) throws IOException {
-        String uploadDir = "/var/www/html/ipmfiles/images/enfants/";
+     //   String uploadDir = "/var/www/html/ipmfiles/images/enfants/";
+        String uploadDir = "E:/MesDossiers/Images-IPM_Enfants/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
@@ -80,7 +83,8 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
     //
     @Override
     public String AjouterUnFichierExtrait(MultipartFile file) throws IOException {
-        String uploadCertif = "/var/www/html/ipmfiles/images/enfants/";
+       // String uploadCertif = "/var/www/html/ipmfiles/images/enfants/";
+        String uploadCertif = "E:/MesDossiers/Images-IPM_Enfants/";
         File fileName = new File(uploadCertif+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
@@ -101,7 +105,8 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
 
     @Override
     public String AjouterUnFichier_extrait(MultipartFile file_extrait) throws IOException {
-        String uploadDir = "/var/www/html/ipmfiles/images/enfants/";
+       // String uploadDir = "/var/www/html/ipmfiles/images/enfants/";
+         String uploadDir = "E:/MesDossiers/Images-IPM_Enfants/";
         File fileName = new File(uploadDir+""+file_extrait.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();

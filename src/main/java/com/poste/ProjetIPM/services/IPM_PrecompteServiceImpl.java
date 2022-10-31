@@ -51,6 +51,7 @@ public class IPM_PrecompteServiceImpl implements IPM_PrecompteService {
     public Collection<IPM_Precompte>  getByDatePrecompte(Date date){
         return  ipm_precompteRepository.findByDatePrecompte(date);
     }
+
     @Override
     public List<IPM_Precompte> save(List<IPM_Precompte> ipm_precompte) {
         for (int i = 0; i < ipm_precompte.size(); i++) {

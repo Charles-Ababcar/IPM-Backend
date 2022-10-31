@@ -63,9 +63,11 @@ public class IPM_EnfantController {
     }
     @PostMapping("/enfant")
     public void save(@RequestBody IPM_Enfant ipm_enfant) {
-        String uploadDir = "/var/www/html/ipmfiles/images/enfants/";
+        //  String uploadDir = "/var/www/html/ipmfiles/images/enfants/";
+          String uploadDir = "E:/MesDossiers/Images-IPM_Enfants";
         ipm_enfant.setChemin(uploadDir+"/"+ipm_enfant.getChemin());
-        String uploadCertif="/var/www/html/ipmfiles/images/enfants/";
+//        String uploadCertif="/var/www/html/ipmfiles/images/enfants/";
+        String uploadCertif="E:/MesDossiers/Images-IPM_Enfants";
         ipm_enfant.setExtrait_naiss(uploadCertif+"/"+ipm_enfant.getExtrait_naiss());
         //ipm_enfant.setExtrait_naiss(uploadDir+"/"+ipm_enfant.getExtrait_naiss());
         ipm_enfantService.save(ipm_enfant);
