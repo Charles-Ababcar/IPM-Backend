@@ -89,8 +89,8 @@ public class IPM_EmployeController {
         //String uploadDiir = "http://10.14.14.232/ipmfiles/files/jusificatifs";
         String uploadDiir = "/var/www/html/ipmfiles/files/jusificatifs";
         ipm_employe.setJustificatif(uploadDiir+"/"+ipm_employe.getJustificatif());
-        Random random =new Random();
-        ipm_employe.setNumero_carnet((long) (100+random.nextInt(100000)));
+        Random randomm =new Random();
+        ipm_employe.setNumero_carnet((long) (100+randomm.nextInt(100000)));
 
         ipm_employeService.save(ipm_employe);
 
