@@ -21,6 +21,7 @@ public class IPM_Conjoint {
     private Long idconj;
     private String nom_conjoint;
     private String prenom_conjoint;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date_naiss_conj;
     private String lieu_naiss_conj;
