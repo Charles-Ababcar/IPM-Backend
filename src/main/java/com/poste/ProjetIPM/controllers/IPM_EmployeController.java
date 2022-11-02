@@ -92,7 +92,7 @@ public class IPM_EmployeController {
         Random random =new Random();
         ipm_employe.setNumero_carnet((long) (100+random.nextInt(100000)));
 
-        ipm_employeService.savCe(ipm_employe);
+        ipm_employeService.save(ipm_employe);
 
     }
     @RequestMapping(path= "/uploadeJustif", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
