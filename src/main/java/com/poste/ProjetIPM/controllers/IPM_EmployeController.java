@@ -84,14 +84,15 @@ public class IPM_EmployeController {
 
     @PostMapping("/employe")
     public void save(@RequestBody IPM_Employe ipm_employe) {
-        String uploadDir = "http://10.14.14.232/ipmfiles/images/employes";
+        String uploadDir = "/var/www/html/ipmfiles/images/employes";
         ipm_employe.setPhoto(uploadDir+"/"+ipm_employe.getPhoto());
-        String uploadDiir = "http://10.14.14.232/ipmfiles/files/jusificatifs";
+        //String uploadDiir = "http://10.14.14.232/ipmfiles/files/jusificatifs";
+        String uploadDiir = "/var/www/html/ipmfiles/files/jusificatifs";
         ipm_employe.setJustificatif(uploadDiir+"/"+ipm_employe.getJustificatif());
         Random random =new Random();
         ipm_employe.setNumero_carnet((long) (100+random.nextInt(100000)));
 
-        ipm_employeService.save(ipm_employe);
+        ipm_employeService.savCe(ipm_employe);
 
     }
     @RequestMapping(path= "/uploadeJustif", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -124,12 +125,20 @@ public class IPM_EmployeController {
 
     @PutMapping("/employe")
     public void update(@RequestBody IPM_Employe ipm_employe) {
-        /*String uploadChemin = "http://10.14.14.232/ipmfiles/images/employes";
-        ipm_employe.setPhoto(uploadChemin+"/"+ipm_employe.getPhoto());*/
-        String uploadChemin ="E:/MesDossiers/Images-IPM_Employes";
+        String uploadChemin = "/var/www/html/ipmfiles/images/employes";
         ipm_employe.setPhoto(uploadChemin+"/"+ipm_employe.getPhoto());
+        /*String uploadChemin ="E:/MesDossiers/Images-IPM_Employes";
+        ipm_employe.setPhoto(uploadChemin+"/"+ipm_employe.getPhoto());*/
         ipm_employeService.update(ipm_employe);
     }
+    @PutMapping("/employesansPhoto")
+    public void updatesansPhoto(@RequestBody IPM_Employe ipm_employe) {
+
+        /*String uploadChemin ="E:/MesDossiers/Images-IPM_Employes";
+        ipm_employe.setPhoto(uploadChemin+"/"+ipm_employe.getPhoto());*/
+        ipm_employeService.update(ipm_employe);
+    }
+
 
     @DeleteMapping("/employe/{id}")
     public void delete(@PathVariable Long id) {

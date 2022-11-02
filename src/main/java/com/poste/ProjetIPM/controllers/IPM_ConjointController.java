@@ -105,10 +105,11 @@ public class IPM_ConjointController {
     @PostMapping("/conjoint")
     public void save(@RequestBody IPM_Conjoint ipm_conjoint) {
 
-        String uploadDir = "E:/MesDossiers/Images-IPM_Conjoints";
-
+        //String uploadDir = "E:/MesDossiers/Images-IPM_Conjoints";
+        String uploadDir = "/var/www/html/ipmfiles/images/conjoints";
         ipm_conjoint.setPhotos(uploadDir+"/"+ipm_conjoint.getPhotos());
-        String chemin="E:/MesDossiers/Images-IPM_Conjoints";
+        //String chemin="E:/MesDossiers/Images-IPM_Conjoints";
+        String chemin="/var/www/html/ipmfiles/fiLes/certifmariages";
         ipm_conjoint.setCertificat(chemin+"/"+ipm_conjoint.getCertificat());
         ipm_conjointService.save(ipm_conjoint);
        // return "Slt " + ipm_conjoint.getNom_conjoint() + "enregistrement reussi avec success";
@@ -118,7 +119,8 @@ public class IPM_ConjointController {
     @PutMapping("/putconjoint")
     public void update(@RequestBody IPM_Conjoint ipm_conjoint) {
       //  String filename = file.getOriginalFilename();
-        String modifChemin = "  E:/MesDossiers/Images-IPM_Conjoints";
+        //String modifChemin = "  E:/MesDossiers/Images-IPM_Conjoints";
+        String modifChemin = "/var/www/html/ipmfiles/images/conjoints";
         ipm_conjoint.setPhotos(modifChemin+"/"+ipm_conjoint.getPhotos());
 //        String cheminCertif="C:/MesDossiers/Images-IPM_conjoint";
 //        ipm_conjoint.setCertificat(cheminCertif+"/"+ipm_conjoint.getCertificat());
