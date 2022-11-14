@@ -11,7 +11,7 @@ public interface IPM_UserRoleService {
 
     List<Dg_UserRole> getUserUserByRoleId(int id);*/
 
-    void saveUserRole(IPM_UserRole ipm_userRole);
+    IPM_UserRole saveUserRole(IPM_UserRole ipm_userRole);
 
     void deleteUserRole(IPM_UserRole ipm_userRole);
 

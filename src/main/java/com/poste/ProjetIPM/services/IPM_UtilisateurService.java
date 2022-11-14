@@ -9,9 +9,9 @@ import java.util.List;
 public interface IPM_UtilisateurService {
     public IPM_Utilisateur findUserByEmail(String email);
 
-    boolean userExist(int userId);
+    boolean userExist(Long userId);
 
-    IPM_Utilisateur findUserById(int userId);
+    IPM_Utilisateur findUserById(Long userId);
 
     IPM_Utilisateur updateUser(IPM_Utilisateur user);
 

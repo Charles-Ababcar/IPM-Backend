@@ -90,8 +90,8 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
 
     @Override
     public String AjouterUnFichierE(MultipartFile file) throws IOException {
-        String uploadDir = "/var/www/html/ipmfiles/images/employes/";
-        //String uploadDir = "E:/MesDossiers/Images-IPM_Employes/";
+      //  String uploadDir = "/var/www/html/ipmfiles/images/employes/";
+        String uploadDir = "E:/MesDossiers/Images-IPM_Employes/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
@@ -114,18 +114,14 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
     }
     @Override
     public String AjouterFichierJust(MultipartFile file) throws IOException {
-     //   String uploadDir = "E:/MesDossiers/justificatif-employe/";
-           String uploadDir = "/var/www/html/ipmfiles/files/jusificatifs/";
+        String uploadDir = "E:/MesDossiers/justificatif-employe/";
+         //  String uploadDir = "/var/www/html/ipmfiles/files/jusificatifs/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
 
         return "Succes";
     }
-
-
-
-
     @Override
     public IPM_Employe AjouterLesAttributsDuFichier(IPM_Employe ipm_employe) {
         return ipm_employeRepository.save(ipm_employe);

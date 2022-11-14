@@ -27,12 +27,12 @@ public class IPM_UtilisateurServiceImpl implements IPM_UtilisateurService {
      * @return True or False
      */
     @Override
-    public boolean userExist(int userId) {
+    public boolean userExist(Long userId) {
         return ipm_utilisateurRepository.findById(userId).isPresent();
     }
 
     @Override
-    public IPM_Utilisateur findUserById(int userId) {
+    public IPM_Utilisateur findUserById(Long userId) {
         return ipm_utilisateurRepository.findById(userId).get();
     }
 

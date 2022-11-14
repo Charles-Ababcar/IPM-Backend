@@ -84,10 +84,11 @@ public class IPM_EmployeController {
 
     @PostMapping("/employe")
     public void save(@RequestBody IPM_Employe ipm_employe) {
-        String uploadDir = "/var/www/html/ipmfiles/images/employes";
+     //   String uploadDir = "/var/www/html/ipmfiles/images/employes";
+        String uploadDir ="E:/MesDossiers/Images-IPM_Employes";
         ipm_employe.setPhoto(uploadDir+"/"+ipm_employe.getPhoto());
-        //String uploadDiir = "http://10.14.14.232/ipmfiles/files/jusificatifs";
-        String uploadDiir = "/var/www/html/ipmfiles/files/jusificatifs";
+        String uploadDiir = "E:/MesDossiers/justificatif-employe";
+       // String uploadDiir = "/var/www/html/ipmfiles/files/jusificatifs";
         ipm_employe.setJustificatif(uploadDiir+"/"+ipm_employe.getJustificatif());
         Random randomm =new Random();
         ipm_employe.setNumero_carnet((long) (100+randomm.nextInt(100000)));
@@ -125,10 +126,10 @@ public class IPM_EmployeController {
 
     @PutMapping("/employe")
     public void update(@RequestBody IPM_Employe ipm_employe) {
-        String uploadChemin = "/var/www/html/ipmfiles/images/employes";
+       // String uploadChemin = "/var/www/html/ipmfiles/images/employes";
+      //  ipm_employe.setPhoto(uploadChemin+"/"+ipm_employe.getPhoto());
+        String uploadChemin ="E:/MesDossiers/Images-IPM_Employes";
         ipm_employe.setPhoto(uploadChemin+"/"+ipm_employe.getPhoto());
-        /*String uploadChemin ="E:/MesDossiers/Images-IPM_Employes";
-        ipm_employe.setPhoto(uploadChemin+"/"+ipm_employe.getPhoto());*/
         ipm_employeService.update(ipm_employe);
     }
     @PutMapping("/employesansPhoto")

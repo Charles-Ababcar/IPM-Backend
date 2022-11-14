@@ -35,9 +35,9 @@ public class IPM_UtilisateurController {
         return ipm_utilisateurRepository.findAll();
     }
 
-    @GetMapping(value="/{id}")
-    public  IPM_Utilisateur getUserById(@PathVariable int id){
-        return ipm_utilisateurRepository.findById( id).get();
+    @GetMapping("/getUser/{id}")
+    public  IPM_Utilisateur getUserById(@PathVariable Long id){
+        return ipm_utilisateurRepository.findById(id).get();
     }
 
     @GetMapping(value = "email/{email}")
@@ -70,7 +70,7 @@ public class IPM_UtilisateurController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public void deleteUser(@PathVariable int id, @RequestBody IPM_Utilisateur ipm_utilisateurr){
+    public void deleteUser(@PathVariable Long id, @RequestBody IPM_Utilisateur ipm_utilisateurr){
         try{
             List<UserRepresentation> user = keyCloakService.getUser(ipm_utilisateurr.getEmail());
             keyCloakService.deleteUser(user.get(0).getId());

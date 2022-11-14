@@ -23,8 +23,8 @@ public class IPM_UserRoleServiceImpl implements IPM_UserRoleService {
     }
 
     @Override
-    public void saveUserRole(IPM_UserRole ipm_userRole) {
-           ipm_userRoleRepository.save(ipm_userRole);
+    public IPM_UserRole saveUserRole(IPM_UserRole ipm_userRole) {
+          return ipm_userRoleRepository.save(ipm_userRole);
     }
 
     @Override

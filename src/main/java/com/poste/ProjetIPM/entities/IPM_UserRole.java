@@ -25,7 +25,6 @@ public class IPM_UserRole {
     @JoinColumn(name = "id_role",nullable = false)
     //@JsonIgnoreProperties({"users"})
     private IPM_Role ipm_role;
-
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dateAtribution = new Date();
 

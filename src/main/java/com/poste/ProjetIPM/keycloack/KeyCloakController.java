@@ -11,7 +11,7 @@ public class KeyCloakController {
     @Autowired
     KeyCloakService service;
 
-    @PostMapping
+    @PostMapping("/keycklock")
     public String addUser(@RequestBody IPM_Utilisateur ipm_utilisateur){
         service.addUser(ipm_utilisateur);
         return "User Added Successfully.";
@@ -65,12 +65,14 @@ public class KeyCloakController {
     }
 
     @PostMapping(value = "/roles")
-    public void addRoles(){
+    public void addRoles()
+    {
         service.addRealmRole("ROLE_TEST", "Description");
     }
 
     @PostMapping(value = "/addroles")
-    public void affectationRole(){
+    public void affectationRole()
+    {
         service.addRealmRoleToUser("nazim", "ROLE_TEST");
     }
 }

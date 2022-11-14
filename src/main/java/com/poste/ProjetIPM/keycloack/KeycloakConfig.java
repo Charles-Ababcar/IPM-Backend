@@ -10,12 +10,12 @@ public class KeycloakConfig {
     final static String serverUrl = "http://localhost:8180/auth";
     //final static String serverUrl = "http://localhost:9191/auth";
     public final static String realm= "IPM-Front";
-    final static String clientId = "Backend-ipm";
+    final static String clientId = "backend-ipm";
     //final static String clientId = "BackEnd_ModulePrincipal_local";
     //final static String clientSecret = "fcf71237-2d9a-484f-9206-8aa939e1941d";
-    final static String clientSecret = "5f108389-4316-4415-b658-e1b218f6d1c4";
-    final static String userName = "charles";
-    final static String password = "Charles14";
+    final static String clientSecret = "0e9f9470-fc9f-4bd0-b471-ebe80c18e47d";
+    final static String userName = "fatima";
+    final static String password = "fatima";
 
     public KeycloakConfig() {
     }

@@ -1,7 +1,9 @@
 package com.poste.ProjetIPM.keycloack;
 
+import com.poste.ProjetIPM.entities.IPM_Role;
 import com.poste.ProjetIPM.entities.IPM_Utilisateur;
 import lombok.AllArgsConstructor;
+import org.keycloak.admin.client.resource.RoleResource;
 import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.CredentialRepresentation;
@@ -22,10 +24,12 @@ import static com.poste.ProjetIPM.keycloack.KeycloakConfig.*;
 public class KeyCloakService {
 
 
+
+    //////////////////Add User
     public void addUser(IPM_Utilisateur ipm_utilisateur){
         CredentialRepresentation credential = Credentials
                 //.createPasswordCredentials(user.getPassword());
-                .createPasswordCredentials("1234");
+                .createPasswordCredentials("123456");
         UserRepresentation newUser = new UserRepresentation();
         newUser.setUsername(ipm_utilisateur.getLogin());
         newUser.setFirstName(ipm_utilisateur.getPrenom());
