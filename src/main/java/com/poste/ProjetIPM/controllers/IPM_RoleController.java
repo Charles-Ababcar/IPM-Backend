@@ -1,6 +1,7 @@
 package com.poste.ProjetIPM.controllers;
 
 import com.poste.ProjetIPM.Repository.IPM_RoleRepository;
+import com.poste.ProjetIPM.Repository.IPM_UserRoleRepository;
 import com.poste.ProjetIPM.entities.IPM_Utilisateur;
 import com.poste.ProjetIPM.keycloack.KeyCloakService;
 import com.poste.ProjetIPM.entities.IPM_Remboursement;
@@ -29,6 +30,8 @@ public class IPM_RoleController {
     IPM_RoleRepository ipm_roleRepository;
     @Autowired
     KeyCloakService keyCloakService;
+    @Autowired
+    IPM_UserRoleRepository ipm_userRoleRepository;
     @GetMapping("/AllUserRole")
     public Collection<IPM_UserRole> getAllRole() {
         return ipm_userRoleService.getAllUserRole();
@@ -57,17 +60,17 @@ public class IPM_RoleController {
 /////////////////////Ajouter user et affecté role
     @PostMapping(value = "/roleAddUser")
     public IPM_UserRole affectRoleToUser(@RequestBody IPM_UserRole ipm_userRole){
-        IPM_UserRole ipm1=null;
-        String username = ipm_userRole.getIpm_utilisateur().getEmail();
+        IPM_UserRole ipm_userRole1=null;
+        String username = ipm_userRole.getIpm_utilisateur().getLogin();
         String roleName = ipm_userRole.getIpm_role().getTypeRole();
         try{
-            keyCloakService.addRealmRoleToUser(username, roleName);
-            ipm1 =ipm_userRoleService.saveUserRole(ipm_userRole);
+           ipm_userRole1= ipm_userRoleService.saveUserRole(ipm_userRole);
+           keyCloakService.addRealmRoleToUser(username, roleName);
         } catch (Exception e){
             e.getCause();
             e.getMessage();
         }
-        return  ipm1;
+        return  ipm_userRole1;
     }
 
     @PostMapping(value = "/affectGroupRoleToUser")

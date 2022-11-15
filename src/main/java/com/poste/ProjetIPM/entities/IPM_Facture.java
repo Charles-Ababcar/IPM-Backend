@@ -29,7 +29,7 @@ public class IPM_Facture {
    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
    private Date dateFacture;
    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-   private Date date_saisie;
+   private Date dateSaisie;
 //
 //    private Integer montant_facture;
     private String fileName;

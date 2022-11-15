@@ -19,4 +19,5 @@ public interface IPM_EnfantRepository extends JpaRepository<IPM_Enfant, Long> {
     @Query(value = "select c from  IPM_Enfant c ,IPM_Employe e where c.ipm_employe.idemp=:id and c.ipm_employe.idemp=e.idemp")
     IPM_Enfant getEnfant(@Param("id") Long id);
 
+
 }

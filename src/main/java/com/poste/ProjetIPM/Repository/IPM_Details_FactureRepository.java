@@ -15,9 +15,9 @@ public interface IPM_Details_FactureRepository  extends JpaRepository<IPM_Detail
 
     List <IPM_Details_Facture> findByIpmFacture(IPM_Facture ipmFacture);
 
-    /*List <IPM_Details_Facture>findByIdfacture(Long num);
+    List <IPM_Details_Facture>findByIpmFacture(Long num);
 
-    Collection<IPM_Details_Facture> findByIpm_facture(IPM_Facture ipm_facture);*/
+    Collection<IPM_Details_Facture> findByIpm_facture(IPM_Facture ipm_facture);
 
     //Collection<IPM_Details_Facture> findByIpmfacture(IPM_Facture ipmfacture);
 }

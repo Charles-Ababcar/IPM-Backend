@@ -6,6 +6,7 @@ import com.poste.ProjetIPM.services.IPM_FactureService;
 import com.poste.ProjetIPM.services.UploadService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -69,5 +70,13 @@ public class IPM_FactrureController {
 //        ipm_factureRepository.getMontantTotal(ipm_facture);
 //        System.out.println(  ipm_factureRepository.getMontantTotal(ipm_facture) );
 //    }
+
+    @GetMapping("/getCreanceGlobales/{date1}/{date2}")
+    public Collection<IPM_Facture> getCreances(@PathVariable  String date1, @PathVariable  String  date2) throws ParseException {
+        Date d1=new SimpleDateFormat("dd-MM-yyyy").parse(date1);
+        Date d2=new SimpleDateFormat("dd-MM-yyyy").parse(date2);
+        return  ipm_factureService.getCreancesGlobales(d1,d2);
+
+    }
 
 }

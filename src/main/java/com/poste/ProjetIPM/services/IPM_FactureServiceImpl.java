@@ -54,4 +54,9 @@ public class IPM_FactureServiceImpl implements IPM_FactureService {
     public void delete(Long id) {
         ipm_factureRepository.deleteById(id);
     }
+
+    @Override
+    public Collection<IPM_Facture> getCreancesGlobales(Date date1, Date date2) {
+        return ipm_factureRepository.findByDateSaisieBetween(date1,date2);
+    }
 }

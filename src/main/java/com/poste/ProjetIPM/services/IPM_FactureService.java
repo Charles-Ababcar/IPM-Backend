@@ -22,4 +22,6 @@ public interface IPM_FactureService {
     void update(IPM_Facture ipm_facture);
 
     void delete(Long id);
+
+    Collection<IPM_Facture> getCreancesGlobales(Date date1,Date date2);
 }

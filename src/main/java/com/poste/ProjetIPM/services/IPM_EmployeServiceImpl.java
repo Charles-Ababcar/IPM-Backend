@@ -40,6 +40,7 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
     public IPM_Employe save(IPM_Employe ipm_employe) {
         // Long id= ipm_employe.getIpm_categorie().getCode_categorie();
         //    ipm_employe.setIpm_categorie(ipm_categorieService.getById(id));
+
         return ipm_employeRepository.save(ipm_employe);
     }
 

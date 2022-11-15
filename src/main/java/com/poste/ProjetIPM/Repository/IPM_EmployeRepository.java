@@ -2,6 +2,7 @@ package com.poste.ProjetIPM.Repository;
 
 import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.entities.IPM_Enfant;
+import com.poste.ProjetIPM.entities.IPM_Entity;
 import com.poste.ProjetIPM.entities.IPM_Service;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -26,7 +27,6 @@ public interface IPM_EmployeRepository extends JpaRepository<IPM_Employe, Long> 
     IPM_Enfant getByMatricules(@Param("matricule") String matricule );
 
    Collection<IPM_Employe> findByIpmService(IPM_Service ipmService);
-
     //List<IPM_Employe> updateListe(List<IPM_Employe> ipm_employe);
 
     //void update(IPM_Employe ipm_employe);
