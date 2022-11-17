@@ -5,6 +5,7 @@ import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.entities.IPM_Facture;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 public interface IPM_Details_FactureService {
@@ -35,5 +36,9 @@ public interface IPM_Details_FactureService {
     Collection <IPM_Details_Facture> getDetailFact(IPM_Facture ipmFacture);
 
     void update(IPM_Details_Facture ipm_details_facture);
+    Collection<IPM_Details_Facture> getCreancesGlobaless(Date date1, Date date2);
 
+    List<IPM_Details_Facture> addListEntity(Long idEntity, Date date1, Date date2);
+
+    Collection<IPM_Details_Facture> getCreancesGlo(Date date1, Date date2);
 }

@@ -51,4 +51,9 @@ public class IPM_Details_CotisationsServiceImpl implements IPM_Details_Cotisatio
     public void delete(Long id) {
        ipm_details_cotisationsRepository.deleteById(id);
     }
+
+    @Override
+    public  Collection<IPM_Details_Cotisations> getCumulCotisation(Integer annee){
+        return ipm_details_cotisationsRepository.getCotisationAnnualle(annee);
+    }
 }

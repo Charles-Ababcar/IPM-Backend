@@ -5,6 +5,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.poste.ProjetIPM.Repository.IPM_CotisationRepository;
 import com.poste.ProjetIPM.entities.IPM_Cotisation;
+import com.poste.ProjetIPM.entities.IPM_Details_Cotisations;
 import com.poste.ProjetIPM.entities.IPM_Facture;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;

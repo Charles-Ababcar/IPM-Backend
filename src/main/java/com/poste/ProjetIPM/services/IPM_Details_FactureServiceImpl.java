@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -57,4 +59,26 @@ public class IPM_Details_FactureServiceImpl implements IPM_Details_FactureServic
     public void update(IPM_Details_Facture ipm_details_facture) {
           ipm_details_factureRepository.save(ipm_details_facture);
     }
+    @Override
+    public Collection<IPM_Details_Facture> getCreancesGlobaless(Date date1, Date date2) {
+        return ipm_details_factureRepository.findByDateSaisieBetween(date1,date2);
+
+    }
+    @Override
+    public List<IPM_Details_Facture> addListEntity(Long idEntity,Date date1, Date date2){
+        List<IPM_Details_Facture> ipmFactureList =new ArrayList<>();
+        List<IPM_Details_Facture> ipmDetailsFacture =ipm_details_factureRepository.findByDateSaisieBetween(date1,date2);;
+        for (int i = 0; i < ipmDetailsFacture.size(); i++) {
+            if(ipmDetailsFacture.get(i).getIpm_employe().getIpmEntity().getIdEntity()==idEntity) {
+                ipmFactureList.add(ipmDetailsFacture.get(i));
+            }
+        }
+        return ipmFactureList;
+
+    }
+    @Override
+    public Collection<IPM_Details_Facture> getCreancesGlo(Date date1, Date date2) {
+        return ipm_details_factureRepository.getDateCr(date1,date2);
+    }
+
 }

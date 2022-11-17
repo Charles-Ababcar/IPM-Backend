@@ -13,11 +13,16 @@ public class IPM_Details_Cotisations {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private  Long id_Det_Coti;
-     private Long montant;
+     private Double montant;
     @ManyToOne
     @JoinColumn(name = "id_employe")
     private IPM_Employe ipm_employe;
     @ManyToOne
     @JoinColumn(name="idcotisation")
     private IPM_Cotisation ipm_cotisation;
+
+    public IPM_Details_Cotisations( IPM_Employe ipm_employe, IPM_Cotisation ipm_cotisation) {
+        this.ipm_employe = ipm_employe;
+        this.ipm_cotisation = ipm_cotisation;
+    }
 }

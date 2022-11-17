@@ -20,4 +20,6 @@ public interface IPM_Details_CotisationsService {
     void update(IPM_Details_Cotisations ipm_details_cotisations);
 
     void delete(Long id);
+
+    Collection<IPM_Details_Cotisations> getCumulCotisation(Integer annee);
 }

@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -69,5 +72,20 @@ public class IPM_Details_FactureController {
         } else {
             redirectAttributes.addFlashAttribute("errormessage", "File Upload not done, Please try again !");
         }
+    }
+
+    @GetMapping("/getCreanceGlobaless/{date1}/{date2}/{ident}")
+    public Collection<IPM_Details_Facture> getCreances(@PathVariable  String date1, @PathVariable  String  date2,@PathVariable Long ident) throws ParseException {
+        Date d1=new SimpleDateFormat("dd-MM-yyyy").parse(date1);
+        Date d2=new SimpleDateFormat("dd-MM-yyyy").parse(date2);
+        return  ipm_details_factureService.addListEntity(ident,d1,d2);
+
+    }
+    @GetMapping("/getCreanceGlo/{date1}/{date2}")
+    public Collection<IPM_Details_Facture> getCreancesBlo(@PathVariable  String date1, @PathVariable  String  date2) throws ParseException {
+        Date d1=new SimpleDateFormat("dd-MM-yyyy").parse(date1);
+        Date d2=new SimpleDateFormat("dd-MM-yyyy").parse(date2);
+        return  ipm_details_factureService.getCreancesGlo(d1,d2);
+
     }
 }

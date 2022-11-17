@@ -52,4 +52,9 @@ public class IPM_Details_CotisationController {
     public void update(@RequestBody IPM_Details_Cotisations ipmDetailsCotisations){
         ipm_details_cotisationsService.update(ipmDetailsCotisations);
     }
+
+    @GetMapping("/cumulCotisation/{annee}")
+    public Collection<IPM_Details_Cotisations> getCumuls(@PathVariable Integer annee){
+        return ipm_details_cotisationsService.getCumulCotisation(annee);
+    }
 }

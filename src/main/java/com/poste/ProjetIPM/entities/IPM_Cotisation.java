@@ -19,9 +19,9 @@ public class IPM_Cotisation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCotisation;
-    private Long montant_totals;
+    private Double montant_totals;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date date;
+    public Date date;
 
     public Long getIdCotisation() {
         return idCotisation;
@@ -70,4 +70,6 @@ public class IPM_Cotisation {
     }*/
     /*@OneToMany(mappedBy = "ipm_cotisation")
     private List<IPM_Categorie> ipm_categories;*/
+
+
 }
