@@ -81,4 +81,16 @@ public class IPM_Details_FactureServiceImpl implements IPM_Details_FactureServic
         return ipm_details_factureRepository.getDateCr(date1,date2);
     }
 
+
+    //Globals prestations
+    @Override
+    public Collection<IPM_Details_Facture> getPrestationGlobals(Date date1, Date date2, Long d3) {
+        return ipm_details_factureRepository.getGlobalsPrestations(date1,date2,d3);
+    }
+
+    //Individuels prestations
+    @Override
+    public Collection<IPM_Details_Facture> getPrestationIndividuel(Date date1, Date date2,String matricule) {
+        return ipm_details_factureRepository.getIndividuelPrestations(date1,date2, matricule);
+    }
 }

@@ -75,4 +75,15 @@ public class IPM_Details_Facture {
         this.ipmFacture=ipmFacture;
 
     }
+    //Individuel
+    public IPM_Details_Facture(Date dateSaisie,Double part_patient ,Double part_ipm,Double montant_facture,IPM_Employe ipm_employe,IPM_Facture ipmFacture,IPM_Prestation ipm_prestation) {
+        this.dateSaisie =dateSaisie;
+        this.part_patient=part_patient;
+        this.part_ipm =part_ipm;
+        this.montant_facture = montant_facture;
+        this.ipm_employe =ipm_employe;
+        this.ipmFacture=ipmFacture;
+        this.ipm_prestation=ipm_prestation;
+
+    }
 }
