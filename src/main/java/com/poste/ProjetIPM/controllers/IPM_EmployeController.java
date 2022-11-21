@@ -146,10 +146,10 @@ public class IPM_EmployeController {
         ipm_employeService.delete(id);
     }
 
-    @GetMapping("/rechercheM/{A}/{B}")
+    @GetMapping("/rechercheM/{A}")
     //String matricule="A"+"/"+"B";
-    public IPM_Employe recherche_matricule(@PathVariable String A,@PathVariable String B) {
-        return ipm_employeService.getByMatricule(A+"/"+B);
+    public IPM_Employe recherche_matricule(@PathVariable String A) {
+        return ipm_employeService.getByMatricule(A);
     }
 
     @GetMapping("/rechercheR/{reference}")

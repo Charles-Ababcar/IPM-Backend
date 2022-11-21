@@ -84,6 +84,5 @@ public class IPM_Details_Facture {
         this.ipm_employe =ipm_employe;
         this.ipmFacture=ipmFacture;
         this.ipm_prestation=ipm_prestation;
-
     }
 }
