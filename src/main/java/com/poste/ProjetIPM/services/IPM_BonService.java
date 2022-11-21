@@ -3,6 +3,7 @@ package com.poste.ProjetIPM.services;
 import com.poste.ProjetIPM.entities.IPM_Bon;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 public interface IPM_BonService {
@@ -22,4 +23,8 @@ public interface IPM_BonService {
     void delete(Long id);
 
     List<IPM_Bon> getPrestataire(Long id);
+
+    Collection<IPM_Bon> getBonbyperiode(Date date1, Date date2);
+
+    Collection<IPM_Bon> getBonbyperiodeAndType(Date date1, Date date2, Long d3);
 }

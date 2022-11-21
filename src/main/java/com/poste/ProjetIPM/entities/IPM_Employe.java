@@ -28,7 +28,7 @@ public class IPM_Employe implements Serializable {
     private String sexe;
 
     private String matricule;
-    private String picByte;
+   // private String picByte;
     @Column(length = 1000)
     @JoinColumn(nullable = true)
     private String photo;
