@@ -64,6 +64,14 @@ public class IPM_Bon implements Serializable {
 
 //    @OneToMany(mappedBy = "ipm_bon")
 //    private List<IPM_Statut_Bon> ipm_statut_bons;
+    public IPM_Bon(IPM_Employe ipm_employe,IPM_Prestataire ipm_prestataire,IPM_Prestation ipm_prestation) {
+        this.ipm_employe=ipm_employe;
+        this.ipm_prestataire=ipm_prestataire;
+        this.ipm_prestation=ipm_prestation;
+
+
+
+    }
 
     public Long getIdbon() {
         return idbon;

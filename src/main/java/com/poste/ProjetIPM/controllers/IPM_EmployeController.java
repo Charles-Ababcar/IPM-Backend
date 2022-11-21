@@ -21,7 +21,7 @@ import java.util.*;
 /*@RequestMapping(path = "image")*/
 //@RequestMapping("/api")
 public class IPM_EmployeController {
-    private byte[] bytes;
+    //private byte[] bytes;
     @Autowired
     IPM_EmployeService ipm_employeService;
     @Autowired

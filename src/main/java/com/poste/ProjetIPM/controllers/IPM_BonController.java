@@ -4,6 +4,7 @@ import com.poste.ProjetIPM.Repository.IPM_BonRepository;
 import com.poste.ProjetIPM.Repository.IPM_ConjointRepository;
 import com.poste.ProjetIPM.entities.IPM_Bon;
 
+import com.poste.ProjetIPM.entities.IPM_Details_Facture;
 import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.entities.IPM_Enfant;
 import com.poste.ProjetIPM.services.IPM_BonService;
@@ -11,6 +12,8 @@ import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Collection;
@@ -40,6 +43,23 @@ public class IPM_BonController {
     @GetMapping(value = "/getbonByid/{id}")
     public List<IPM_Bon> getBonById(@PathVariable Long id) {
         return ipm_bonRepository.getEmpById(id);
+    }
+
+    //Situation des bons  par période
+    @GetMapping("/getBonByPeriode/{date1}/{date2}")
+    public Collection<IPM_Bon> getBonByPeriode(@PathVariable String date1, @PathVariable String date2) throws ParseException {
+        Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(date1);
+        Date d2 = new SimpleDateFormat("dd-MM-yyyy").parse(date2);
+        return ipm_bonService.getBonbyperiode(d1, d2);
+
+    }
+    //Situation des bons  par période et type de bon
+    @GetMapping("/getBonByPeriodeAndtype/{date1}/{date2}/{id}")
+    public Collection<IPM_Bon> getBonByPeriodeAndType(@PathVariable String date1, @PathVariable String date2,@PathVariable Long id) throws ParseException {
+        Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(date1);
+        Date d2 = new SimpleDateFormat("dd-MM-yyyy").parse(date2git );
+        return ipm_bonService.getBonbyperiodeAndType(d1,d2,id);
+
     }
 
     @GetMapping(value = "/getpresById/{id}")
