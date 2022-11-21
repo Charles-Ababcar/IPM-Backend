@@ -41,4 +41,10 @@ public interface IPM_Details_FactureService {
     List<IPM_Details_Facture> addListEntity(Long idEntity, Date date1, Date date2);
 
     Collection<IPM_Details_Facture> getCreancesGlo(Date date1, Date date2);
+
+    //Globals prestations
+    Collection<IPM_Details_Facture> getPrestationGlobals(Date date1, Date date2, Long d3);
+
+    //Individuels prestations
+    Collection<IPM_Details_Facture> getPrestationIndividuel(Date date1, Date date2, String matricule);
 }
