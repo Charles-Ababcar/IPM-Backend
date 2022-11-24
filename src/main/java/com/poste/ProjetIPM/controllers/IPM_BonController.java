@@ -57,7 +57,7 @@ public class IPM_BonController {
     @GetMapping("/getBonByPeriodeAndtype/{date1}/{date2}/{id}")
     public Collection<IPM_Bon> getBonByPeriodeAndType(@PathVariable String date1, @PathVariable String date2,@PathVariable Long id) throws ParseException {
         Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(date1);
-        Date d2 = new SimpleDateFormat("dd-MM-yyyy").parse(date2git );
+        Date d2 = new SimpleDateFormat("dd-MM-yyyy").parse(date2);
         return ipm_bonService.getBonbyperiodeAndType(d1,d2,id);
 
     }

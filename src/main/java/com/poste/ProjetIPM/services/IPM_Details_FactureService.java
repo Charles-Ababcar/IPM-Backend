@@ -38,7 +38,11 @@ public interface IPM_Details_FactureService {
     void update(IPM_Details_Facture ipm_details_facture);
     Collection<IPM_Details_Facture> getCreancesGlobaless(Date date1, Date date2);
 
-    List<IPM_Details_Facture> addListEntity(Long idEntity, Date date1, Date date2);
+    //List<IPM_Details_Facture> addListEntity(Long idEntity, Date date1, Date date2);
+
+    Collection<IPM_Details_Facture> addListEntity(Long idEntity, Date date1, Date date2);
+
+    List<IPM_Details_Facture> addListEntitys(Long idEntity, Date date1, Date date2);
 
     Collection<IPM_Details_Facture> getCreancesGlo(Date date1, Date date2);
 
