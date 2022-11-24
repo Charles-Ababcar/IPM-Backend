@@ -19,6 +19,8 @@ public interface IPM_Details_FactureRepository  extends JpaRepository<IPM_Detail
     List<IPM_Details_Facture> findByIpmFacture(IPM_Facture ipmFacture);
     //situation des créances globales par période par entité
     List<IPM_Details_Facture> findByDateSaisieBetween(Date d1, Date d2);
+    @Query(value = "SELECT new IPM_Details_Facture(c.dateSaisie,SUM(c.part_patient),SUM(c.part_ipm),SUM(c.montant_facture),c.ipm_employe,c.ipmFacture) from IPM_Details_Facture  c where c.ipmFacture.dateSaisie BETWEEN :d1 and :d2 and c.ipm_employe.ipmEntity.idEntity=:identity GROUP BY c.ipm_employe")
+    Collection<IPM_Details_Facture> getDateByEntity(@Param("d1") Date d1 ,@Param("d2") Date d2,@Param("identity") Long identity);
     //la situation des charges totales individuelles et par période
     @Query(value = "SELECT new IPM_Details_Facture(c.dateSaisie,SUM(c.part_patient),SUM(c.part_ipm),SUM(c.montant_facture),c.ipm_employe,c.ipmFacture) from IPM_Details_Facture  c where c.dateSaisie BETWEEN :d1 and :d2 GROUP BY c.ipm_employe")
     Collection<IPM_Details_Facture> getDateCr(@Param("d1") Date d1 ,@Param("d2") Date d2);
@@ -33,3 +35,4 @@ public interface IPM_Details_FactureRepository  extends JpaRepository<IPM_Detail
 
 
 }
+

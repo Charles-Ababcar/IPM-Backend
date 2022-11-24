@@ -98,7 +98,7 @@ public class IPM_Details_FactureController {
 
     }
 
-    //Situation prestations globals par période
+    //Situation prestations globals par période et par entité
     @GetMapping("/getGlobalsPrestations/{date1}/{date2}/{idprest}")
     public Collection<IPM_Details_Facture> getPrestationGlobals(@PathVariable String date1, @PathVariable String date2, @PathVariable Long idprest) throws ParseException {
         Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(date1);

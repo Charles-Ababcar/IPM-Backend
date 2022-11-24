@@ -11,6 +11,8 @@ public interface IPM_CotisationService {
 
     IPM_Cotisation getById(long id);
 
+
+
     Long save(IPM_Cotisation ipm_cotisation);
 
     void update(IPM_Cotisation ipm_cotisation);
