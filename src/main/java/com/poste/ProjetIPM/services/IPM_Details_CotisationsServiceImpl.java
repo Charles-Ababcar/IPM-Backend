@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class IPM_Details_CotisationsServiceImpl implements IPM_Details_CotisationsService {
     @Autowired
     IPM_CotisationRepository ipm_cotisationRepository;
+
     @Autowired
     IPM_Details_CotisationsRepository ipm_details_cotisationsRepository;
     @Override
@@ -45,6 +47,10 @@ public class IPM_Details_CotisationsServiceImpl implements IPM_Details_Cotisatio
     @Override
     public void update(IPM_Details_Cotisations ipm_details_cotisations) {
      ipm_details_cotisationsRepository.save(ipm_details_cotisations);
+    }
+    @Override
+    public Collection<IPM_Details_Cotisations> listCotisationById(long id) {
+           return  ipm_details_cotisationsRepository.getListCotisation(id);
     }
 
     @Override

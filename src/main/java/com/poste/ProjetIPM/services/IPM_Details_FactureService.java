@@ -38,11 +38,33 @@ public interface IPM_Details_FactureService {
     void update(IPM_Details_Facture ipm_details_facture);
     Collection<IPM_Details_Facture> getCreancesGlobaless(Date date1, Date date2);
 
+
     //List<IPM_Details_Facture> addListEntity(Long idEntity, Date date1, Date date2);
+
+
+
+
+
+    List<IPM_Details_Facture> addListEntitys(Long idEntity, Date date1, Date date2);
 
     Collection<IPM_Details_Facture> addListEntity(Long idEntity, Date date1, Date date2);
 
-    List<IPM_Details_Facture> addListEntitys(Long idEntity, Date date1, Date date2);
+
+    /* @Override
+     public Collection<IPM_Details_Facture> addListEntity(Long idEntity,Date date1, Date date2){
+        return ipm_details_factureRepository.getDateByEntity(date1,date2,idEntity);
+
+
+     }*/
+
+
+    /* @Override
+     public Collection<IPM_Details_Facture> addListEntity(Long idEntity,Date date1, Date date2){
+        return ipm_details_factureRepository.getDateByEntity(date1,date2,idEntity);
+
+
+     }*/
+    Collection<IPM_Details_Facture> Duplicata(Integer num);
 
     Collection<IPM_Details_Facture> getCreancesGlo(Date date1, Date date2);
 

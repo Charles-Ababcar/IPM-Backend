@@ -68,7 +68,7 @@ public class IPM_Details_FactureServiceImpl implements IPM_Details_FactureServic
     public Collection<IPM_Details_Facture> addListEntity(Long idEntity, Date date1, Date date2) {
         return ipm_details_factureRepository.getDateByEntity(date1,date2,idEntity);}
     @Override
-    public List<IPM_Details_Facture> addListEntitys(Long idEntity,Date date1, Date date2){
+    public List<IPM_Details_Facture> addListEntitys(Long idEntity, Date date1, Date date2){
         List<IPM_Details_Facture> ipmFactureList =new ArrayList<>();
         List<IPM_Details_Facture> ipmDetailsFacture =ipm_details_factureRepository.findByDateSaisieBetween(date1,date2);;
         for (int i = 0; i < ipmDetailsFacture.size(); i++) {
@@ -77,6 +77,18 @@ public class IPM_Details_FactureServiceImpl implements IPM_Details_FactureServic
             }
         }
         return ipmFactureList;
+
+    }
+   /* @Override
+    public Collection<IPM_Details_Facture> addListEntity(Long idEntity,Date date1, Date date2){
+       return ipm_details_factureRepository.getDateByEntity(date1,date2,idEntity);
+
+
+    }*/
+    @Override
+    public Collection<IPM_Details_Facture> Duplicata(Integer num){
+       return ipm_details_factureRepository.getDuplicataFacture(num);
+
 
     }
     @Override

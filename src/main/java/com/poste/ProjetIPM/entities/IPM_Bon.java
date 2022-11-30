@@ -144,4 +144,5 @@ public class IPM_Bon implements Serializable {
 //    public void setIpm_statut_bons(List<IPM_Statut_Bon> ipm_statut_bons) {
 //        this.ipm_statut_bons = ipm_statut_bons;
 //    }
+
 }

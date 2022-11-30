@@ -148,11 +148,11 @@ public class IPM_Employe implements Serializable {
         this.situation_familial = situation_familial;
     }
 
-    public Long getSolde() {
+    public Double getSolde() {
         return solde;
     }
 
-    public void setSolde(Long solde) {
+    public void setSolde(Double solde) {
         this.solde = solde;
     }
 
@@ -271,7 +271,7 @@ public class IPM_Employe implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date_recrutement;
     private String situation_familial;
-    private Long solde;
+    private Double solde;
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     //  @Temporal(TemporalType.TIME)
 
@@ -342,4 +342,8 @@ public class IPM_Employe implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "ipm_employe")
     private List<IPM_Details_remboursement> ipmDetailsRemboursements;
+
+    public IPM_Employe(String matricule) {
+        this.matricule = matricule;
+    }
 }

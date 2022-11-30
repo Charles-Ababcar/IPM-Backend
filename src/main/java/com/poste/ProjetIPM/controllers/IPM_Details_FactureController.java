@@ -1,5 +1,6 @@
 package com.poste.ProjetIPM.controllers;
 
+import com.poste.ProjetIPM.Repository.IPM_Details_FactureRepository;
 import com.poste.ProjetIPM.entities.IPM_Details_Facture;
 import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.entities.IPM_Enfant;
@@ -27,7 +28,8 @@ public class IPM_Details_FactureController {
     IPM_FactureService ipm_factureService;
     @Autowired
     IPM_Details_FactureService ipm_details_factureService;
-
+  @Autowired
+    IPM_Details_FactureRepository ipm_details_factureRepository;
     @GetMapping("/detailsfactures")
     public Collection<IPM_Details_Facture> getAll() {
         return ipm_details_factureService.getAll();
@@ -96,7 +98,7 @@ public class IPM_Details_FactureController {
 
     }
 
-    //Situation prestations globals par période
+    //Situation prestations globals par période et par entité
     @GetMapping("/getGlobalsPrestations/{date1}/{date2}/{idprest}")
     public Collection<IPM_Details_Facture> getPrestationGlobals(@PathVariable String date1, @PathVariable String date2, @PathVariable Long idprest) throws ParseException {
         Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(date1);
@@ -112,4 +114,13 @@ public class IPM_Details_FactureController {
         return ipm_details_factureService.getPrestationIndividuel(d1, d2, matricule);
 
     }
+    @GetMapping("/factureBynumero/{num}")
+    public Collection<IPM_Details_Facture> getPrestationIndividuel(@PathVariable Integer num) throws ParseException {
+
+        return ipm_details_factureService.Duplicata(num);
+
+    }
+
+
+
 }

@@ -26,10 +26,17 @@ public interface IPM_Details_FactureRepository  extends JpaRepository<IPM_Detail
     Collection<IPM_Details_Facture> getDateCr(@Param("d1") Date d1 ,@Param("d2") Date d2);
     //Collection<IPM_Details_Facture> findByIpmfacture(IPM_Conjoint _Facture ipmfacture);
     //situation globals des prestations
-    @Query(value = "SELECT new IPM_Details_Facture(c.dateSaisie,SUM(c.part_patient),SUM(c.part_ipm),SUM(c.montant_facture),c.ipm_employe,c.ipmFacture,c.ipm_prestation) from IPM_Details_Facture  c where c.dateSaisie BETWEEN :d1 and :d2 and c.ipm_prestation.code_prestation=:d3 ")
+
+    @Query(value = "SELECT new IPM_Details_Facture(c.dateSaisie,c.part_patient,c.part_ipm,c.montant_facture,c.ipm_employe,c.ipmFacture,c.ipm_prestation) from IPM_Details_Facture  c where c.dateSaisie BETWEEN :d1 and :d2 and c.ipm_prestation.code_prestation=:d3 ")
     Collection<IPM_Details_Facture> getGlobalsPrestations(@Param("d1") Date d1 ,@Param("d2") Date d2,@Param("d3") Long d3);
+    //Duplicata facture
+    @Query(value = "SELECT new IPM_Details_Facture(c.dateSaisie,c.part_patient,c.part_ipm,c.montant_facture,c.ipm_employe,c.ipmFacture,c.ipm_prestation) from IPM_Details_Facture  c where c.ipmFacture.numerofacture=:d3 ")
+    Collection<IPM_Details_Facture> getDuplicataFacture(@Param("d3") Integer d3);
     //Siuation individuels des prestations
-    @Query(value = "SELECT new IPM_Details_Facture(c.dateSaisie,SUM(c.part_patient),SUM(c.part_ipm),SUM(c.montant_facture),c.ipm_employe,c.ipmFacture,c.ipm_prestation) from IPM_Details_Facture  c where c.dateSaisie BETWEEN :d1 and :d2 and c.ipm_employe.matricule=:matricule")
-    Collection<IPM_Details_Facture> getIndividuelPrestations(@Param("d1") Date d1 ,@Param("d2") Date d2,@Param("matricule")  String matricule);
+    @Query(value = "SELECT   new IPM_Details_Facture(c.dateSaisie,c.part_patient,c.part_ipm,c.montant_facture,c.ipm_employe,c.ipmFacture,c.ipm_prestation) from IPM_Details_Facture  c  where c.ipmFacture.dateSaisie BETWEEN :d1 and :d2 and c.ipm_employe.matricule=:matricule")
+    Collection<IPM_Details_Facture> getIndividuelPrestations(@Param("d1") Date d1 ,@Param("d2") Date d2, @Param("matricule")  String matricule);
+
+
+
 }
 

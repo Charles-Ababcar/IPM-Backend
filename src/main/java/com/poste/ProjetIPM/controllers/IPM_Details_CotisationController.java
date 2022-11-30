@@ -10,6 +10,7 @@ import com.poste.ProjetIPM.services.IPM_Details_remboursementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -34,6 +35,11 @@ public class IPM_Details_CotisationController {
         ipm_details_cotisationsService.delete(id);
 
     }
+    @GetMapping("/listcotisation/{id}")
+    public Collection<IPM_Details_Cotisations> getListById(@PathVariable Long id) {
+        return ipm_details_cotisationsService.listCotisationById(id);
+    }
+
    @GetMapping("/detailscotisation/{id}")
     public IPM_Details_Cotisations getById(@PathVariable Long id){
          return ipm_details_cotisationsService.getById(id);

@@ -38,6 +38,8 @@ public class IPM_CotisationServiceImpl implements IPM_CotisationService {
         return ipm_cotisationRepository.findById(id).get();
     }
 
+
+
     @Override
     public Long save(IPM_Cotisation ipm_cotisation) {
         IPM_Cotisation ipm_cotisation1=ipm_cotisationRepository.save(ipm_cotisation);
