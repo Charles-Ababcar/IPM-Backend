@@ -46,15 +46,15 @@ public class IPM_BonController {
     }
 
     //Situation des bons  par période
-    @GetMapping("/getBonByPeriode/{date1}/{date2}")
-    public Collection<IPM_Bon> getBonByPeriode(@PathVariable String date1, @PathVariable String date2) throws ParseException {
+    @GetMapping("/getBonByPeriode/{date1}/{date2}/{typebon}")
+    public Collection<IPM_Bon> getBonByPeriode(@PathVariable String date1, @PathVariable String date2,@PathVariable String typebon) throws ParseException {
         Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(date1);
         Date d2 = new SimpleDateFormat("dd-MM-yyyy").parse(date2);
-        return ipm_bonService.getBonbyperiode(d1, d2);
+        return ipm_bonService.getBonbyperiode(d1, d2,typebon);
 
     }
     //Situation des bons  par période et type de bon
-    @GetMapping("/getBonByPeriodeAndtype/{date1}/{date2}/{id}")
+    @GetMapping("/getBonByPeriodeAndtype/{date1}/{date2}")
     public Collection<IPM_Bon> getBonByPeriodeAndType(@PathVariable String date1, @PathVariable String date2,@PathVariable Long id) throws ParseException {
         Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(date1);
         Date d2 = new SimpleDateFormat("dd-MM-yyyy").parse(date2);
@@ -86,4 +86,8 @@ public class IPM_BonController {
     public void delete(@PathVariable Long id) {
         ipm_bonService.delete(id);
     }
+
+
+
+
 }

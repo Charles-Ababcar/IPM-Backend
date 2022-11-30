@@ -16,8 +16,9 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("CUST")
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING,
+        name = "Type_Bon")
 @DynamicUpdate
 public class IPM_Bon implements Serializable {
     @Id
@@ -32,7 +33,7 @@ public class IPM_Bon implements Serializable {
     // private String designation;
     //private String prix_unitaire;
     private String total;
-    private Date date_etablissement;
+    private Date dateEtablissement;
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @SequenceGenerator(name = "nombreArticle", sequenceName = "yourSeqName", allocationSize = 1)
 //    @Column(name="nombreArticle", unique=true, nullable=false, precision=10, scale=0)
@@ -71,6 +72,7 @@ public class IPM_Bon implements Serializable {
 
 
 
+
     }
 
     public Long getIdbon() {
@@ -106,11 +108,11 @@ public class IPM_Bon implements Serializable {
     }
 
     public Date getDate_etablissement() {
-        return date_etablissement;
+        return dateEtablissement;
     }
 
-    public void setDate_etablissement(Date date_etablissement) {
-        this.date_etablissement = date_etablissement;
+    public void setDate_etablissement(Date dateEtablissement) {
+        this.dateEtablissement = dateEtablissement;
     }
 
     public IPM_Facture getIpm_facture() {
@@ -144,4 +146,9 @@ public class IPM_Bon implements Serializable {
 //    public void setIpm_statut_bons(List<IPM_Statut_Bon> ipm_statut_bons) {
 //        this.ipm_statut_bons = ipm_statut_bons;
 //    }
+
+    @Transient
+    public String getDecriminatorValue() {
+        return this.getClass().getAnnotation(DiscriminatorValue.class).value();
+    }
 }

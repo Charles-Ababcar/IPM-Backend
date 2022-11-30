@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("VCUST")
+@DiscriminatorValue("pharmacie")
 @PrimaryKeyJoinColumn(name = "idbon")
 public class IPM_Bon_Pharmaceutique extends IPM_Bon {
 

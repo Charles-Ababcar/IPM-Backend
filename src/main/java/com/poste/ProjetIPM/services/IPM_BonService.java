@@ -24,7 +24,7 @@ public interface IPM_BonService {
 
     List<IPM_Bon> getPrestataire(Long id);
 
-    Collection<IPM_Bon> getBonbyperiode(Date date1, Date date2);
+    Collection<IPM_Bon> getBonbyperiode(Date date1, Date date2,String typeBon);
 
     Collection<IPM_Bon> getBonbyperiodeAndType(Date date1, Date date2, Long d3);
 }

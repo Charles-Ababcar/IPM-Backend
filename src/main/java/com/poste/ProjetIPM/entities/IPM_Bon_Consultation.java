@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("VCUST")
+@DiscriminatorValue("consultation")
 @PrimaryKeyJoinColumn(name = "idbon")
 public class IPM_Bon_Consultation extends IPM_Bon {
     private String designation;
