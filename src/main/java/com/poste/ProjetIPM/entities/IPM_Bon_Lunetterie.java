@@ -16,7 +16,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-//@DiscriminatorValue("VCUST")
+@DiscriminatorValue("lunetterie")
 @PrimaryKeyJoinColumn(name="idbon")
 //@PrimaryKeyJoinColumn(name = "idbon")
 public class IPM_Bon_Lunetterie extends IPM_Bon {
