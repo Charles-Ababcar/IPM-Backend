@@ -25,4 +25,9 @@ public class IPM_Details_remboursement  {
     @ManyToOne
     @JoinColumn(name = "idRemboursement")
     private IPM_Remboursement ipmRemboursement;
+    public IPM_Details_remboursement(Long montant,IPM_Employe ipm_employe,IPM_Remboursement ipmRemboursement){
+        this.montant=montant;
+        this.ipm_employe=ipm_employe;
+        this.ipmRemboursement=ipmRemboursement;
+    }
 }

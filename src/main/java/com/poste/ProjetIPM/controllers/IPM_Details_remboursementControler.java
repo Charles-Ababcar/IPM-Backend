@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -54,6 +57,14 @@ public class IPM_Details_remboursementControler {
     @PutMapping("/update")
     public void update(@RequestBody IPM_Details_remboursement ipmDetailsRemboursement){
         ipmDetailsRemboursementService.update(ipmDetailsRemboursement);
+    }
+    //Situation  individuel par période
+    @GetMapping("/getIndividuelRembour/{date1}/{date2}/{matricule}")
+    public Collection<IPM_Details_remboursement> getIndividuel(@PathVariable String date1, @PathVariable String date2, @PathVariable String matricule) throws ParseException {
+        Date d1 = new SimpleDateFormat("dd-MM-yyyy").parse(date1);
+        Date d2 = new SimpleDateFormat("dd-MM-yyyy").parse(date2);
+        return ipmDetailsRemboursementService.getIndividuelRembour(d1, d2, matricule);
+
     }
 
 

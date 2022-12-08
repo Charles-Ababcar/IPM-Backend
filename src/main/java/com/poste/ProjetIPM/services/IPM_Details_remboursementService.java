@@ -5,6 +5,7 @@ import com.poste.ProjetIPM.entities.IPM_Details_remboursement;
 import com.poste.ProjetIPM.entities.IPM_Remboursement;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 public interface IPM_Details_remboursementService {
@@ -19,4 +20,6 @@ public interface IPM_Details_remboursementService {
     void update(IPM_Details_remboursement ipmDetailremboursement);
 
     void delete(Long id);
+
+    Collection<IPM_Details_remboursement> getIndividuelRembour(Date date1, Date date2, String matricule);
 }

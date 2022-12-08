@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 @Service
 public class IPM_Details_remboursementServiceImpl implements IPM_Details_remboursementService {
@@ -53,6 +54,10 @@ public class IPM_Details_remboursementServiceImpl implements IPM_Details_rembour
     @Override
     public void delete(Long id) {
         ipmDetailsRemboursementRepository.deleteById(id);
+    }
+    @Override
+    public Collection<IPM_Details_remboursement> getIndividuelRembour(Date date1, Date date2, String matricule) {
+        return ipmDetailsRemboursementRepository.getRemboursementIndividuel(date1,date2, matricule);
     }
 
 }

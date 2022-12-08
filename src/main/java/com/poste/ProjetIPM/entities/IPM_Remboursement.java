@@ -1,5 +1,6 @@
 package com.poste.ProjetIPM.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class IPM_Remboursement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRemboursement;
     private String montantRemboursement;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date dateRemboursement;
     private  boolean certifier;
     @JsonIgnore
