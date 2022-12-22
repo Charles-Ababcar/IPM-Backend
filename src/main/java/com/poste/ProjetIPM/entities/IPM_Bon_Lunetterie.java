@@ -21,9 +21,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 //@PrimaryKeyJoinColumn(name = "idbon")
 public class IPM_Bon_Lunetterie extends IPM_Bon {
     private String motif;
-    @NotNull
+  //  @NotNull
     private String ordonnance;
     @NotNull
-    private String debit;
+    private String devit;
     private String numeroBon;
 }

@@ -27,18 +27,16 @@ public class IPM_Bon_LunetterieController {
 
         return ipm_bon_lunetterieService.getAll();
     }
-
-
     @RequestMapping(path= "/uploadeOrdonnanceLu", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadOrdonn(@RequestParam("file") MultipartFile file)
             throws IOException {
         ipm_bon_lunetterieService.AjouterUnFichier(file);
         return "succes";
     }
-    @RequestMapping(path= "/uploadeDebitLu", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(path= "/uploadeDevitLu", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadDebit(@RequestParam("file") MultipartFile file)
             throws IOException {
-        ipm_bon_lunetterieService.AjouterUnDebit(file);
+        ipm_bon_lunetterieService.AjouterUnDevit(file);
         return "succes";
     }
     @GetMapping(value = "/getbonLunetterieByid/{id}")

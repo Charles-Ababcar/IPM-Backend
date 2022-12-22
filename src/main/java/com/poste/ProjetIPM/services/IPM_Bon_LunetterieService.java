@@ -15,7 +15,7 @@ public interface IPM_Bon_LunetterieService {
 
    // List<IPM_Bon> getBonLunette(Long id);
 
-    String AjouterUnDebit(MultipartFile file) throws IOException;
+    String AjouterUnDevit(MultipartFile file) throws IOException;
 
     List<IPM_Bon> getBonLunetteConj(Long id);
 

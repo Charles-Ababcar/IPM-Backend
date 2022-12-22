@@ -34,8 +34,9 @@ public class IPM_Bon_LunetterieServiceImpl implements IPM_Bon_LunetterieService 
         return "Succes";
     }
     @Override
-    public String AjouterUnDebit(MultipartFile file) throws IOException {
-        String uploadDir = "/var/www/html/ipmfiles/files/ordonnances/";
+    public String AjouterUnDevit(MultipartFile file) throws IOException {
+       String uploadDir = "/var/www/html/ipmfiles/files/ordonnances/";
+     //   String uploadDir = "E:/MesDossiers/ordonnance_pharmacie/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();

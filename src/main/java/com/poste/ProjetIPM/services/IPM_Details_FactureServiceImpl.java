@@ -59,15 +59,15 @@ public class IPM_Details_FactureServiceImpl implements IPM_Details_FactureServic
     public void update(IPM_Details_Facture ipm_details_facture) {
           ipm_details_factureRepository.save(ipm_details_facture);
     }
-    @Override
+  /*  @Override
     public Collection<IPM_Details_Facture> getCreancesGlobaless(Date date1, Date date2) {
         return ipm_details_factureRepository.findByDateSaisieBetween(date1,date2);
 
-    }
+    }*/
     @Override
     public Collection<IPM_Details_Facture> addListEntity(Long idEntity, Date date1, Date date2) {
         return ipm_details_factureRepository.getDateByEntity(date1,date2,idEntity);}
-    @Override
+  /*  @Override
     public List<IPM_Details_Facture> addListEntitys(Long idEntity, Date date1, Date date2){
         List<IPM_Details_Facture> ipmFactureList =new ArrayList<>();
         List<IPM_Details_Facture> ipmDetailsFacture =ipm_details_factureRepository.findByDateSaisieBetween(date1,date2);;
@@ -78,7 +78,7 @@ public class IPM_Details_FactureServiceImpl implements IPM_Details_FactureServic
         }
         return ipmFactureList;
 
-    }
+    }*/
    /* @Override
     public Collection<IPM_Details_Facture> addListEntity(Long idEntity,Date date1, Date date2){
        return ipm_details_factureRepository.getDateByEntity(date1,date2,idEntity);

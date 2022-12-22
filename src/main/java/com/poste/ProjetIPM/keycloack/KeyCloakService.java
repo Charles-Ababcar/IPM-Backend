@@ -28,15 +28,15 @@ public class KeyCloakService {
     //////////////////Add User
     public void addUser(IPM_Utilisateur ipm_utilisateur){
         CredentialRepresentation credential = Credentials
-                //.createPasswordCredentials(user.getPassword());
-                .createPasswordCredentials("123456");
+                .createPasswordCredentials(ipm_utilisateur.getPassword());
+               // .createPasswordCredentials("123456");
         UserRepresentation newUser = new UserRepresentation();
         newUser.setUsername(ipm_utilisateur.getLogin());
         newUser.setFirstName(ipm_utilisateur.getPrenom());
         newUser.setLastName(ipm_utilisateur.getNom());
         newUser.setEmail(ipm_utilisateur.getEmail());
         newUser.setCredentials(Collections.singletonList(credential));
-        newUser.setEnabled(ipm_utilisateur.isEnable());
+        newUser.setEnabled(true);
 
         UsersResource instance = getInstance();
         instance.create(newUser);
@@ -125,7 +125,7 @@ public class KeyCloakService {
 
     /**
      * méthode pour supprimer un rôle client
-     * @param new_role_name
+     * @param //new_role_name
      */
     public void deleteRealmRole(String roleName){
         if(!getAllRoles().contains(roleName)){

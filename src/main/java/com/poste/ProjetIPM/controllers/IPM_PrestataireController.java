@@ -6,8 +6,11 @@ import com.poste.ProjetIPM.entities.IPM_Prestation;
 
 import com.poste.ProjetIPM.services.IPM_PrestataireService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,7 +38,10 @@ public class IPM_PrestataireController {
 
 
     @PostMapping("/prestataire")
-    public void save(@RequestBody IPM_Prestataire ipm_prestataire) {
+    public void save(@RequestBody IPM_Prestataire ipm_prestataire)
+    {
+        String uploadDiir = "/var/www/html/ipmfiles/files/jusificatifs";
+        ipm_prestataire.setLettreAgrement(uploadDiir+"/"+ipm_prestataire.getLettreAgrement());
         ipm_prestataireService.save(ipm_prestataire);
     }
 
@@ -52,4 +58,11 @@ public class IPM_PrestataireController {
 //    public IPM_Prestataire getNomType(@PathVariable String nom_prestataire){
 //        return ipm_prestataireService.getNomType(nom_prestataire);
 //    }
+
+    @RequestMapping(path= "/lettreAgrement", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadJustif(@RequestParam("file") MultipartFile file)
+            throws IOException {
+        ipm_prestataireService.AjouterFichierLettre(file);
+        return "succes";
+    }
 }

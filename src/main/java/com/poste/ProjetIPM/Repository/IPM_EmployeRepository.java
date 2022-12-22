@@ -10,8 +10,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.Optional;
+
 @Repository
 public interface IPM_EmployeRepository extends JpaRepository<IPM_Employe, Long> {
+
+
     public IPM_Employe findByMatricule(String matricule);
 
     public IPM_Employe findByReference(String reference);

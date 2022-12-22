@@ -19,5 +19,4 @@ public class IPM_Bon_Consultation extends IPM_Bon {
     private String motif;
     private String numeroBon;
 
-
 }

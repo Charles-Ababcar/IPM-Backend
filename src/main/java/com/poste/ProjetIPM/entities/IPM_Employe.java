@@ -26,7 +26,7 @@ public class IPM_Employe implements Serializable {
     private String nom;
     private String prenom;
     private String sexe;
-
+   @Column(unique = true)
     private String matricule;
    // private String picByte;
     @Column(length = 1000)
@@ -324,7 +324,7 @@ public class IPM_Employe implements Serializable {
     @JoinColumn(nullable = true)
     private IPM_Entity ipmEntity;
     @ManyToOne
-  //  @JoinColumn(nullable = true)
+   @JoinColumn(nullable = true)
     private IPM_StatutEmploye ipmStatutEmploye;
     @JsonIgnore
     @OneToMany(mappedBy = "ipm_employe")

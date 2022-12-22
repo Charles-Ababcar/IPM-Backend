@@ -28,10 +28,10 @@ public class IPM_Details_Facture {
     private String fileName;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private  Date datePrestation;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+/*    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date_facture;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date dateSaisie;
+    private Date dateSaisie;*/
     private Double montant_facture;
 
     @lombok.Getter
@@ -55,31 +55,30 @@ public class IPM_Details_Facture {
         this.file = file;
     }
 
-    public IPM_Details_Facture(String matricule , Double montant_facture, Date date_facture, String fileName) {
-        this.matricule = matricule;
-        this.montant_facture = montant_facture;
-        this.date_facture = date_facture;
-        this.fileName = fileName;
-
-    }
-    public IPM_Details_Facture(String matricule ,Double montant_factur, String fileName) {
-        this.matricule = matricule;
-        this.montant_facture = montant_facture;
-        this.fileName = fileName;
-
-    }
-    public IPM_Details_Facture(Date dateSaisie,Double part_patient ,Double part_ipm,Double montant_facture,IPM_Employe ipm_employe,IPM_Facture ipmFacture) {
-        this.dateSaisie =dateSaisie;
+//    public IPM_Details_Facture(String matricule , Double montant_facture, Date date_facture, String fileName) {
+//        this.matricule = matricule;
+//        this.montant_facture = montant_facture;
+//       // this.date_facture = date_facture;
+//        this.fileName = fileName;
+//
+//    }
+//    public IPM_Details_Facture(String matricule ,Double montant_factur, String fileName) {
+//        this.matricule = matricule;
+//        this.montant_facture = montant_facture;
+//        this.fileName = fileName;
+//
+//    }
+    public IPM_Details_Facture(IPM_Employe ipm_employe,IPM_Facture ipmFacture,Double part_patient ,Double part_ipm,Double montant_facture) {
+        this.ipm_employe =ipm_employe;
+        this.ipmFacture=ipmFacture;
         this.part_patient=part_patient;
         this.part_ipm =part_ipm;
         this.montant_facture = montant_facture;
-        this.ipm_employe =ipm_employe;
-        this.ipmFacture=ipmFacture;
+
 
     }
     //Individuel
-    public IPM_Details_Facture(Date dateSaisie,Double part_patient ,Double part_ipm,Double montant_facture,IPM_Employe ipm_employe,IPM_Facture ipmFacture,IPM_Prestation ipm_prestation) {
-        this.dateSaisie =dateSaisie;
+    public IPM_Details_Facture(Double part_patient ,Double part_ipm,Double montant_facture,IPM_Employe ipm_employe,IPM_Facture ipmFacture,IPM_Prestation ipm_prestation) {
         this.part_patient=part_patient;
         this.part_ipm =part_ipm;
         this.montant_facture = montant_facture;

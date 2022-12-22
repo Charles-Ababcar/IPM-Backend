@@ -4,6 +4,7 @@ import com.poste.ProjetIPM.Repository.IPM_EmployeRepository;
 import com.poste.ProjetIPM.entities.IPM_Details_Facture;
 import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.entities.IPM_Service;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,6 +16,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+
 @CrossOrigin(origins = "*")
 @Service
 @Transactional
@@ -91,8 +94,8 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
 
     @Override
     public String AjouterUnFichierE(MultipartFile file) throws IOException {
-      //  String uploadDir = "/var/www/html/ipmfiles/images/employes/";
-        String uploadDir = "E:/MesDossiers/Images-IPM_Employes/";
+        String uploadDir = "/var/www/html/ipmfiles/images/employes/";
+      //  String uploadDir = "E:/MesDossiers/Images-IPM_Employes/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
@@ -115,8 +118,8 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
     }
     @Override
     public String AjouterFichierJust(MultipartFile file) throws IOException {
-        String uploadDir = "E:/MesDossiers/justificatif-employe/";
-         //  String uploadDir = "/var/www/html/ipmfiles/files/jusificatifs/";
+      //  String uploadDir = "E:/MesDossiers/justificatif-employe/";
+           String uploadDir = "/var/www/html/ipmfiles/files/jusificatifs/";
         File fileName = new File(uploadDir+""+file.getOriginalFilename());
         // Create File
         boolean fileCreated = fileName.createNewFile();
@@ -128,5 +131,14 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
         return ipm_employeRepository.save(ipm_employe);
     }
 
+   //Verifier un matricule
+    @Override
+    public boolean verifier(String matricule) {
+//       Optional<IPM_Employe> ipmEmploye = ipm_employeRepository.findByMatricule(matricule);
+//        if (!ipmEmploye.isPresent())
+//            return false;
+//        else return true;
+        return  true;
+    }
 
 }

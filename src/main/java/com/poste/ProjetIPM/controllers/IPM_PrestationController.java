@@ -5,8 +5,11 @@ import com.poste.ProjetIPM.entities.IPM_Prestation;
 import com.poste.ProjetIPM.services.IPM_PrestataireService;
 import com.poste.ProjetIPM.services.IPM_PrestationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Collection;
 
 @RestController
@@ -27,7 +30,8 @@ public class IPM_PrestationController {
     }
 
     @PostMapping("/prestation")
-    public void save(@RequestBody IPM_Prestation ipm_prestation) {
+    public void save(@RequestBody IPM_Prestation ipm_prestation)
+    {
         ipm_prestationService.save(ipm_prestation);
     }
 

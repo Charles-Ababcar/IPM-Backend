@@ -15,7 +15,7 @@ import java.util.List;
 public class IPM_StatutEmploye {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idStatut;
+    private Long idStatut;
     private String emplStatut;
     @JsonIgnore
     @OneToMany(mappedBy = "ipmStatutEmploye")

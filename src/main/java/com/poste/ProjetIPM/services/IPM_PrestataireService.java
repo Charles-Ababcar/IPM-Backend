@@ -2,7 +2,9 @@ package com.poste.ProjetIPM.services;
 
 import com.poste.ProjetIPM.entities.IPM_Enfant;
 import com.poste.ProjetIPM.entities.IPM_Prestataire;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,4 +21,5 @@ public interface IPM_PrestataireService {
 
     void delete(Long id);
 
+    String AjouterFichierLettre(MultipartFile file) throws IOException;
 }

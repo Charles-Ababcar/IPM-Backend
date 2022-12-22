@@ -44,4 +44,6 @@ public interface IPM_EmployeService {
 
     IPM_Employe AjouterLesAttributsDuFichier(IPM_Employe ipm_employe);
 
+    //Verifier un matricule
+    boolean verifier(String matricule);
 }
