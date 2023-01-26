@@ -28,7 +28,7 @@ public class IPM_BaremeController {
         ipm_baremeService.save(ipm_bareme);
     }
 
-    @PutMapping("/bareme")
+    @PutMapping("/updatebareme")
     public void update(@RequestBody IPM_Bareme ipm_bareme) {
         ipm_baremeService.update(ipm_bareme);
     }

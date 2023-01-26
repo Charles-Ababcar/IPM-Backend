@@ -5,12 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.Session;
 //import org.omg.CORBA.Any;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +31,15 @@ public class IPM_Employe implements Serializable {
     @JoinColumn(nullable = true)
     private String photo;
     private boolean statut;
+
+    public String getJustificatif() {
+        return justificatif;
+    }
+
+    public void setJustificatif(String justificatif) {
+        this.justificatif = justificatif;
+    }
+
     private String justificatif;
 
 
@@ -180,11 +187,11 @@ public class IPM_Employe implements Serializable {
         this.reference = reference;
     }
 
-    public Long getCumul_charge() {
+    public Double getCumul_charge() {
         return cumul_charge;
     }
 
-    public void setCumul_charge(Long cumul_charge) {
+    public void setCumul_charge(Double cumul_charge) {
         this.cumul_charge = cumul_charge;
     }
 
@@ -280,7 +287,7 @@ public class IPM_Employe implements Serializable {
     // @Temporal(TemporalType.TIME)
     private Date date_fin_suspension;
     private String reference;
-    private Long cumul_charge;
+    private Double cumul_charge;
     private String niveau_salarial;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date dateStatutEmploye=new Date();
@@ -343,7 +350,5 @@ public class IPM_Employe implements Serializable {
     @OneToMany(mappedBy = "ipm_employe")
     private List<IPM_Details_remboursement> ipmDetailsRemboursements;
 
-    public IPM_Employe(String matricule) {
-        this.matricule = matricule;
-    }
+
 }

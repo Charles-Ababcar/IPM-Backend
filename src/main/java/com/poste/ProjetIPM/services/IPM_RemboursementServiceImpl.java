@@ -1,6 +1,8 @@
 package com.poste.ProjetIPM.services;
 
+import com.poste.ProjetIPM.Repository.IPM_EmployeRepository;
 import com.poste.ProjetIPM.Repository.IPM_RemboursementRepository;
+import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.entities.IPM_Remboursement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,8 @@ public class IPM_RemboursementServiceImpl implements IPM_RemboursementService {
 
     @Autowired
     IPM_RemboursementRepository ipm_remboursementRepository;
-
+    @Autowired
+    IPM_EmployeRepository ipmEmployeRepository;
     @Override
     public Collection<IPM_Remboursement> getAll() {
         return ipm_remboursementRepository.findAll();

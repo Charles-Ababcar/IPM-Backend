@@ -161,6 +161,11 @@ public class IPM_EmployeController {
    public IPM_Enfant getEmpl(@PathVariable  String matricule) {
       return ipm_employeRepository.getByMatricules(matricule);
  }
+
+    @GetMapping("/employe/count")
+    public long count(){
+        return ipm_employeService.count() ;
+    }
 /////////////////Méthode de Calcul d'age///////////////////////////////
     public int getAge(int year, int month, int day) {
         Date now = new Date();

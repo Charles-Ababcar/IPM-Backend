@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface IPM_EmployeService {
 
+    long count();
+
     Collection<IPM_Employe> getAll();
 
     IPM_Employe getById(long id);

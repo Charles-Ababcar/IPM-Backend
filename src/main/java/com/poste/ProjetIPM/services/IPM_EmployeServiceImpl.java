@@ -1,10 +1,8 @@
 package com.poste.ProjetIPM.services;
 
 import com.poste.ProjetIPM.Repository.IPM_EmployeRepository;
-import com.poste.ProjetIPM.entities.IPM_Details_Facture;
 import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.entities.IPM_Service;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +14,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @Service
@@ -25,7 +22,10 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
 
     @Autowired
     IPM_EmployeRepository ipm_employeRepository;
-
+    @Override
+    public long count() {
+        return ipm_employeRepository.count();
+    }
     @Override
     public Collection<IPM_Employe> getAll() {
         return ipm_employeRepository.findAll();
@@ -41,6 +41,8 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
     }
     @Override
     public IPM_Employe save(IPM_Employe ipm_employe) {
+        ipm_employe.setSolde(0.0);
+        ipm_employe.setCumul_charge(0.0);
         // Long id= ipm_employe.getIpm_categorie().getCode_categorie();
         //    ipm_employe.setIpm_categorie(ipm_categorieService.getById(id));
 
