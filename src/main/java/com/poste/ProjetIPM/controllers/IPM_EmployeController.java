@@ -175,7 +175,6 @@ public class IPM_EmployeController {
         int nowMonth = now.getMonth()+1;
         int nowYear = now.getYear()+1900;
         int result = nowYear - year;
-
         if (month > nowMonth) {
             result--;
         }
