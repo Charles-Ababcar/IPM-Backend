@@ -26,4 +26,6 @@ public interface IPM_BonRepository extends JpaRepository<IPM_Bon, Long> {
     @Query(value = "SELECT  new IPM_Bon(c.ipm_employe,c.ipm_prestataire,c.ipm_prestation) from IPM_Bon c  where c.dateEtablissement BETWEEN :d1 and :d2 and c.ipm_prestation.code_prestation=:d4")
     Collection<IPM_Bon> getBonByPeriodeAndtypeBon(@Param("d1") Date d1 , @Param("d2") Date d2, @Param("d4") Long d4);
 
+
+
 }
