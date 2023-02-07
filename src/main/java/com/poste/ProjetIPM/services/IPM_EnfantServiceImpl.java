@@ -137,4 +137,8 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
     public ResponseEntity<byte[]> getImage(Long id) {
         return (ResponseEntity<byte[]>) ipm_enfantRepository.getEnfantById(id);
     }
+    @Override
+    public long count() {
+        return ipm_enfantRepository.count();
+    }
 }

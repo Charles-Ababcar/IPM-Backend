@@ -24,5 +24,6 @@ public interface IPM_ConjointService {
 
     IPM_Conjoint AjouterLesAttributsDuFichier(IPM_Conjoint ipm_conjoint);
     IPM_Conjoint getById(long id);
+    long count();
 
 }

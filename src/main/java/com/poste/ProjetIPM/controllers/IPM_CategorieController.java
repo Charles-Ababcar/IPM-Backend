@@ -39,4 +39,6 @@ public class IPM_CategorieController {
     public void delete(@PathVariable Long id) {
         ipm_categorieService.delete(id);
     }
+
+
 }

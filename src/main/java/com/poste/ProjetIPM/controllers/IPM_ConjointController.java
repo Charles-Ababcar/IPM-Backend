@@ -144,4 +144,9 @@ public class IPM_ConjointController {
     public void delete(@PathVariable Long id) {
         ipm_conjointService.delete(id);
     }
+
+    @GetMapping("/conjoint/count")
+    public long count(){
+        return ipm_conjointService.count() ;
+    }
 }

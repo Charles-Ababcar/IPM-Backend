@@ -145,6 +145,10 @@ public class IPM_EnfantController {
         return bytes;
 
     }
+    @GetMapping("/enfant/count")
+    public long count(){
+        return ipm_enfantService.count() ;
+    }
    /*@RequestMapping(value = "/Image/{id:.+}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getImage(@PathVariable("id") String id) {
         byte[] image = ipm_enfantService.getChemin(id);

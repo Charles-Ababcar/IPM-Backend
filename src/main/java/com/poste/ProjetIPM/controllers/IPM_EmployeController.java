@@ -92,8 +92,11 @@ public class IPM_EmployeController {
         ipm_employe.setJustificatif(uploadDiir+"/"+ipm_employe.getJustificatif());
         Random randomm =new Random();
         ipm_employe.setNumero_carnet((long) (100+randomm.nextInt(100000)));
+            ipm_employeService.save(ipm_employe);
 
-        ipm_employeService.save(ipm_employe);
+
+
+       // ipm_employeService.save(ipm_employe);
 
     }
     @RequestMapping(path= "/uploadeJustif", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

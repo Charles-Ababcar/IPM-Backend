@@ -32,5 +32,7 @@ public interface IPM_EnfantService {
     IPM_Enfant AjouterLesAttributsDuFichier(IPM_Enfant ipm_enfant);
 
     public ResponseEntity<byte[]> getImage(Long id);
+
+    long count();
     // void AjouterUnFichier(MultipartFile file);
 }

@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @Service
@@ -136,11 +137,10 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
    //Verifier un matricule
     @Override
     public boolean verifier(String matricule) {
-//       Optional<IPM_Employe> ipmEmploye = ipm_employeRepository.findByMatricule(matricule);
-//        if (!ipmEmploye.isPresent())
-//            return false;
-//        else return true;
-        return  true;
+      IPM_Employe ipmEmploye = ipm_employeRepository.findByMatricule(matricule);
+        if (ipmEmploye.equals(matricule)) return false;
+       else return true;
     }
+
 
 }

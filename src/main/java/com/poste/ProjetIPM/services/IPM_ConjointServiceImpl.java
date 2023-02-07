@@ -6,6 +6,7 @@ import com.poste.ProjetIPM.entities.IPM_Enfant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
@@ -106,4 +107,11 @@ public class IPM_ConjointServiceImpl implements IPM_ConjointService {
     public IPM_Conjoint getById(long id) {
         return ipm_conjointRepository.findById(id).get();
     }
+
+    @Override
+    public long count() {
+            return ipm_conjointRepository.count();
+        }
+
+
 }
