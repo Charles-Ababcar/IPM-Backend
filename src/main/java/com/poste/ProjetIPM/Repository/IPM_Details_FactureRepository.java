@@ -35,7 +35,9 @@ public interface IPM_Details_FactureRepository  extends JpaRepository<IPM_Detail
     //Siuation individuels des prestations
     @Query(value = "SELECT   new IPM_Details_Facture(c.part_patient,c.part_ipm,c.montant_facture,c.ipm_employe,c.ipmFacture,c.ipm_prestation) from IPM_Details_Facture  c  where c.ipmFacture.dateSaisie BETWEEN :d1 and :d2 and c.ipm_employe.matricule=:matricule")
     Collection<IPM_Details_Facture> getIndividuelPrestations(@Param("d1") Date d1 ,@Param("d2") Date d2, @Param("matricule")  String matricule);
-
+    //recuperer la liste de facture par rapport à l'employe
+    @Query(value = "select b from  IPM_Details_Facture b ,IPM_Employe e where b.ipm_employe.idemp=:id and b.ipm_employe.idemp=e.idemp")
+    Collection<IPM_Details_Facture> getFactureById(@Param("id") Long id);
 
 
 }

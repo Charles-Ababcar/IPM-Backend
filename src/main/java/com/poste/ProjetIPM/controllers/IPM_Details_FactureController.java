@@ -56,6 +56,11 @@ public class IPM_Details_FactureController {
         facture = ipm_factureService.getById(id);
         return ipm_details_factureService.getDetailFact(facture);
     }
+    @GetMapping("/detailsfactByEmploye/{id}")
+    public Collection<IPM_Details_Facture> getListFactureByIdEmploye(@PathVariable Long id) {
+        //IPM_Details_Facture ipm_details_facture = ipm_details_factureService.getById(id);
+        return ipm_details_factureService.getListFactByEmploye(id);
+    }
 
     @PutMapping("/updateList")
     public void update(@RequestBody List<IPM_Details_Facture> ipm_details_facture) {

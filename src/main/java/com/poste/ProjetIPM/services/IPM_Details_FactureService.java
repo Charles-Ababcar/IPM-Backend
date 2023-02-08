@@ -73,4 +73,6 @@ public interface IPM_Details_FactureService {
 
     //Individuels prestations
     Collection<IPM_Details_Facture> getPrestationIndividuel(Date date1, Date date2, String matricule);
+
+    Collection<IPM_Details_Facture> getListFactByEmploye(Long id);
 }

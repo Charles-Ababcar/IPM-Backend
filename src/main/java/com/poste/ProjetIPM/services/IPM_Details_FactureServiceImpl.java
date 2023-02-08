@@ -108,4 +108,10 @@ public class IPM_Details_FactureServiceImpl implements IPM_Details_FactureServic
     public Collection<IPM_Details_Facture> getPrestationIndividuel(Date date1, Date date2,String matricule) {
         return ipm_details_factureRepository.getIndividuelPrestations(date1,date2, matricule);
     }
+    @Override
+    public Collection<IPM_Details_Facture> getListFactByEmploye(Long id){
+        return ipm_details_factureRepository.getFactureById(id);
+
+
+    }
 }
