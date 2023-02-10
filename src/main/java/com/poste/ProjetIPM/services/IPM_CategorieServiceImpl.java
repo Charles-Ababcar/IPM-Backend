@@ -2,11 +2,13 @@ package com.poste.ProjetIPM.services;
 
 import com.poste.ProjetIPM.Repository.IPM_CatgorieRepository;
 import com.poste.ProjetIPM.entities.IPM_Categorie;
+import com.poste.ProjetIPM.entities.IPM_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 @Transactional
@@ -38,5 +40,13 @@ public class IPM_CategorieServiceImpl implements IPM_CategorieService {
     @Override
     public void delete(Long id) {
         ipm_catgorieRepository.deleteById(id);
+    }
+    @Override
+    public List<IPM_Categorie> save(List<IPM_Categorie> ipm_categories) {
+        for (int i = 0; i < ipm_categories.size(); i++) {
+            ipm_catgorieRepository.save(ipm_categories.get(i));
+
+        }
+        return ipm_categories;
     }
 }

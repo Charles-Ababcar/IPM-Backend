@@ -3,6 +3,7 @@ package com.poste.ProjetIPM.services;
 import com.poste.ProjetIPM.entities.IPM_Categorie;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface IPM_CategorieService {
 
@@ -15,4 +16,6 @@ public interface IPM_CategorieService {
     void update(IPM_Categorie ipm_categorie);
 
     void delete(Long id);
+
+    List<IPM_Categorie> save(List<IPM_Categorie> ipm_categories);
 }

@@ -99,6 +99,12 @@ public class IPM_EmployeController {
        // ipm_employeService.save(ipm_employe);
 
     }
+    @PostMapping("/addPanierEmploye")
+    public void createPanierEmploye(@RequestBody List<IPM_Employe> ipm_employes) {
+
+        ipm_employeService.saveE(ipm_employes);
+
+    }
     @RequestMapping(path= "/uploadeJustif", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadJustif(@RequestParam("file") MultipartFile file)
             throws IOException {

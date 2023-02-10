@@ -1,5 +1,6 @@
 package com.poste.ProjetIPM.services;
 
+import com.poste.ProjetIPM.entities.IPM_Categorie;
 import com.poste.ProjetIPM.entities.IPM_Details_Facture;
 import com.poste.ProjetIPM.entities.IPM_Employe;
 import com.poste.ProjetIPM.entities.IPM_Service;
@@ -48,4 +49,5 @@ public interface IPM_EmployeService {
 
     //Verifier un matricule
     boolean verifier(String matricule);
+    List<IPM_Employe> saveE(List<IPM_Employe> ipm_employes);
 }

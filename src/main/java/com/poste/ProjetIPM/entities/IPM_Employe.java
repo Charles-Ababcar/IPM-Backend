@@ -28,7 +28,8 @@ public class IPM_Employe implements Serializable {
     private String matricule;
    // private String picByte;
     @Column(length = 1000)
-    @JoinColumn(nullable = true)
+   // @JoinColumn(nullable = true)//a remettre
+    @JoinColumn()
     private String photo;
     private boolean statut;
 
@@ -289,6 +290,7 @@ public class IPM_Employe implements Serializable {
     private String reference;
     private Double cumul_charge;
     private String niveau_salarial;
+    private String Echelonnage;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date dateStatutEmploye=new Date();
      /*private Session session;
@@ -311,7 +313,8 @@ public class IPM_Employe implements Serializable {
     //@JsonIgnore
     // @ManyToOne
     @ManyToOne
-    @JoinColumn(nullable = true)
+    //@JoinColumn(nullable = true)//a remettre
+    @JoinColumn()
     private IPM_Service ipmService;
 
     /*@JsonIgnore
@@ -325,13 +328,16 @@ public class IPM_Employe implements Serializable {
     //@JsonIgnore
     //  @ManyToOne
     @ManyToOne
-    @JoinColumn(nullable = true)
+    //@JoinColumn(nullable = true)//a remettre
+    @JoinColumn()
     private IPM_Categorie ipm_categorie;
     @ManyToOne
-    @JoinColumn(nullable = true)
+    //@JoinColumn(nullable = true)//a remettre
+    @JoinColumn()
     private IPM_Entity ipmEntity;
     @ManyToOne
-   @JoinColumn(nullable = true)
+    //@JoinColumn(nullable = true)//a remettre
+   @JoinColumn()
     private IPM_StatutEmploye ipmStatutEmploye;
     @JsonIgnore
     @OneToMany(mappedBy = "ipm_employe")

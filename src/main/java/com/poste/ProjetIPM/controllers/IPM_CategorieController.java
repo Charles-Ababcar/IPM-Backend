@@ -2,11 +2,13 @@ package com.poste.ProjetIPM.controllers;
 
 import com.poste.ProjetIPM.entities.IPM_Categorie;
 
+import com.poste.ProjetIPM.entities.IPM_Service;
 import com.poste.ProjetIPM.services.IPM_CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -38,6 +40,12 @@ public class IPM_CategorieController {
     @DeleteMapping("/categorie/{id}")
     public void delete(@PathVariable Long id) {
         ipm_categorieService.delete(id);
+    }
+    @PostMapping("/addPanierCategorie")
+    public void createPanierCategorie(@RequestBody List<IPM_Categorie> ipm_categories) {
+//
+        ipm_categorieService.save(ipm_categories);
+
     }
 
 

@@ -2,6 +2,7 @@ package com.poste.ProjetIPM.controllers;
 
 import com.poste.ProjetIPM.Repository.IPM_EntityRepository;
 import com.poste.ProjetIPM.Repository.IPM_ServiceRepository;
+import com.poste.ProjetIPM.entities.IPM_Details_Facture;
 import com.poste.ProjetIPM.entities.IPM_Entity;
 import com.poste.ProjetIPM.entities.IPM_Service;
 import com.poste.ProjetIPM.services.IPM_EntityService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -56,5 +58,11 @@ public class IPM_ServiceController {
     @DeleteMapping("/service/{id}")
     public void delete(@PathVariable Long id) {
         ipm_serviceService.delete(id);
+    }
+    @PostMapping("/addPanierService")
+    public void createPanierService(@RequestBody List<IPM_Service> ipm_service) {
+
+        ipm_serviceService.save(ipm_service);
+
     }
 }

@@ -141,6 +141,15 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
         if (ipmEmploye.equals(matricule)) return false;
        else return true;
     }
+    @Override
+    public List<IPM_Employe> saveE(List<IPM_Employe> ipm_employes) {
+        for (int i = 0; i < ipm_employes.size(); i++) {
+            ipm_employeRepository.save(ipm_employes.get(i));
+
+        }
+        return ipm_employes;
+    }
+
 
 
 }

@@ -2,6 +2,7 @@ package com.poste.ProjetIPM.services;
 
 import com.poste.ProjetIPM.Repository.IPM_EntityRepository;
 import com.poste.ProjetIPM.Repository.IPM_ServiceRepository;
+import com.poste.ProjetIPM.entities.IPM_Details_Facture;
 import com.poste.ProjetIPM.entities.IPM_Entity;
 import com.poste.ProjetIPM.entities.IPM_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 @Transactional
@@ -45,6 +47,14 @@ public class IPM_ServiceServiceImpl implements IPM_ServiceService {
         return  ipm_serviceRepository.findByIpmEntity(ipmEntity);
 
         
+    }
+    @Override
+    public List<IPM_Service> save(List<IPM_Service> ipm_service) {
+        for (int i = 0; i < ipm_service.size(); i++) {
+            ipm_serviceRepository.save(ipm_service.get(i));
+
+        }
+        return ipm_service;
     }
 
     private Collection<IPM_Service> getIpmEntity(Collection<IPM_Service> ipmEntity) {
