@@ -49,13 +49,15 @@ public class IPM_Facture {
 //   @ManyToOne
 //   @JoinColumn(name = "id_employe")
 //     private IPM_Employe ipm_employe;
-    @OneToMany(mappedBy = "ipm_facture")
-    private List<IPM_Statut_Facture> ipm_statut_factures;
+  /*  @OneToMany(mappedBy = "ipm_facture")
+    private List<IPM_Statut_Facture> ipm_statut_factures;*/
     @JsonIgnore
     //@OneToMany(mappedBy = "ipm_facture")
     @OneToMany(mappedBy = "ipmFacture")
     private List<IPM_Details_Facture> ipm_details_factures;
-
+    @ManyToOne
+    @JoinColumn(nullable = true)
+    private IPM_Statut_Facture ipmStatutFacture;
 
     public Long getIdfacture() {
         return idfacture;
@@ -106,13 +108,6 @@ public class IPM_Facture {
         this.ipm_prestataire = ipm_prestataire;
     }*/
 
-    public List<IPM_Statut_Facture> getIpm_statut_factures() {
-        return ipm_statut_factures;
-    }
-
-    public void setIpm_statut_factures(List<IPM_Statut_Facture> ipm_statut_factures) {
-        this.ipm_statut_factures = ipm_statut_factures;
-    }
 
 
 

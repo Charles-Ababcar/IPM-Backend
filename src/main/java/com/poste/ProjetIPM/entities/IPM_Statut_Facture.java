@@ -1,10 +1,12 @@
 package com.poste.ProjetIPM.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -32,16 +34,13 @@ public class IPM_Statut_Facture {
         this.statutFacture = statutFacture;
     }
 
-    public IPM_Facture getIpm_facture() {
-        return ipm_facture;
-    }
-
-    public void setIpm_facture(IPM_Facture ipm_facture) {
-        this.ipm_facture = ipm_facture;
-    }
 
     private String statutFacture;
+    @JsonIgnore
+    @OneToMany(mappedBy = "ipmStatutFacture")
+    private List<IPM_Facture> ipmFactures;
 
-    @ManyToOne
-    private IPM_Facture ipm_facture;
+
+//    @ManyToOne
+//    private IPM_Facture ipm_facture;
 }
