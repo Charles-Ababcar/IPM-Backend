@@ -24,8 +24,9 @@ public class IPM_Employe implements Serializable {
     private String nom;
     private String prenom;
     private String sexe;
-   @Column(unique = true)
     private String matricule;
+   //@Column(unique = true)
+    //private String matricule;
    // private String picByte;
     @Column(length = 1000)
    // @JoinColumn(nullable = true)//a remettre
@@ -92,13 +93,13 @@ public class IPM_Employe implements Serializable {
         this.sexe = sexe;
     }
 
-    public String getMatricule() {
+    /*public String getMatricule() {
         return matricule;
     }
 
     public void setMatricule(String matricule) {
         this.matricule = matricule;
-    }
+    }*/
 
     public Long getNumero_carnet() {
         return numero_carnet;

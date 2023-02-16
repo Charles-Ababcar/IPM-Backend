@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @CrossOrigin(origins = "*")
 @Service
@@ -135,15 +136,17 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
     }
 
    //Verifier un matricule
-    @Override
+   /* @Override
     public boolean verifier(String matricule) {
       IPM_Employe ipmEmploye = ipm_employeRepository.findByMatricule(matricule);
         if (ipmEmploye.equals(matricule)) return false;
        else return true;
-    }
+    }*/
     @Override
     public List<IPM_Employe> saveE(List<IPM_Employe> ipm_employes) {
         for (int i = 0; i < ipm_employes.size(); i++) {
+            Random randomm =new Random();
+            ipm_employes.get(i).setNumero_carnet((long) (100+randomm.nextInt(100000)));
             ipm_employeRepository.save(ipm_employes.get(i));
 
         }
