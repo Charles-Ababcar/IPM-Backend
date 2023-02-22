@@ -53,7 +53,7 @@ public class IPM_Facture {
     private List<IPM_Statut_Facture> ipm_statut_factures;*/
     @JsonIgnore
     //@OneToMany(mappedBy = "ipm_facture")
-    @OneToMany(mappedBy = "ipmFacture")
+    @OneToMany(mappedBy = "ipmFacture",cascade={CascadeType.REMOVE})
     private List<IPM_Details_Facture> ipm_details_factures;
     @ManyToOne
     @JoinColumn(nullable = true)

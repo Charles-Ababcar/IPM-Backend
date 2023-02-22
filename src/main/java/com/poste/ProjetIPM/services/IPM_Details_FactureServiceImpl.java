@@ -114,4 +114,12 @@ public class IPM_Details_FactureServiceImpl implements IPM_Details_FactureServic
 
 
     }
+
+
+    @Override
+    public void deleteListFactByEmploye(Long id){
+         ipm_details_factureRepository.deleteById(id);
+
+
+    }
 }

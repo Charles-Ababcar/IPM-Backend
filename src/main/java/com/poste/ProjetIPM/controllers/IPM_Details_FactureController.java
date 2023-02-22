@@ -126,6 +126,10 @@ public class IPM_Details_FactureController {
 
     }
 
+    @DeleteMapping("/detailsfactur/{id}")
+    public void delete(@PathVariable Long id) {
 
+        ipm_details_factureService.deleteListFactByEmploye(id);
+    }
 
 }
