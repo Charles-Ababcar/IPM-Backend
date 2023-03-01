@@ -47,6 +47,8 @@ public interface IPM_Details_FactureService {
 
   //  List<IPM_Details_Facture> addListEntitys(Long idEntity, Date date1, Date date2);
 
+    Collection <IPM_Details_Facture> getDetailFactbyFacture(Long id);
+
     Collection<IPM_Details_Facture> addListEntity(Long idEntity, Date date1, Date date2);
 
 

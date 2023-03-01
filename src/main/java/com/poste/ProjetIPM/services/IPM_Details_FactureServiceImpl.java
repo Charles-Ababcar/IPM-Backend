@@ -59,6 +59,11 @@ public class IPM_Details_FactureServiceImpl implements IPM_Details_FactureServic
     public void update(IPM_Details_Facture ipm_details_facture) {
           ipm_details_factureRepository.save(ipm_details_facture);
     }
+    @Override
+    public Collection <IPM_Details_Facture> getDetailFactbyFacture(Long id){
+        return ipm_details_factureRepository.getDetByIdFacture(id);
+
+    }
   /*  @Override
     public Collection<IPM_Details_Facture> getCreancesGlobaless(Date date1, Date date2) {
         return ipm_details_factureRepository.findByDateSaisieBetween(date1,date2);

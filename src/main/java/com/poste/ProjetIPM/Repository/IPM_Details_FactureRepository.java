@@ -16,6 +16,9 @@ import java.util.List;
 public interface IPM_Details_FactureRepository  extends JpaRepository<IPM_Details_Facture,Long> {
     IPM_Facture findByFileName(String fileName);
 
+    @Query(value = "SELECT new IPM_Details_Facture(c.ipm_employe,c.ipmFacture,SUM(c.part_patient),SUM(c.part_ipm),SUM(c.montant_facture)) from IPM_Details_Facture  c where c.ipmFacture.idfacture=:idFacture GROUP BY c.ipm_employe,c.ipmFacture")
+    Collection<IPM_Details_Facture> getDetByIdFacture(@Param("idFacture") Long idFacture );
+
     List<IPM_Details_Facture> findByIpmFacture(IPM_Facture ipmFacture);
     //situation des créances globales par période par entité
    // List<IPM_Details_Facture> findByDateSaisieBetween(Date d1, Date d2);

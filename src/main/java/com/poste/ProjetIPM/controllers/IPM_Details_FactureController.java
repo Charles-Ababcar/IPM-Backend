@@ -74,6 +74,14 @@ public class IPM_Details_FactureController {
 
     }
 
+
+    @GetMapping("/detailsfacturebyFacture/{id}")
+    public Collection<IPM_Details_Facture> getDetailFactByfacture(@PathVariable Long id) {
+//        new IPM_Facture();
+//        IPM_Facture facture;
+//        facture = ipm_factureService.getById(id);
+        return ipm_details_factureService.getDetailFactbyFacture(id);
+    }
     /////////////////TODO:Implementation upload file excel
     @PostMapping(value = "/fileupload")
     public void uploadFile(@ModelAttribute IPM_Details_Facture ipm_details_facture, RedirectAttributes redirectAttributes) {
