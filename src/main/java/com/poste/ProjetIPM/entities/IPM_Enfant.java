@@ -69,6 +69,7 @@ public class IPM_Enfant {
     private String lieu_nais_enfant;
     private String adresse;
     private String sexe_enfant;
+    @JoinColumn(nullable = true)
     private String chemin;
     private String extrait_naiss;
 

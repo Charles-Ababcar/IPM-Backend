@@ -87,7 +87,11 @@ public class IPM_BonController {
         ipm_bonService.delete(id);
     }
 
+@GetMapping("/getBonbymonth")
+    public long getBon(){
+       return ipm_bonService.getBonbype();
 
+}
 
 
 }

@@ -69,4 +69,5 @@ public class IPM_Categorie implements Serializable {
     private List<IPM_Employe> ipm_employes;
 
 
+
 }

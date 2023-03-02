@@ -2,6 +2,7 @@ package com.poste.ProjetIPM.services;
 
 import com.poste.ProjetIPM.Repository.IPM_BonRepository;
 import com.poste.ProjetIPM.entities.IPM_Bon;
+import com.poste.ProjetIPM.entities.IPM_Details_Cotisations;
 import com.poste.ProjetIPM.entities.IPM_Details_Facture;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,5 +74,20 @@ public class IPM_BonServiceImpl implements IPM_BonService {
     public Collection<IPM_Bon> getBonbyperiodeAndType(Date date1, Date date2,Long d3) {
         return ipm_bonRepository.getBonByPeriodeAndtypeBon(date1,date2,d3);
     }
+
+
+
+    @Override
+    public long getBonbype() {
+      //  int d1=new Date().getMonth();
+    return ipm_bonRepository.count();
+
+    }
+
+
+
+
+
+
 
 }
