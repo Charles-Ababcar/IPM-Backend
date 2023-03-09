@@ -154,5 +154,15 @@ public class IPM_EmployeServiceImpl implements IPM_EmployeService {
     }
 
 
+    @Override
+    public long countSexeM()
+    {
+        return ipm_employeRepository.countBySexeMasculin();
+    }
+    @Override
+    public long countSexeF()
+    {
+        return ipm_employeRepository.countBySexeFeminin();
+    }
 
 }

@@ -34,4 +34,13 @@ public interface IPM_EmployeRepository extends JpaRepository<IPM_Employe, Long> 
     //List<IPM_Employe> updateListe(List<IPM_Employe> ipm_employe);
 
     //void update(IPM_Employe ipm_employe);
+    //Compter les hommes
+    @Query(value = "SELECT COUNT(*) FROM ipm_employe e WHERE e.sexe = 'Masculin'",nativeQuery = true)
+    long countBySexeMasculin();
+
+    //Compter les feminins
+    @Query(value = "SELECT COUNT(*) FROM ipm_employe e WHERE e.sexe = 'Féminin'",nativeQuery = true)
+    long countBySexeFeminin();
+
+
 }

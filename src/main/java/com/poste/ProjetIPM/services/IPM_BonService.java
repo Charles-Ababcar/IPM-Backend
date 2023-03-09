@@ -29,4 +29,12 @@ public interface IPM_BonService {
     Collection<IPM_Bon> getBonbyperiodeAndType(Date date1, Date date2, Long d3);
 
     long getBonbype();
+
+    long getBonPharmacie();
+
+    long getBonConsultation();
+
+    long getBonlettreGarantie();
+
+    long getBonLunetterie();
 }

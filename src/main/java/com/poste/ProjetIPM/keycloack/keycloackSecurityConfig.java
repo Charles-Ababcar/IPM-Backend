@@ -31,9 +31,9 @@ public class keycloackSecurityConfig extends KeycloakWebSecurityConfigurerAdapte
         http.csrf().disable();
        http.cors();
        // http.authorizeRequests().antMatchers("**").authenticated();
-      // http.authorizeRequests().antMatchers("**").permitAll(); //Ne necessite aucune authentification
+      http.authorizeRequests().antMatchers("**").permitAll(); //Ne necessite aucune authentification
         //http.authorizeRequests().antMatchers("**").authenticated();
-       http.authorizeRequests().antMatchers("**").permitAll(); //Ne necessite aucune authentification
+      // http.authorizeRequests().antMatchers("**").permitAll(); //Ne necessite aucune authentification
 
         //http.authorizeRequests().antMatchers("**").authenticated(); // necessite une authentification
         //http.authorizeRequests().antMatchers("/dg_TypeStructure/**").authenticated(); // necessite une authentification

@@ -141,4 +141,17 @@ public class IPM_EnfantServiceImpl implements IPM_EnfantService {
     public long count() {
         return ipm_enfantRepository.count();
     }
+
+    @Override
+    public long countAgeEnfant(){
+
+        return ipm_enfantRepository.countByAge();
+
+    }
+    @Override
+    public long countAgeEnfantSup(){
+
+        return ipm_enfantRepository.countAgeSuperieur();
+
+    }
 }

@@ -26,7 +26,17 @@ public interface IPM_BonRepository extends JpaRepository<IPM_Bon, Long> {
     @Query(value = "SELECT  new IPM_Bon(c.ipm_employe,c.ipm_prestataire,c.ipm_prestation) from IPM_Bon c  where c.dateEtablissement BETWEEN :d1 and :d2 and c.ipm_prestation.code_prestation=:d4")
     Collection<IPM_Bon> getBonByPeriodeAndtypeBon(@Param("d1") Date d1 , @Param("d2") Date d2, @Param("d4") Long d4);
 
-//      @Query(value = "SELECT count(*) i   from IPM_Bon i where function('MONTH',i.dateEtablissement)=:mois ",nativeQuery = true)
-//    List<IPM_Bon> getEmpByByMonths(@Param("mois") Integer mois);
+    @Query(value = "SELECT  COUNT(*) FROM ipm_bon WHERE YEAR(date_etablissement)= Year(NOW()) AND MONTH(date_etablissement)=MONTH(NOW())  GROUP BY MONTH(date_etablissement)=MONTH(NOW())",nativeQuery = true)
+     long  countByMonth();
+
+    //Compter les types de prestattions
+    @Query(value = "SELECT COUNT(*) FROM ipm_bon  WHERE YEAR(date_etablissement)= Year(NOW()) AND MONTH(date_etablissement)=MONTH(NOW()) AND  type_bon = 'pharmacie' GROUP BY MONTH(date_etablissement)=MONTH(NOW())",nativeQuery = true)
+    long countTypePharmacie();
+    @Query(value = "SELECT COUNT(*) FROM ipm_bon  WHERE YEAR(date_etablissement)= Year(NOW()) AND MONTH(date_etablissement)=MONTH(NOW()) AND type_bon = 'consultation' GROUP BY MONTH(date_etablissement)=MONTH(NOW())",nativeQuery = true)
+    long countTypeConsul();
+    @Query(value = "SELECT COUNT(*) FROM ipm_bon  WHERE YEAR(date_etablissement)= Year(NOW()) AND MONTH(date_etablissement)=MONTH(NOW()) AND  type_bon = 'lettregrantie' GROUP BY MONTH(date_etablissement)=MONTH(NOW()) ",nativeQuery = true)
+    long countTypeLettre();
+    @Query(value = "SELECT COUNT(*) FROM ipm_bon  WHERE YEAR(date_etablissement)= Year(NOW()) AND MONTH(date_etablissement)=MONTH(NOW()) AND type_bon = 'lunetterie' GROUP BY MONTH(date_etablissement)=MONTH(NOW())",nativeQuery = true)
+    long countTypeLunetterie();
 
 }

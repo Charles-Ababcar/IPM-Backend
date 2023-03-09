@@ -195,4 +195,12 @@ public class IPM_EmployeController {
     }
 
 
+    @GetMapping("/employe/countSexeM")
+    public long countMasculin(){
+        return ipm_employeService.countSexeM();
+    }
+    @GetMapping("/employe/countSexeF")
+    public long countFeminin(){
+        return ipm_employeService.countSexeF();
+    }
 }

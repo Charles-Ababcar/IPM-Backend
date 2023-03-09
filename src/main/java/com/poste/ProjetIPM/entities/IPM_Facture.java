@@ -46,6 +46,8 @@ public class IPM_Facture {
 //    private IPM_Prestation ipm_prestation;
    private Integer numerofacture;
    private  Integer montantTotal;
+   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+   private Date DateReception;
 //   @ManyToOne
 //   @JoinColumn(name = "id_employe")
 //     private IPM_Employe ipm_employe;

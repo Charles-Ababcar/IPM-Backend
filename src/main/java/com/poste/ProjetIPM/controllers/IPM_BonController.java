@@ -94,4 +94,31 @@ public class IPM_BonController {
 }
 
 
+    @GetMapping("/getBonbypharma")
+    public long getBonPh(){
+        return ipm_bonService.getBonPharmacie();
+    }
+    @GetMapping("/getBonbycons")
+    public long getBonConsul(){
+        return ipm_bonService.getBonConsultation();
+    }
+    @GetMapping("/getBonbylettreGarantie")
+    public long getBonLet(){
+        return ipm_bonService.getBonlettreGarantie();
+
+    }
+    @GetMapping("/getBonbylunetterie")
+    public long getBonLunetterie(){
+        return ipm_bonService.getBonLunetterie();
+
+    }
+
+
+
+
+
+
+
+
+
 }

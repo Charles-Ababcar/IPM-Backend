@@ -154,4 +154,18 @@ public class IPM_EnfantController {
         byte[] image = ipm_enfantService.getChemin(id);
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }*/
+   @GetMapping("/enfant/countAgeInferieur")
+   public long countAgeEnfant(){
+       return ipm_enfantService.countAgeEnfant() ;
+   }
+    @GetMapping("/enfant/countAgeSuperieur")
+    public long countAgeEnfantSup(){
+        return ipm_enfantService.countAgeEnfantSup() ;
+    }
+    @GetMapping("/allenfant")
+    public Collection<IPM_Enfant> getAllEnfant(){
+        return ipm_enfantService.getAll();
+    }
+
+
 }

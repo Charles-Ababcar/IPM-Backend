@@ -293,7 +293,7 @@ public class IPM_Employe implements Serializable {
     private String niveau_salarial;
     private String Echelonnage;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date dateStatutEmploye=new Date();
+    private Date dateStatutEmploy;
      /*private Session session;
      private Long lastId = ((BigInteger) session.createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult()).longValue();
 

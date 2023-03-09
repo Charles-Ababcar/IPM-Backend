@@ -80,9 +80,35 @@ public class IPM_BonServiceImpl implements IPM_BonService {
     @Override
     public long getBonbype() {
       //  int d1=new Date().getMonth();
-    return ipm_bonRepository.count();
+    return ipm_bonRepository.countByMonth();
 
     }
+
+    @Override
+    public long getBonPharmacie() {
+        return ipm_bonRepository.countTypePharmacie();
+
+    }
+    @Override
+    public long getBonConsultation() {
+        return ipm_bonRepository.countTypeConsul();
+
+    }
+    @Override
+    public long getBonlettreGarantie() {
+        return ipm_bonRepository.countTypeLettre();
+
+    }
+    @Override
+    public long getBonLunetterie() {
+        return ipm_bonRepository.countTypeLunetterie();
+
+    }
+
+
+
+
+
 
 
 

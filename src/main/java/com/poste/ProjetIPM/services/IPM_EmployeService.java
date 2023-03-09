@@ -50,4 +50,7 @@ public interface IPM_EmployeService {
     /*//Verifier un matricule
     boolean verifier(String matricule);*/
     List<IPM_Employe> saveE(List<IPM_Employe> ipm_employes);
+
+    long countSexeM();
+    long countSexeF();
 }

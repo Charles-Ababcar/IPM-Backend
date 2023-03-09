@@ -34,5 +34,8 @@ public interface IPM_EnfantService {
     public ResponseEntity<byte[]> getImage(Long id);
 
     long count();
+
+    long countAgeEnfant();
+     long countAgeEnfantSup();
     // void AjouterUnFichier(MultipartFile file);
 }
