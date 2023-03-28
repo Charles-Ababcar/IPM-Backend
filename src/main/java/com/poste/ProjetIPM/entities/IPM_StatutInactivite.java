@@ -6,21 +6,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
+@Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class IPM_StatutEmploye {
+public class IPM_StatutInactivite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idStatut;
-    private String emplStatut;
-    @JsonIgnore
-    @OneToMany(mappedBy = "ipmStatutEmploye")
-    private List<IPM_Employe> ipm_employes;
-    @JsonIgnore
-    @OneToMany(mappedBy = "ipmStatutEmploye")
-    private  List<IPM_StatutInactivite> ipmStatutInactivite;
+    private Long idAllStatut;
+    private String libelleStatut;
+    private String motif;
+    @ManyToOne
+    @JoinColumn(nullable =false)
+    private IPM_StatutEmploye ipmStatutEmploye;
+
 }

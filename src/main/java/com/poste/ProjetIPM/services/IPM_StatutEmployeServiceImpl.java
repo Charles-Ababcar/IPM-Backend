@@ -27,7 +27,14 @@ public class IPM_StatutEmployeServiceImpl implements IPM_StatutEmployeService {
     }
 
     @Override
-    public void update(IPM_StatutEmploye ipm_statutEmploye) {
+    public void update(IPM_StatutEmploye ipm_statutEmploye)
+    {
         ipm_statutEmployeRepository.save(ipm_statutEmploye);
+    }
+
+    @Override
+    public IPM_StatutEmploye getById(Long id)
+    {
+        return ipm_statutEmployeRepository.findById(id).get();
     }
 }

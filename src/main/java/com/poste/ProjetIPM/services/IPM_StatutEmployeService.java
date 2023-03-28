@@ -9,4 +9,6 @@ public interface IPM_StatutEmployeService {
     boolean userExist(int userId);
     IPM_StatutEmploye updateStatu(IPM_StatutEmploye ipm_statutEmploye);
     void update(IPM_StatutEmploye ipm_statutEmploye);
+
+    IPM_StatutEmploye getById(Long id);
 }

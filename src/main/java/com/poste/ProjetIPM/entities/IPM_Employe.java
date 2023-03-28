@@ -283,7 +283,7 @@ public class IPM_Employe implements Serializable {
     private Double solde;
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     //  @Temporal(TemporalType.TIME)
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date_debut_suspension;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     // @Temporal(TemporalType.TIME)
@@ -294,6 +294,7 @@ public class IPM_Employe implements Serializable {
     private String Echelonnage;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date dateStatutEmploy;
+    private String motifStatut;
      /*private Session session;
      private Long lastId = ((BigInteger) session.createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult()).longValue();
 
