@@ -21,8 +21,10 @@ public interface IPM_PrestataireRepository extends JpaRepository<IPM_Prestataire
 
     //IPM_Prestataire findByNomprestataire(String nom_type_prestaire);
 
-        @Query(value = "select p from  IPM_Prestataire p ,IPM_Type_Prestataire tp where p.ipm_type_prestataire.nom_type_prestaire=:nom and p.ipm_type_prestataire.nom_type_prestaire=tp.nom_type_prestaire")
-     List<IPM_Prestataire> getIPM_PrestataireByIdL(@Param("nom") String nom);
+        //@Query(value = "select p from  IPM_Prestataire p ,IPM_Type_Prestataire tp where p.ipm_type_prestataire.nom_type_prestaire=:nom and p.ipm_type_prestataire.nom_type_prestaire=tp.nom_type_prestaire")
+        @Query(value = "select p from  IPM_Prestataire p  where p.ipm_type_prestataire.nom_type_prestaire=:nom")
+
+        List<IPM_Prestataire> getIPM_PrestataireByIdL(@Param("nom") String nom);
 
     //List<IPM_Prestataire> findByNameContains(@Param("nom") String nom);
 
