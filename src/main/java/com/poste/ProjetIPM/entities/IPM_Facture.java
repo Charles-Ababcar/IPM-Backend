@@ -45,6 +45,8 @@ public class IPM_Facture {
 //    @ManyToOne
 //    private IPM_Prestation ipm_prestation;
    private Integer numerofacture;
+    private Integer nombJour;
+    private  boolean reglement;
    private  Integer montantTotal;
    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
    private Date DateReception;
